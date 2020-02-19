@@ -90,9 +90,9 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.P0textBox = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
+            this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updn_power)).BeginInit();
@@ -644,20 +644,6 @@
             this.checkBox4.Text = "Gray Scale";
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
-            // chart3
-            // 
-            chartArea3.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea3);
-            this.chart3.Location = new System.Drawing.Point(1044, 498);
-            this.chart3.Name = "chart3";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series3.Name = "Series1";
-            this.chart3.Series.Add(series3);
-            this.chart3.Size = new System.Drawing.Size(468, 419);
-            this.chart3.TabIndex = 56;
-            this.chart3.Text = "chart3";
-            // 
             // P0textBox
             // 
             this.P0textBox.Location = new System.Drawing.Point(711, 364);
@@ -676,14 +662,28 @@
             this.label21.TabIndex = 58;
             this.label21.Text = "校正參數";
             // 
+            // chart3
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.chart3.ChartAreas.Add(chartArea3);
+            this.chart3.Location = new System.Drawing.Point(1044, 483);
+            this.chart3.Name = "chart3";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series3.Name = "Series1";
+            this.chart3.Series.Add(series3);
+            this.chart3.Size = new System.Drawing.Size(468, 434);
+            this.chart3.TabIndex = 59;
+            this.chart3.Text = "chart3";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1535, 948);
+            this.Controls.Add(this.chart3);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.P0textBox);
-            this.Controls.Add(this.chart3);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.checkBox2);
@@ -813,9 +813,9 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox4;
-        public System.Windows.Forms.DataVisualization.Charting.Chart chart3;
         private System.Windows.Forms.TextBox P0textBox;
         private System.Windows.Forms.Label label21;
+        public System.Windows.Forms.DataVisualization.Charting.Chart chart3;
     }
 }
 

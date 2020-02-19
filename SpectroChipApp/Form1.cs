@@ -25,6 +25,7 @@ namespace SpectroChipApp
         Bitmap image;
         Bitmap image_roi;//我哪邊都能用，超爽ㄉ//E04以後不可以再這樣搞
         Bitmap image_roi_for_gray;
+        Bitmap image_roi_for_cali;
         public int x;
         public int y;
         public int w;
@@ -100,6 +101,7 @@ namespace SpectroChipApp
                         image = BitmapConverter.ToBitmap(frame);
                         image_roi = BitmapConverter.ToBitmap(ImageROI);
                         image_roi_for_gray= BitmapConverter.ToBitmap(ImageROI);
+                        image_roi_for_cali = BitmapConverter.ToBitmap(ImageROI);
                         //Cv2.ImShow("兴趣区域", ImageROI);
                         // Cv2.ImShow("滚滚", image);
                     } catch (InvalidCastException e)
@@ -125,9 +127,19 @@ namespace SpectroChipApp
                     {
 
                         displayRoiSensorView(image_roi_for_gray);
+                        //DisplayRoiCalibratedView(image_roi_for_cali);
 
                     }));
-                  
+
+                    this.Invoke(new Action(() =>
+
+                    {
+
+                       // displayRoiSensorView(image_roi_for_gray);
+                       // DisplayRoiCalibratedView(image_roi_for_cali);
+
+                    }));
+
                     //下面這樣太吃記憶體
                     /*RectangleF cloneRect = new RectangleF(x, y, w, h);
                    System.Drawing.Imaging.PixelFormat format = image_roi.PixelFormat;
@@ -192,9 +204,12 @@ namespace SpectroChipApp
                 this.chart2.ChartAreas[0].AxisX.Minimum = 0;
                 this.chart2.ChartAreas[0].AxisX.Maximum = W;
                 //this.chart1.ChartAreas[0].AxisX.Interval = 5;
+                this.chart3.ChartAreas[0].AxisY.Minimum = 0;
+                this.chart3.ChartAreas[0].AxisX.Minimum = 0;
+                this.chart3.ChartAreas[0].AxisX.Maximum = W; //<一定要改<--
 
                 //設定標題
-                
+
                 this.chart2.Titles.Clear();
                 this.chart2.Titles.Add("S01");
                 this.chart2.Titles[0].Text = "Sensor View Point (Y軸灰度平均)";
@@ -218,7 +233,8 @@ namespace SpectroChipApp
                 seriesGray.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                
                 this.chart2.Series.Clear();
-
+                this.chart3.Series.Clear();
+                this.chart3.Series.Add(seriesGray);
 
                 if (checkBox1.Checked)
                     this.chart2.Series.Add(seriesRed);
@@ -233,6 +249,78 @@ namespace SpectroChipApp
             //pictureBox2.Refresh();
             //pictureBox2.Image = im1;
 
+
+        }
+
+        private void DisplayRoiCalibratedView(Bitmap input_image)
+        {
+             int W = input_image.Width, H = input_image.Height;
+            //Bitmap image_roi_for_gray = new Bitmap(w, h);
+
+            // Bitmap im1 = new Bitmap(w, h);//讀出原圖X軸 pixel
+            Bitmap im1 = new Bitmap(W, H);//讀出原圖X軸 pixel
+            int Pixel_x = 0;//正在被掃描的點
+            int Pixel_y = 0;
+
+            double[] AClb = new double[W];
+
+            double[] IntensityClb = new double[W];
+
+     
+            System.Windows.Forms.DataVisualization.Charting.Series seriesClb = new System.Windows.Forms.DataVisualization.Charting.Series("Clb", 1000);
+
+            Console.WriteLine("W:" + W);
+            for (Pixel_x = 0; Pixel_x < W; Pixel_x++)
+            {
+                for (Pixel_y = 0; Pixel_y < H; Pixel_y++)
+                {
+                    //int xx = Pixel_x + 1;
+                    //int yy = Pixel_y + 1;
+
+                    //先把圖變灰階
+                    Color p0 = input_image.GetPixel(Pixel_x, Pixel_y);//太快會閃退，全世界都在用image_roi
+                    int R = p0.R, G = p0.G, B = p0.B;
+                    int gray = (R * 313524 + G * 615514 + B * 119538) >> 20;
+                    Color p1 = Color.FromArgb(gray, gray, gray);
+                    //im1.SetPixel(i, j, p1);
+
+                    AClb[Pixel_x] = AClb[Pixel_x] + gray;
+                }
+
+                IntensityClb[Pixel_x] = AClb[Pixel_x] / H;//平均
+
+                //設定座標大小
+                this.chart3.ChartAreas[0].AxisY.Minimum = 0;
+                this.chart3.ChartAreas[0].AxisX.Minimum = 0;
+                this.chart3.ChartAreas[0].AxisX.Maximum = W;
+                //this.chart1.ChartAreas[0].AxisX.Interval = 5;
+
+                //設定標題
+
+                this.chart3.Titles.Clear();
+                this.chart3.Titles.Add("S03");
+                this.chart3.Titles[0].Text = "Calibrated View Point ";
+                this.chart3.Titles[0].ForeColor = Color.Black;
+                this.chart3.Titles[0].Font = new System.Drawing.Font("標楷體", 16F);
+
+                //給入數據畫圖
+
+                seriesClb.Color = Color.Brown;
+
+
+                seriesClb.Points.AddXY(Pixel_x, IntensityClb[Pixel_x]);
+
+                seriesClb.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
+                this.chart3.Series.Clear();
+
+
+          
+                    this.chart3.Series.Add(seriesClb);
+            }
+            im1.Save("Clbgray.png");
+            //pictureBox2.Refresh();
+            //pictureBox2.Image = im1;
 
         }
         private void Load_SensorView_Chart()
@@ -256,7 +344,13 @@ namespace SpectroChipApp
             // this.chart2.Series.Add(seriesGray);
             checkBox4.Checked = true;
         }
-  
+        private void Load_CalibratedView_Chart(){
+            this.chart3.Titles.Add("Calibrated View Point");
+            this.chart3.Titles[0].ForeColor = Color.Black;
+            this.chart3.Titles[0].Font = new System.Drawing.Font("標楷體", 16F);
+
+        }
+
         private void Load_Cali_Chart()
         {
             //標題
@@ -333,6 +427,7 @@ namespace SpectroChipApp
             Console.WriteLine(mouseIsDown);
             Load_Cali_Chart();
             Load_SensorView_Chart();
+            Load_CalibratedView_Chart();
             updn_power.Maximum = 4;
 
         }
@@ -717,6 +812,11 @@ namespace SpectroChipApp
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chart3_Click(object sender, EventArgs e)
         {
 
         }
