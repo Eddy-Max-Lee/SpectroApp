@@ -31,6 +31,7 @@ namespace SpectroChipApp
         public int h;
         public int X_Start = 0;
         public int Y_Start = 0;
+        double[] waveLength = new double[] { } ;
 
 
 
@@ -218,10 +219,15 @@ namespace SpectroChipApp
                
                 this.chart2.Series.Clear();
 
-                this.chart2.Series.Add(seriesRed);
-                this.chart2.Series.Add(seriesGreen);
-               this.chart2.Series.Add(seriesBlue);
-               this.chart2.Series.Add(seriesGray);
+
+                if (checkBox1.Checked)
+                    this.chart2.Series.Add(seriesRed);
+                if (checkBox2.Checked)
+                    this.chart2.Series.Add(seriesGreen);
+                if (checkBox3.Checked)
+                    this.chart2.Series.Add(seriesBlue);
+                if (checkBox4.Checked)
+                    this.chart2.Series.Add(seriesGray);
             }
             im1.Save("gray.png");
             //pictureBox2.Refresh();
@@ -246,8 +252,9 @@ namespace SpectroChipApp
             seriesGray.Points.AddXY(0, 0);
             //this.chart2.Series.Add(seriesRed);
             //this.chart2.Series.Add(seriesGreen);
-           // this.chart2.Series.Add(seriesBlue);
-           // this.chart2.Series.Add(seriesGray);
+            // this.chart2.Series.Add(seriesBlue);
+            // this.chart2.Series.Add(seriesGray);
+            checkBox4.Checked = true;
         }
   
         private void Load_Cali_Chart()
@@ -688,9 +695,13 @@ namespace SpectroChipApp
             this.chart1.Series.Clear();
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
-
-
-
+            /*
+            //製作chart3所需的
+            for (int i = 0; i < w; i++)  //先用
+            {
+                waveLength[i] = para_buf[4] * (Math.Pow(i, 4)) + para_buf[3] * (Math.Pow(i, 3)) + para_buf[2] * (Math.Pow(i, 2)) + para_buf[1] * i + para_buf[0];
+                //series2.Points.AddXY(Convert.ToDouble(i), equationVar);
+            }*/
 
 
         }
@@ -701,6 +712,11 @@ namespace SpectroChipApp
         }
 
         private void p1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
         }
