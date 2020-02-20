@@ -565,14 +565,27 @@ namespace SpectroChipApp
             {
                 Capture = false;
 
-                if (e.X >= X_Start && e.Y >= Y_Start)//正常情況
-                {
-                    WtextBox.Text = Convert.ToString(Math.Abs(e.X - X_Start));
-                    HtextBox.Text = Convert.ToString(Math.Abs(e.Y - Y_Start));
-                }
-
                 WtextBox.Text = Convert.ToString(Math.Abs(e.X - X_Start));
                 HtextBox.Text = Convert.ToString(Math.Abs(e.Y - Y_Start));
+
+                if (e.X >= X_Start && e.Y >= Y_Start)//左上->右下
+                {
+                }
+                if (e.X >= X_Start && e.Y <= Y_Start)//
+                {
+                    YtextBox.Text = Convert.ToString(e.Y);
+                }
+                if (e.X <= X_Start && e.Y >= Y_Start)//不正常情況
+                {
+                    XtextBox.Text = Convert.ToString(e.X);
+                }
+                if (e.X <= X_Start && e.Y <= Y_Start)//不正常情況
+                {
+                    XtextBox.Text = Convert.ToString(e.X);
+                    YtextBox.Text = Convert.ToString(e.Y);
+                }
+
+     
 
                 Cursor.Clip = Rectangle.Empty;
                 mouseIsDown = false;
@@ -867,6 +880,14 @@ namespace SpectroChipApp
                 DialogResult dialog = MessageBox.Show("你不能在影像串流進行時關閉程式\n確定強制關閉?", "警告!", MessageBoxButtons.OKCancel);
             if(dialog == DialogResult.OK)
                 {
+                    this.Invoke(new Action(() =>
+                    {
+                        capture.Release();
+                    }));
+
+                    btnStart.Text = "▶";
+
+                    Thread.Sleep(1000);
                     Application.Exit();
                 }else if(dialog == DialogResult.Cancel)
                 {
