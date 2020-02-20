@@ -32,7 +32,7 @@ namespace SpectroChipApp
         public int h;
         public int X_Start = 0;
         public int Y_Start = 0;
-        double[] parameter_buffer = new double[] {0,0,0,0,0 } ;
+        double[] parameter_buffer = new double[] { 0, 0, 0, 0, 0 };
 
 
 
@@ -56,7 +56,7 @@ namespace SpectroChipApp
 
 
 
-        
+
         private void CaptureCamera()
         {
             camera = new Thread(new ThreadStart(CaptureCameraCallback));
@@ -68,12 +68,12 @@ namespace SpectroChipApp
         {
 
             frame = new Mat();
-            
+
             capture = new VideoCapture(0);
 
-            
 
-            
+
+
 
 
 
@@ -93,18 +93,19 @@ namespace SpectroChipApp
                     {
                         capture.Read(frame);
 
-                        Rect roi = new Rect(x, y,w, h);//首先要用个rect确定我们的兴趣区域在哪
+                        Rect roi = new Rect(x, y, w, h);//首先要用个rect确定我们的兴趣区域在哪
 
 
                         Mat ImageROI = new Mat(frame, roi);//新建一个mat，把roi内的图像加载到里面去。
 
                         image = BitmapConverter.ToBitmap(frame);
                         image_roi = BitmapConverter.ToBitmap(ImageROI);
-                        image_roi_for_gray= BitmapConverter.ToBitmap(ImageROI);
+                        image_roi_for_gray = BitmapConverter.ToBitmap(ImageROI);
                         image_roi_for_cali = BitmapConverter.ToBitmap(ImageROI);
                         //Cv2.ImShow("兴趣区域", ImageROI);
                         // Cv2.ImShow("滚滚", image);
-                    } catch (InvalidCastException e)
+                    }
+                    catch (InvalidCastException e)
                     {
                     }
 
@@ -119,7 +120,7 @@ namespace SpectroChipApp
                     {
                         pictureBox2.Image.Dispose();
                     }
-                    
+
                     pictureBox2.Image = image_roi;//最後把roi顯示在 pictureBox2的地方
 
                     this.Invoke(new Action(() =>
@@ -147,9 +148,9 @@ namespace SpectroChipApp
         {
             //this.chart2.Series.Clear();
 
-             int W = input_image.Width, H = input_image.Height;
+            int W = input_image.Width, H = input_image.Height;
             //Bitmap image_roi_for_gray = new Bitmap(w, h);
-            
+
             // Bitmap im1 = new Bitmap(w, h);//讀出原圖X軸 pixel
             Bitmap im1 = new Bitmap(W, H);//讀出原圖X軸 pixel
             int Pixel_x = 0;//正在被掃描的點
@@ -170,18 +171,18 @@ namespace SpectroChipApp
             System.Windows.Forms.DataVisualization.Charting.Series seriesClb = new System.Windows.Forms.DataVisualization.Charting.Series("波長校正", 1000);
             //Console.WriteLine("W:"+W);
 
-         /*
-            for (k = 0; k < W; k++)
-            {
-                //theWL = parameter_buffer[4] * (Math.Pow(k, 4)) + parameter_buffer[3] * (Math.Pow(k, 3)) + parameter_buffer[2] * (Math.Pow(k, 2)) + parameter_buffer[1] * k + parameter_buffer[0];
-                //seriesClb.Points.AddXY(Convert.ToDouble(k), theWL);
+            /*
+               for (k = 0; k < W; k++)
+               {
+                   //theWL = parameter_buffer[4] * (Math.Pow(k, 4)) + parameter_buffer[3] * (Math.Pow(k, 3)) + parameter_buffer[2] * (Math.Pow(k, 2)) + parameter_buffer[1] * k + parameter_buffer[0];
+                   //seriesClb.Points.AddXY(Convert.ToDouble(k), theWL);
 
 
-            }*/
+               }*/
 
 
 
-            for ( Pixel_x = 0; Pixel_x < W; Pixel_x++)
+            for (Pixel_x = 0; Pixel_x < W; Pixel_x++)
             {
                 for (Pixel_y = 0; Pixel_y < H; Pixel_y++)
                 {
@@ -215,15 +216,15 @@ namespace SpectroChipApp
                 //this.chart1.ChartAreas[0].AxisX.Interval = 5;
                 this.chart3.ChartAreas[0].AxisY.Minimum = 0;
                 //this.chart3.ChartAreas[0].AxisX.Minimum = 0;
-               // this.chart3.ChartAreas[0].AxisX.Maximum = Math.Ceiling(WL_x_max); //<一定要改<--
+                // this.chart3.ChartAreas[0].AxisX.Maximum = Math.Ceiling(WL_x_max); //<一定要改<--
 
-                
+
 
                 //製作seriesClb
                 seriesClb.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                 seriesClb.Color = Color.Brown;
 
-                WL_x = Math.Round(parameter_buffer[4] * (Math.Pow(Pixel_x, 4)) + parameter_buffer[3] * (Math.Pow(Pixel_x, 3)) + parameter_buffer[2] * (Math.Pow(Pixel_x, 2)) + parameter_buffer[1] * Pixel_x + parameter_buffer[0],2);
+                WL_x = Math.Round(parameter_buffer[4] * (Math.Pow(Pixel_x, 4)) + parameter_buffer[3] * (Math.Pow(Pixel_x, 3)) + parameter_buffer[2] * (Math.Pow(Pixel_x, 2)) + parameter_buffer[1] * Pixel_x + parameter_buffer[0], 2);
 
 
                 //設定座標大小
@@ -245,7 +246,7 @@ namespace SpectroChipApp
                 seriesGreen.Color = Color.Green;
                 seriesBlue.Color = Color.Blue;
                 seriesGray.Color = Color.Gray;
-                
+
                 seriesRed.Points.AddXY(Pixel_x, IntensityRed[Pixel_x]);
                 seriesGreen.Points.AddXY(Pixel_x, IntensityGreen[Pixel_x]);
                 seriesBlue.Points.AddXY(Pixel_x, IntensityBlue[Pixel_x]);
@@ -256,7 +257,7 @@ namespace SpectroChipApp
                 seriesGreen.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                 seriesBlue.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                 seriesGray.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-               
+
                 this.chart2.Series.Clear();
                 this.chart3.Series.Clear();
                 this.chart3.Series.Add(seriesClb);
@@ -270,91 +271,91 @@ namespace SpectroChipApp
                 if (checkBox4.Checked)
                     this.chart2.Series.Add(seriesGray);
             }
-           // im1.Save("gray.png");
+            // im1.Save("gray.png");
             //pictureBox2.Refresh();
             //pictureBox2.Image = im1;
 
 
         }
 
-      /*  private void DisplayRoiCalibratedView(Bitmap input_image)
-        {
-             int W = input_image.Width, H = input_image.Height;
-            //Bitmap image_roi_for_gray = new Bitmap(w, h);
+        /*  private void DisplayRoiCalibratedView(Bitmap input_image)
+          {
+               int W = input_image.Width, H = input_image.Height;
+              //Bitmap image_roi_for_gray = new Bitmap(w, h);
 
-            // Bitmap im1 = new Bitmap(w, h);//讀出原圖X軸 pixel
-            Bitmap im1 = new Bitmap(W, H);//讀出原圖X軸 pixel
-            int Pixel_x = 0;//正在被掃描的點
-            int Pixel_y = 0;
+              // Bitmap im1 = new Bitmap(w, h);//讀出原圖X軸 pixel
+              Bitmap im1 = new Bitmap(W, H);//讀出原圖X軸 pixel
+              int Pixel_x = 0;//正在被掃描的點
+              int Pixel_y = 0;
 
-            double[] AClb = new double[W];
+              double[] AClb = new double[W];
 
-            double[] IntensityClb = new double[W];
-
-     
-            System.Windows.Forms.DataVisualization.Charting.Series seriesClb = new System.Windows.Forms.DataVisualization.Charting.Series("Clb", 1000);
-
-            Console.WriteLine("W:" + W);
-            for (Pixel_x = 0; Pixel_x < W; Pixel_x++)
-            {
-                for (Pixel_y = 0; Pixel_y < H; Pixel_y++)
-                {
-                    //int xx = Pixel_x + 1;
-                    //int yy = Pixel_y + 1;
-
-                    //先把圖變灰階
-                    Color p0 = input_image.GetPixel(Pixel_x, Pixel_y);//太快會閃退，全世界都在用image_roi
-                    int R = p0.R, G = p0.G, B = p0.B;
-                    int gray = (R * 313524 + G * 615514 + B * 119538) >> 20;
-                    Color p1 = Color.FromArgb(gray, gray, gray);
-                    //im1.SetPixel(i, j, p1);
-
-                    AClb[Pixel_x] = AClb[Pixel_x] + gray;
-                }
-
-                IntensityClb[Pixel_x] = AClb[Pixel_x] / H;//平均
-
-                //設定座標大小
-                this.chart3.ChartAreas[0].AxisY.Minimum = 0;
-                this.chart3.ChartAreas[0].AxisX.Minimum = 0;
-                this.chart3.ChartAreas[0].AxisX.Maximum = W;
-                //this.chart1.ChartAreas[0].AxisX.Interval = 5;
-
-                //設定標題
-
-                this.chart3.Titles.Clear();
-                this.chart3.Titles.Add("S03");
-                this.chart3.Titles[0].Text = "Calibrated View Point ";
-                this.chart3.Titles[0].ForeColor = Color.Black;
-                this.chart3.Titles[0].Font = new System.Drawing.Font("標楷體", 16F);
-
-                //給入數據畫圖
-
-                seriesClb.Color = Color.Brown;
+              double[] IntensityClb = new double[W];
 
 
-                seriesClb.Points.AddXY(Pixel_x, IntensityClb[Pixel_x]);
+              System.Windows.Forms.DataVisualization.Charting.Series seriesClb = new System.Windows.Forms.DataVisualization.Charting.Series("Clb", 1000);
 
-                seriesClb.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+              Console.WriteLine("W:" + W);
+              for (Pixel_x = 0; Pixel_x < W; Pixel_x++)
+              {
+                  for (Pixel_y = 0; Pixel_y < H; Pixel_y++)
+                  {
+                      //int xx = Pixel_x + 1;
+                      //int yy = Pixel_y + 1;
 
-                this.chart3.Series.Clear();
+                      //先把圖變灰階
+                      Color p0 = input_image.GetPixel(Pixel_x, Pixel_y);//太快會閃退，全世界都在用image_roi
+                      int R = p0.R, G = p0.G, B = p0.B;
+                      int gray = (R * 313524 + G * 615514 + B * 119538) >> 20;
+                      Color p1 = Color.FromArgb(gray, gray, gray);
+                      //im1.SetPixel(i, j, p1);
+
+                      AClb[Pixel_x] = AClb[Pixel_x] + gray;
+                  }
+
+                  IntensityClb[Pixel_x] = AClb[Pixel_x] / H;//平均
+
+                  //設定座標大小
+                  this.chart3.ChartAreas[0].AxisY.Minimum = 0;
+                  this.chart3.ChartAreas[0].AxisX.Minimum = 0;
+                  this.chart3.ChartAreas[0].AxisX.Maximum = W;
+                  //this.chart1.ChartAreas[0].AxisX.Interval = 5;
+
+                  //設定標題
+
+                  this.chart3.Titles.Clear();
+                  this.chart3.Titles.Add("S03");
+                  this.chart3.Titles[0].Text = "Calibrated View Point ";
+                  this.chart3.Titles[0].ForeColor = Color.Black;
+                  this.chart3.Titles[0].Font = new System.Drawing.Font("標楷體", 16F);
+
+                  //給入數據畫圖
+
+                  seriesClb.Color = Color.Brown;
 
 
-          
-                    this.chart3.Series.Add(seriesClb);
-            }
-            im1.Save("Clbgray.png");
-            //pictureBox2.Refresh();
-            //pictureBox2.Image = im1;
+                  seriesClb.Points.AddXY(Pixel_x, IntensityClb[Pixel_x]);
 
-        }*/
+                  seriesClb.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
+                  this.chart3.Series.Clear();
+
+
+
+                      this.chart3.Series.Add(seriesClb);
+              }
+              im1.Save("Clbgray.png");
+              //pictureBox2.Refresh();
+              //pictureBox2.Image = im1;
+
+          }*/
         private void Load_SensorView_Chart()
         {
             //標題
             this.chart2.Titles.Add("Sensor View Point (Y軸灰度平均)");
-           this.chart2.Titles[0].ForeColor = Color.Black;
+            this.chart2.Titles[0].ForeColor = Color.Black;
             this.chart2.Titles[0].Font = new System.Drawing.Font("標楷體", 16F);
-            
+
             System.Windows.Forms.DataVisualization.Charting.Series seriesRed = new System.Windows.Forms.DataVisualization.Charting.Series("Red", 1000);
             System.Windows.Forms.DataVisualization.Charting.Series seriesGreen = new System.Windows.Forms.DataVisualization.Charting.Series("Green", 1000);
             System.Windows.Forms.DataVisualization.Charting.Series seriesBlue = new System.Windows.Forms.DataVisualization.Charting.Series("Blue", 1000);
@@ -369,7 +370,8 @@ namespace SpectroChipApp
             // this.chart2.Series.Add(seriesGray);
             checkBox4.Checked = true;
         }
-        private void Load_CalibratedView_Chart(){
+        private void Load_CalibratedView_Chart()
+        {
             this.chart3.Titles.Add("Calibrated View Point");
             this.chart3.Titles[0].ForeColor = Color.Black;
             this.chart3.Titles[0].Font = new System.Drawing.Font("標楷體", 16F);
@@ -446,7 +448,7 @@ namespace SpectroChipApp
             mouseRect = Rectangle.Empty;
         }
 
-         private void Form1_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
             Read_TextBox();
             btnStart.Text = "▶";
@@ -458,22 +460,22 @@ namespace SpectroChipApp
 
         }
 
-        
+
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-    
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (btnStart.Text.Equals("▶"))
             {
-                
+
 
                 //btnStart_Visible_flag = 0;
                 Read_TextBox();
-                CaptureCamera();                
+                CaptureCamera();
                 btnStart.Text = "| |";
                 isCameraRunning = true;
                 btnStart.Visible = false;
@@ -482,7 +484,7 @@ namespace SpectroChipApp
             }
             else
             {
-                
+
                 capture.Release();
 
                 btnStart.Text = "▶";
@@ -495,7 +497,7 @@ namespace SpectroChipApp
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -514,7 +516,7 @@ namespace SpectroChipApp
             //Console.WriteLine(mouseIsDown);
         }
 
-      
+
 
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
@@ -537,9 +539,9 @@ namespace SpectroChipApp
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (mouseIsDown == false)
+            if (mouseIsDown == false)//點第一下
             {
-                
+
                 DrawStart(e.Location);
 
 
@@ -551,16 +553,23 @@ namespace SpectroChipApp
                 {
                     X_Start = e.X;
                 }
-                
+
                 Y_Start = e.Y;
 
                 XtextBox.Text = Convert.ToString(X_Start);
                 YtextBox.Text = Convert.ToString(Y_Start);
 
                 mouseIsDown = true;
-            }else
+            }
+            else//點第二下
             {
                 Capture = false;
+
+                if (e.X >= X_Start && e.Y >= Y_Start)//正常情況
+                {
+                    WtextBox.Text = Convert.ToString(Math.Abs(e.X - X_Start));
+                    HtextBox.Text = Convert.ToString(Math.Abs(e.Y - Y_Start));
+                }
 
                 WtextBox.Text = Convert.ToString(Math.Abs(e.X - X_Start));
                 HtextBox.Text = Convert.ToString(Math.Abs(e.Y - Y_Start));
@@ -588,9 +597,9 @@ namespace SpectroChipApp
 
         private void btn_cali_Click(object sender, EventArgs e)//開始波長校正
         {
-            
-            
-            
+
+
+
             // xPixel_array = new double[];
             //yWave_array = new double[];
             List<double> xPixel_List = new List<double>();
@@ -600,15 +609,16 @@ namespace SpectroChipApp
             double[] yWave_array;
             //double[] a = new double[10];
             //double[] b = new double[10];
-            bool input_error =true;
-            double result=0;
-            double[]  parameter=new double[4];
-           decimal power;
+            bool input_error = true;
+            double result = 0;
+            double[] parameter = new double[4];
+            decimal power;
             //Cali-0 冪
-            power=updn_power.Value;
+            power = updn_power.Value;
 
             //Cali-1輸入像素-波長
-            if (Double.TryParse(p1.Text, out result)) {
+            if (Double.TryParse(p1.Text, out result))
+            {
                 point_used++;
                 xPixel_List.Add(result);
                 if (Double.TryParse(w1.Text, out result))
@@ -651,8 +661,8 @@ namespace SpectroChipApp
                 {
                     yWave_List.Add(result);
                 }
-                else {Console.WriteLine("錯誤，請輸入第" + point_used + "點的波長值(y座標)"); input_error = false; }
-                    
+                else { Console.WriteLine("錯誤，請輸入第" + point_used + "點的波長值(y座標)"); input_error = false; }
+
                 // Console.WriteLine("有進"+result);
             }
 
@@ -728,15 +738,16 @@ namespace SpectroChipApp
                 // Console.WriteLine("有進"+result);
             }
             xPixel_array = xPixel_List.ToArray();
-            yWave_array=yWave_List.ToArray();
+            yWave_array = yWave_List.ToArray();
 
             //Console.WriteLine("List狀態" + xPixel_array + "\n"+ yWave_array + "\n" + point_used);
 
             //Cali1-1.5 錯誤總結
-            if (point_used<4){ 
-                input_error = false; 
+            if (point_used < 4)
+            {
+                input_error = false;
             }
-     
+
             /*
             if self.P1.text():
             a1 = float(self.P1.text())
@@ -755,9 +766,10 @@ namespace SpectroChipApp
                 parameter = Fit.Polynomial(xPixel_array, yWave_array, Decimal.ToInt32(power));
                 //Draw_Cali();
                 //Show Parameter
-               // Console.WriteLine(parameter[0].ToString()+"\n"+ parameter[1].ToString() + "\n" + parameter[2].ToString() + "\n" + parameter[3].ToString());
+                // Console.WriteLine(parameter[0].ToString()+"\n"+ parameter[1].ToString() + "\n" + parameter[2].ToString() + "\n" + parameter[3].ToString());
             }
-            else {
+            else
+            {
                 MessageBox.Show("格式錯誤");
             }
             ///Cali-3畫圖囉
@@ -767,7 +779,7 @@ namespace SpectroChipApp
 
 
             //標題 最大數值
-            System.Windows.Forms.DataVisualization.Charting.Series series1= new System.Windows.Forms.DataVisualization.Charting.Series("第一條線", 1000);
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series("第一條線", 1000);
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series("第二條線", 1000);
 
             //設定線條顏色
@@ -778,33 +790,33 @@ namespace SpectroChipApp
             series1.Font = new System.Drawing.Font("新細明體", 14);
             //series2.Font = new System.Drawing.Font("標楷體", 12);
 
-   
+
 
             //折線圖
-            series1.ChartType =System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series2.ChartType =System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
 
             //將數值顯示在線上
             series1.IsValueShownAsLabel = true;
-            series2.IsValueShownAsLabel =false;
+            series2.IsValueShownAsLabel = false;
 
 
             //將數值新增至序列
-                   //1.點
+            //1.點
             for (int index = 0; index < point_used; index++)
             {
-                series1.Points.AddXY(xPixel_array[index],yWave_array[index]);
-               // series2.
+                series1.Points.AddXY(xPixel_array[index], yWave_array[index]);
+                // series2.
             }
             //2.擬和函數
             double equationVar;
-            double[] para_buf = new double[] { 0,0,0,0,0};
-            
+            double[] para_buf = new double[] { 0, 0, 0, 0, 0 };
+
 
             for (int i = 0; i <= power; i++) //要改成power
             {
                 para_buf[i] = parameter[i];
-                parameter_buffer[i]= parameter[i];
+                parameter_buffer[i] = parameter[i];
             }
 
             for (int x = -500; x < 1000; x++)  //hardcoding
@@ -846,6 +858,23 @@ namespace SpectroChipApp
         private void chart3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!btnStart.Text.Equals("▶"))
+            {
+                DialogResult dialog = MessageBox.Show("你不能在影像串流進行時關閉程式\n確定強制關閉?", "警告!", MessageBoxButtons.OKCancel);
+            if(dialog == DialogResult.OK)
+                {
+                    Application.Exit();
+                }else if(dialog == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            
+            
+            }
         }
     }
 }
