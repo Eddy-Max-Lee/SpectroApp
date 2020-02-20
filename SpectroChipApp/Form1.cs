@@ -26,10 +26,10 @@ namespace SpectroChipApp
         Bitmap image_roi;//我哪邊都能用，超爽ㄉ//E04以後不可以再這樣搞
         Bitmap image_roi_for_gray;
         Bitmap image_roi_for_cali;
-        public int x;
-        public int y;
-        public int w;
-        public int h;
+        public int x=0;
+        public int y=200;
+        public int w=640;
+        public int h=30;
         public int X_Start = 0;
         public int Y_Start = 0;
         double[] parameter_buffer = new double[] { 0, 0, 0, 0, 0 };
@@ -55,7 +55,7 @@ namespace SpectroChipApp
         //灰階用
 
 
-
+      
 
         private void CaptureCamera()
         {
@@ -66,7 +66,7 @@ namespace SpectroChipApp
 
         private void CaptureCameraCallback()
         {
-
+            Thread.Sleep(100);//加了比較順
             frame = new Mat();
 
             capture = new VideoCapture(0);
@@ -89,51 +89,54 @@ namespace SpectroChipApp
             {
                 while (isCameraRunning)
                 {
-                    try
-                    {
-                        capture.Read(frame);
+            
 
-                        Rect roi = new Rect(x, y, w, h);//首先要用个rect确定我们的兴趣区域在哪
+                        try
+                        {
+                            capture.Read(frame);
 
-
-                        Mat ImageROI = new Mat(frame, roi);//新建一个mat，把roi内的图像加载到里面去。
-
-                        image = BitmapConverter.ToBitmap(frame);
-                        image_roi = BitmapConverter.ToBitmap(ImageROI);
-                        image_roi_for_gray = BitmapConverter.ToBitmap(ImageROI);
-                        image_roi_for_cali = BitmapConverter.ToBitmap(ImageROI);
-                        //Cv2.ImShow("兴趣区域", ImageROI);
-                        // Cv2.ImShow("滚滚", image);
-                    }
-                    catch (InvalidCastException e)
-                    {
-                    }
+                            Rect roi = new Rect(x, y, w, h);//首先要用个rect确定我们的兴趣区域在哪
 
 
-                    if (pictureBox1.Image != null)
-                    {
-                        pictureBox1.Image.Dispose();
-                    }
-                    pictureBox1.Image = image;
+                            Mat ImageROI = new Mat(frame, roi);//新建一个mat，把roi内的图像加载到里面去。
 
-                    if (pictureBox2.Image != null)
-                    {
-                        pictureBox2.Image.Dispose();
-                    }
+                            image = BitmapConverter.ToBitmap(frame);
+                            image_roi = BitmapConverter.ToBitmap(ImageROI);
+                            image_roi_for_gray = BitmapConverter.ToBitmap(ImageROI);
+                            image_roi_for_cali = BitmapConverter.ToBitmap(ImageROI);
+                            //Cv2.ImShow("兴趣区域", ImageROI);
+                            // Cv2.ImShow("滚滚", image);
 
-                    pictureBox2.Image = image_roi;//最後把roi顯示在 pictureBox2的地方
+                        }
+                        catch (InvalidCastException e)
+                        {
+                        }
 
-                    this.Invoke(new Action(() =>
 
-                    {
+                        if (pictureBox1.Image != null)
+                        {
+                            pictureBox1.Image.Dispose();
+                        }
+                        pictureBox1.Image = image;
 
-                        displayRoiSensorView(image_roi_for_gray);
+
+                        if (pictureBox2.Image != null)
+                        {
+                            pictureBox2.Image.Dispose();
+                        }
+
+                        pictureBox2.Image = image_roi;//最後把roi顯示在 pictureBox2的地方
+
+                        this.Invoke(new Action(() =>
+                        {
+
+                            displayRoiSensorView(image_roi_for_gray);
                         //DisplayRoiCalibratedView(image_roi_for_cali);
 
                     }));
 
 
-
+        
                     //下面這樣太吃記憶體
                     /*RectangleF cloneRect = new RectangleF(x, y, w, h);
                    System.Drawing.Imaging.PixelFormat format = image_roi.PixelFormat;
@@ -381,19 +384,39 @@ namespace SpectroChipApp
         private void Load_Cali_Chart()
         {
             //標題
-            this.chart1.Titles.Add("校正結果");
+            this.chart1.Titles.Add("Curve Fitting Plot");
 
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series("擬和函數", 1000);
             series1.Points.AddXY(0, 0);
         }
         private void Read_TextBox()
         {
-            //throw new NotImplementedException();
-            x = int.Parse(XtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
-            y = int.Parse(YtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
-            w = int.Parse(WtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
-            h = int.Parse(HtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
-        }
+
+
+            if (WtextBox.Text != "0" && HtextBox.Text != "0")
+            {
+                //throw new NotImplementedException();
+                x = int.Parse(XtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
+                y = int.Parse(YtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
+                w = int.Parse(WtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
+                h = int.Parse(HtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
+
+            }
+            else {
+                
+                XtextBox.Text = "0";
+                YtextBox.Text = "200";
+                WtextBox.Text = "640";
+                HtextBox.Text = "30";
+                x = 0;
+                y = 200;
+                w = 640;
+                h = 30;
+                isCameraRunning = false;
+                MessageBox.Show("請選擇有效的ROI");
+                isCameraRunning = true;
+            }
+            }
         /// <summary>
         /// 初始化选择框
         /// </summary>
@@ -450,13 +473,17 @@ namespace SpectroChipApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Read_TextBox();
+            //Read_TextBox();
             btnStart.Text = "▶";
             //Console.WriteLine(mouseIsDown);
             Load_Cali_Chart();
             Load_SensorView_Chart();
             Load_CalibratedView_Chart();
             updn_power.Maximum = 4;
+            x = 0;
+            y = 200;
+            w = 640;
+            h = 30;
 
         }
 
@@ -880,10 +907,9 @@ namespace SpectroChipApp
                 DialogResult dialog = MessageBox.Show("你不能在影像串流進行時關閉程式\n確定強制關閉?", "警告!", MessageBoxButtons.OKCancel);
             if(dialog == DialogResult.OK)
                 {
-                    this.Invoke(new Action(() =>
-                    {
-                        capture.Release();
-                    }));
+                    isCameraRunning = false;
+                    capture.Release();
+                    isCameraRunning = true;
 
                     btnStart.Text = "▶";
 
