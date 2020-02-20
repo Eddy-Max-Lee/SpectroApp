@@ -32,7 +32,7 @@ namespace SpectroChipApp
         public int h;
         public int X_Start = 0;
         public int Y_Start = 0;
-        double[] waveLength = new double[] { } ;
+        double[] parameter_buffer = new double[] {0,0,0,0,0 } ;
 
 
 
@@ -424,6 +424,7 @@ namespace SpectroChipApp
          private void Form1_Load(object sender, EventArgs e)
         {
             Read_TextBox();
+            btnStart.Text = "▶";
             Console.WriteLine(mouseIsDown);
             Load_Cali_Chart();
             Load_SensorView_Chart();
@@ -441,14 +442,14 @@ namespace SpectroChipApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (btnStart.Text.Equals("Start"))
+            if (btnStart.Text.Equals("▶"))
             {
                 
 
                 //btnStart_Visible_flag = 0;
                 Read_TextBox();
                 CaptureCamera();                
-                btnStart.Text = "Stop";
+                btnStart.Text = "| |";
                 isCameraRunning = true;
                 btnStart.Visible = false;
                 Thread.Sleep(4000);
@@ -459,7 +460,7 @@ namespace SpectroChipApp
                 
                 capture.Release();
 
-                btnStart.Text = "Start";
+                btnStart.Text = "▶";
                 isCameraRunning = false;
                 btnStart.Visible = false;
                 Thread.Sleep(4000);
@@ -778,6 +779,7 @@ namespace SpectroChipApp
             for (int i = 0; i <= power; i++) //要改成power
             {
                 para_buf[i] = parameter[i];
+                parameter_buffer[i]= parameter[i];
             }
 
             for (int x = -500; x < 1000; x++)  //hardcoding
