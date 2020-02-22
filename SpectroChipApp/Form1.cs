@@ -66,7 +66,7 @@ namespace SpectroChipApp
 
         private void CaptureCameraCallback()
         {
-            Thread.Sleep(100);//加了比較順
+           // Thread.Sleep(100);//加了比較順
             frame = new Mat();
 
             capture = new VideoCapture(0);
@@ -135,8 +135,8 @@ namespace SpectroChipApp
 
                     }));
 
+                    Thread.Sleep(300);//加了比較順
 
-        
                     //下面這樣太吃記憶體
                     /*RectangleF cloneRect = new RectangleF(x, y, w, h);
                    System.Drawing.Imaging.PixelFormat format = image_roi.PixelFormat;
@@ -904,14 +904,16 @@ namespace SpectroChipApp
         {
             if (!btnStart.Text.Equals("▶"))
             {
+                isCameraRunning = false;
+                capture.Release();
+          
+
+                 btnStart.Text = "▶";
                 DialogResult dialog = MessageBox.Show("你不能在影像串流進行時關閉程式\n確定強制關閉?", "警告!", MessageBoxButtons.OKCancel);
+
             if(dialog == DialogResult.OK)
                 {
-                    isCameraRunning = false;
-                    capture.Release();
-                    isCameraRunning = true;
 
-                    btnStart.Text = "▶";
 
                     Thread.Sleep(1000);
                     Application.Exit();

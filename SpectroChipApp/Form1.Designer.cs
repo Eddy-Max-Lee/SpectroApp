@@ -94,6 +94,9 @@
             this.P0textBox = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.button2 = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updn_power)).BeginInit();
@@ -538,7 +541,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label20.Location = new System.Drawing.Point(746, 260);
+            this.label20.Location = new System.Drawing.Point(746, 245);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(52, 24);
             this.label20.TabIndex = 47;
@@ -547,9 +550,9 @@
             // btn_cali
             // 
             this.btn_cali.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btn_cali.Location = new System.Drawing.Point(877, 242);
+            this.btn_cali.Location = new System.Drawing.Point(877, 227);
             this.btn_cali.Name = "btn_cali";
-            this.btn_cali.Size = new System.Drawing.Size(54, 63);
+            this.btn_cali.Size = new System.Drawing.Size(117, 80);
             this.btn_cali.TabIndex = 48;
             this.btn_cali.Text = "計算校正";
             this.btn_cali.UseVisualStyleBackColor = true;
@@ -558,7 +561,7 @@
             // updn_power
             // 
             this.updn_power.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.updn_power.Location = new System.Drawing.Point(804, 257);
+            this.updn_power.Location = new System.Drawing.Point(804, 242);
             this.updn_power.Name = "updn_power";
             this.updn_power.Size = new System.Drawing.Size(44, 27);
             this.updn_power.TabIndex = 49;
@@ -648,9 +651,10 @@
             // 
             // P0textBox
             // 
-            this.P0textBox.Location = new System.Drawing.Point(711, 364);
+            this.P0textBox.Location = new System.Drawing.Point(700, 364);
+            this.P0textBox.Multiline = true;
             this.P0textBox.Name = "P0textBox";
-            this.P0textBox.Size = new System.Drawing.Size(47, 22);
+            this.P0textBox.Size = new System.Drawing.Size(279, 126);
             this.P0textBox.TabIndex = 57;
             this.P0textBox.Text = "200";
             // 
@@ -680,11 +684,26 @@
             this.chart3.TabIndex = 59;
             this.chart3.Text = "chart3";
             // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button2.Location = new System.Drawing.Point(703, 275);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(145, 32);
+            this.button2.TabIndex = 60;
+            this.button2.Text = "匯入Json File";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1535, 948);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.chart3);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.P0textBox);
@@ -822,6 +841,9 @@
         private System.Windows.Forms.TextBox P0textBox;
         private System.Windows.Forms.Label label21;
         public System.Windows.Forms.DataVisualization.Charting.Chart chart3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
