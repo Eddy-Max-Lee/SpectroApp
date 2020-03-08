@@ -26,3 +26,4 @@ E:\Repo_Direct\Csharp\SpectroChipApp\SpectroApp\SpectroChipApp\obj\Release\Spect
 E:\Repo_Direct\Csharp\SpectroChipApp\SpectroApp\SpectroChipApp\obj\Release\SpectroChipApp.csproj.CopyComplete
 E:\Repo_Direct\Csharp\SpectroChipApp\SpectroApp\SpectroChipApp\obj\Release\SpectroChipApp.exe
 E:\Repo_Direct\Csharp\SpectroChipApp\SpectroApp\SpectroChipApp\obj\Release\SpectroChipApp.pdb
+E:\Repo_Direct\Csharp\SpectroChipApp\SpectroApp\SpectroChipApp\obj\Release\SpectroChipApp.Form2.resources

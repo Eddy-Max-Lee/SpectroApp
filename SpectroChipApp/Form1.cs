@@ -32,6 +32,12 @@ namespace SpectroChipApp
         public int h=30;
         public int X_Start = 0;
         public int Y_Start = 0;
+        private bool isgoUpMouseDown = false;
+        private bool isgoDownMouseDown = false;
+        private bool isgoLeftMouseDown = false;
+        private bool isgoRightMouseDown = false;
+
+
         double[] parameter_buffer = new double[] { 0, 0, 0, 0, 0 };
 
 
@@ -89,13 +95,17 @@ namespace SpectroChipApp
             {
                 while (isCameraRunning)
                 {
-            
 
-                        try
+
+
+
+
+                    try
                         {
                             capture.Read(frame);
 
                             Rect roi = new Rect(x, y, w, h);//首先要用个rect确定我们的兴趣区域在哪
+
 
 
                             Mat ImageROI = new Mat(frame, roi);//新建一个mat，把roi内的图像加载到里面去。
@@ -147,6 +157,7 @@ namespace SpectroChipApp
             btnStart_Visible_flag = 1;
         }
         //---------------------------------宜運函數(首)---------------------
+        
         private void displayRoiSensorView(Bitmap input_image)//育代
         {
             //this.chart2.Series.Clear();
@@ -401,6 +412,42 @@ namespace SpectroChipApp
                 w = int.Parse(WtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
                 h = int.Parse(HtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
 
+
+                if (x + w > capture.FrameWidth) 
+                {
+                    if (w > capture.FrameWidth)
+                    {
+                        w = capture.FrameWidth;
+                        x = 0;
+                    }
+                    else
+                    {
+                        x = capture.FrameWidth - w;
+                    }
+                    this.XtextBox.Text = x.ToString();
+                    this.WtextBox.Text = w.ToString();
+                }
+
+
+                if (y + h > capture.FrameHeight) 
+                {
+                    if (h > capture.FrameHeight)
+                    {
+                        h = capture.FrameHeight;
+                        y = 0;
+                    }
+                    else
+                    {
+                        y = capture.FrameHeight - h;
+                    }
+                    this.YtextBox.Text = y.ToString();
+                    this.HtextBox.Text = h.ToString();
+                }
+                
+               
+                //this.WtextBox.Text = w.ToString();
+               // this.HtextBox.Text = h.ToString();
+
             }
             else {
                 
@@ -448,7 +495,19 @@ namespace SpectroChipApp
             ControlPaint.DrawReversibleFrame(rect, Color.Red, FrameStyle.Dashed);
 
         }
+        //PaintEventArgs e
+        private void DrawFixRectangle(PaintEventArgs e) //先用全域的xywh
+        {
 
+            // Create pen.
+            Pen bluePen = new Pen(Color.Blue, 5);
+
+            // Create rectangle.
+            Rectangle rect = new Rectangle(x, y, w, h);
+
+            // Draw rectangle to screen.
+           e.Graphics.DrawRectangle(bluePen, rect);
+        }
 
 
         //-----------------------------宜運函數(尾)--------------------------------------
@@ -456,7 +515,7 @@ namespace SpectroChipApp
         public Form1()
         {
             InitializeComponent();
-
+            //goUp.FlatAppearance.BorderSize = 0;
 
         }
 
@@ -484,7 +543,11 @@ namespace SpectroChipApp
             y = 200;
             w = 640;
             h = 30;
-
+            //goUp.FlatAppearance.BorderSize = 0;
+          //  this.goUp.SendToBack();//将背景图片放到最下面
+            //this.panel1.BackColor = Color.Transparent;//将Panel设为透明
+            //this.panel1.Parent = this.Fine_pic;//将panel父控件设为背景图片控件
+            //this.panel1.BringToFront();//将panel放在前面
         }
 
 
@@ -501,7 +564,7 @@ namespace SpectroChipApp
 
 
                 //btnStart_Visible_flag = 0;
-                Read_TextBox();
+                //Read_TextBox();
                 CaptureCamera();
                 btnStart.Text = "| |";
                 isCameraRunning = true;
@@ -617,8 +680,9 @@ namespace SpectroChipApp
                 Cursor.Clip = Rectangle.Empty;
                 mouseIsDown = false;
                 DrawRectangle();
-                mouseRect = Rectangle.Empty;
+                //mouseRect = Rectangle.Empty;
                 Read_TextBox();
+                //DrawFixRectangle();
             }
             //Console.WriteLine(mouseIsDown);
         }
@@ -923,6 +987,252 @@ namespace SpectroChipApp
                 }
             
             
+            }
+        }
+
+        private void w1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        private void goUp_Click(object sender, EventArgs e)
+        {
+ 
+        }
+
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            DrawFixRectangle(e);
+        }
+
+        private void YtextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void goUp_MouseDown(object sender, MouseEventArgs e)
+        {
+            //Fine_pic.BackgroundImage = imageList1.Images[0];
+            isgoUpMouseDown = true;    //啟用按下標識
+
+            try
+            {
+                // y = Convert.ToDouble(txtSetValue.Text);   //獲取txtSetValue的初始值
+                Read_TextBox();
+            }
+            catch (Exception)
+            {
+                y = 0;
+            }
+
+            Action handler = new Action(this.roiUp);     //定義委託
+            handler.BeginInvoke(null, null);           //非同步呼叫
+        }
+
+        private void goUp_MouseUp(object sender, MouseEventArgs e)
+        {
+            isgoUpMouseDown =false;
+        }
+
+        private void goDown_MouseDown(object sender, MouseEventArgs e)
+        {
+            isgoDownMouseDown = true;    //啟用按下標識
+
+            try
+            {
+                // y = Convert.ToDouble(txtSetValue.Text);   //獲取txtSetValue的初始值
+                Read_TextBox();
+            }
+            catch (Exception)
+            {
+                y = 0;
+            }
+
+            Action handler = new Action(this.roiDown);     //定義委託
+            handler.BeginInvoke(null, null);           //非同步呼叫
+        }
+        private void goDown_MouseUp(object sender, MouseEventArgs e)
+        {
+            isgoDownMouseDown = false;
+        }
+
+        private void goLeft_MouseDown(object sender, MouseEventArgs e)
+        {
+            isgoLeftMouseDown = true;    //啟用按下標識
+
+            try
+            {
+                // y = Convert.ToDouble(txtSetValue.Text);   //獲取txtSetValue的初始值
+                Read_TextBox();
+            }
+            catch (Exception)
+            {
+                y = 0;
+            }
+
+            Action handler = new Action(this.roiLeft);     //定義委託
+            handler.BeginInvoke(null, null);           //非同步呼叫
+        }
+
+        private void goLeft_MouseUp(object sender, MouseEventArgs e)
+        {
+            isgoLeftMouseDown = false;
+        }
+
+        private void goRight_MouseDown(object sender, MouseEventArgs e)
+        {
+            isgoRightMouseDown = true;    //啟用按下標識
+
+            try
+            {
+                // y = Convert.ToDouble(txtSetValue.Text);   //獲取txtSetValue的初始值
+                Read_TextBox();
+            }
+            catch (Exception)
+            {
+                y = 0;
+            }
+
+            Action handler = new Action(this.roiRight);     //定義委託
+            handler.BeginInvoke(null, null);           //非同步呼叫
+        }
+
+        private void goRight_MouseUp(object sender, MouseEventArgs e)
+        {
+            isgoRightMouseDown = false;
+        }
+        //---
+        private void roiUp()
+        {
+            while (isgoUpMouseDown)
+            {
+
+
+                //capture.FrameHeight = 1280;
+                //capture.FrameWidth = 1920;
+                if (y <= -1 || y >= capture.FrameHeight+h)
+                {
+                    this.Invoke(new Action(() => MessageBox.Show("超出設定值！", "警告")));
+                    y = 0;
+                    break;
+                }
+                else
+                {
+                    y -= 1;   //計算：每次累加的單位，如果要累加的精度大點，該值設定大一些
+                    if (y < 0) y = 0;
+                    this.Invoke(new Action(() => this.YtextBox.Text = y.ToString()));  //介面顯示
+                    System.Threading.Thread.Sleep(100);    //如果要速度塊，將這個值修改小點 
+                }
+            }
+        }
+        private void roiDown()
+        {
+            while (isgoDownMouseDown)
+            {
+
+
+                //capture.FrameHeight = 1280;
+                //capture.FrameWidth = 1920;
+                if (y <= -1 || y +h>= capture.FrameHeight )
+                {
+                    //this.Invoke(new Action(() => MessageBox.Show("超出設定值！", "警告")));
+                    // y = 0;
+                    break;
+                }
+                else
+                {
+                    y += 1;   //計算：每次累加的單位，如果要累加的精度大點，該值設定大一些
+                    if (y + h > capture.FrameHeight) { y = capture.FrameHeight - h - 1; }
+                    this.Invoke(new Action(() => this.YtextBox.Text = y.ToString()));  //介面顯示
+                    System.Threading.Thread.Sleep(100);    //如果要速度塊，將這個值修改小點 
+                }
+            }
+        }
+        private void roiLeft()
+        {
+            while (isgoLeftMouseDown)
+            {
+
+
+                //capture.FrameHeight = 1280;
+                //capture.FrameWidth = 1920;
+                if (x <= -1 || x+w >= capture.FrameWidth)
+                {
+                    this.Invoke(new Action(() => MessageBox.Show("超出設定值！", "警告")));
+                    x = 0;
+                    break;
+                }
+                else
+                {
+                    x-= 1;   //計算：每次累加的單位，如果要累加的精度大點，該值設定大一些
+                    if (x < 0) x = 0;
+                    this.Invoke(new Action(() => this.XtextBox.Text = x.ToString()));  //介面顯示
+                    System.Threading.Thread.Sleep(100);    //如果要速度塊，將這個值修改小點 
+                }
+            }
+        }
+        private void roiRight()
+        {
+            while (isgoRightMouseDown)
+            {
+
+
+                //capture.FrameHeight = 1280;
+                //capture.FrameWidth = 1920;
+                if (x <= -1 || x >= capture.FrameWidth + w)
+                {
+                    this.Invoke(new Action(() => MessageBox.Show("超出設定值！", "警告")));
+                    x = 0;
+                    break;
+                }
+                else
+                {
+                    x += 1;   //計算：每次累加的單位，如果要累加的精度大點，該值設定大一些
+
+                    if (x + w >= capture.FrameWidth) x = capture.FrameWidth - w - 1;
+                    this.Invoke(new Action(() => this.XtextBox.Text = x.ToString()));  //介面顯示
+                    System.Threading.Thread.Sleep(100);    //如果要速度塊，將這個值修改小點 
+                }
+            }
+        }
+
+        private void XtextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (((int)e.KeyChar < 48 | (int)e.KeyChar > 57) & (int)e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void YtextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (((int)e.KeyChar < 48 | (int)e.KeyChar > 57) & (int)e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void WtextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (((int)e.KeyChar < 48 | (int)e.KeyChar > 57) & (int)e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void HtextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (((int)e.KeyChar < 48 | (int)e.KeyChar > 57) & (int)e.KeyChar != 8)
+            {
+                e.Handled = true;
             }
         }
     }

@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea28 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series28 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea29 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series29 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea30 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series30 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnStart = new System.Windows.Forms.Button();
@@ -97,12 +98,23 @@
             this.button2 = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.Fine_pic = new System.Windows.Forms.PictureBox();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.goUp = new System.Windows.Forms.PictureBox();
+            this.goLeft = new System.Windows.Forms.PictureBox();
+            this.goDown = new System.Windows.Forms.PictureBox();
+            this.goRight = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updn_power)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Fine_pic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.goUp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.goLeft)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.goDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.goRight)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -117,6 +129,7 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
@@ -145,44 +158,49 @@
             // 
             // XtextBox
             // 
-            this.XtextBox.Location = new System.Drawing.Point(293, 509);
+            this.XtextBox.Location = new System.Drawing.Point(262, 509);
             this.XtextBox.Name = "XtextBox";
             this.XtextBox.Size = new System.Drawing.Size(64, 22);
             this.XtextBox.TabIndex = 3;
             this.XtextBox.Text = "0";
             this.XtextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.XtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.XtextBox_KeyPress);
             // 
             // YtextBox
             // 
-            this.YtextBox.Location = new System.Drawing.Point(427, 508);
+            this.YtextBox.Location = new System.Drawing.Point(396, 508);
             this.YtextBox.Name = "YtextBox";
             this.YtextBox.Size = new System.Drawing.Size(64, 22);
             this.YtextBox.TabIndex = 4;
             this.YtextBox.Text = "200";
+            this.YtextBox.TextChanged += new System.EventHandler(this.YtextBox_TextChanged);
+            this.YtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.YtextBox_KeyPress);
             // 
             // HtextBox
             // 
-            this.HtextBox.Location = new System.Drawing.Point(427, 548);
+            this.HtextBox.Location = new System.Drawing.Point(396, 548);
             this.HtextBox.Name = "HtextBox";
             this.HtextBox.Size = new System.Drawing.Size(64, 22);
             this.HtextBox.TabIndex = 5;
             this.HtextBox.Text = "30";
             this.HtextBox.TextChanged += new System.EventHandler(this.HtextBox_TextChanged);
+            this.HtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HtextBox_KeyPress);
             // 
             // WtextBox
             // 
-            this.WtextBox.Location = new System.Drawing.Point(293, 548);
+            this.WtextBox.Location = new System.Drawing.Point(262, 548);
             this.WtextBox.Name = "WtextBox";
             this.WtextBox.Size = new System.Drawing.Size(64, 22);
             this.WtextBox.TabIndex = 6;
             this.WtextBox.Text = "640";
             this.WtextBox.TextChanged += new System.EventHandler(this.WtextBox_TextChanged);
+            this.WtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.WtextBox_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(120, 509);
+            this.label1.Location = new System.Drawing.Point(89, 509);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 16);
             this.label1.TabIndex = 7;
@@ -192,7 +210,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("新細明體", 10F);
-            this.label2.Location = new System.Drawing.Point(193, 512);
+            this.label2.Location = new System.Drawing.Point(162, 512);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 14);
             this.label2.TabIndex = 8;
@@ -202,7 +220,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("新細明體", 10F);
-            this.label3.Location = new System.Drawing.Point(370, 511);
+            this.label3.Location = new System.Drawing.Point(339, 511);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 14);
             this.label3.TabIndex = 9;
@@ -212,7 +230,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("新細明體", 10F);
-            this.label4.Location = new System.Drawing.Point(220, 551);
+            this.label4.Location = new System.Drawing.Point(189, 551);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(67, 14);
             this.label4.TabIndex = 10;
@@ -222,7 +240,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("新細明體", 10F);
-            this.label5.Location = new System.Drawing.Point(359, 551);
+            this.label5.Location = new System.Drawing.Point(328, 551);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 14);
             this.label5.TabIndex = 11;
@@ -231,7 +249,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button1.Location = new System.Drawing.Point(497, 507);
+            this.button1.Location = new System.Drawing.Point(466, 507);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(54, 63);
             this.button1.TabIndex = 12;
@@ -325,6 +343,7 @@
             this.w1.Size = new System.Drawing.Size(58, 22);
             this.w1.TabIndex = 23;
             this.w1.Text = "368.36";
+            this.w1.TextChanged += new System.EventHandler(this.w1_TextChanged);
             // 
             // w2
             // 
@@ -573,14 +592,14 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea28.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea28);
             this.chart1.Location = new System.Drawing.Point(665, 600);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series28.ChartArea = "ChartArea1";
+            series28.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series28.Name = "Series1";
+            this.chart1.Series.Add(series28);
             this.chart1.Size = new System.Drawing.Size(346, 317);
             this.chart1.TabIndex = 50;
             this.chart1.Text = "chart1";
@@ -588,14 +607,14 @@
             // 
             // chart2
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea2);
+            chartArea29.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea29);
             this.chart2.Location = new System.Drawing.Point(1044, 12);
             this.chart2.Name = "chart2";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series2.Name = "Series1";
-            this.chart2.Series.Add(series2);
+            series29.ChartArea = "ChartArea1";
+            series29.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series29.Name = "Series1";
+            this.chart2.Series.Add(series29);
             this.chart2.Size = new System.Drawing.Size(468, 434);
             this.chart2.TabIndex = 51;
             this.chart2.Text = "chart2";
@@ -672,14 +691,14 @@
             // 
             this.chart3.BorderSkin.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chart3.BorderSkin.PageColor = System.Drawing.Color.Black;
-            chartArea3.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea3);
+            chartArea30.Name = "ChartArea1";
+            this.chart3.ChartAreas.Add(chartArea30);
             this.chart3.Location = new System.Drawing.Point(1044, 483);
             this.chart3.Name = "chart3";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series3.Name = "Series1";
-            this.chart3.Series.Add(series3);
+            series30.ChartArea = "ChartArea1";
+            series30.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series30.Name = "Series1";
+            this.chart3.Series.Add(series30);
             this.chart3.Size = new System.Drawing.Size(468, 434);
             this.chart3.TabIndex = 59;
             this.chart3.Text = "chart3";
@@ -698,11 +717,95 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // Fine_pic
+            // 
+            this.Fine_pic.BackColor = System.Drawing.Color.Transparent;
+            this.Fine_pic.Image = global::SpectroChipApp.Properties.Resources.底0;
+            this.Fine_pic.Location = new System.Drawing.Point(532, 494);
+            this.Fine_pic.Name = "Fine_pic";
+            this.Fine_pic.Size = new System.Drawing.Size(117, 101);
+            this.Fine_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Fine_pic.TabIndex = 62;
+            this.Fine_pic.TabStop = false;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "上.png");
+            this.imageList1.Images.SetKeyName(1, "下.png");
+            this.imageList1.Images.SetKeyName(2, "右.png");
+            this.imageList1.Images.SetKeyName(3, "左.png");
+            this.imageList1.Images.SetKeyName(4, "底0.png");
+            // 
+            // goUp
+            // 
+            this.goUp.BackColor = System.Drawing.Color.Transparent;
+            this.goUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.goUp.Image = global::SpectroChipApp.Properties.Resources.上;
+            this.goUp.Location = new System.Drawing.Point(575, 512);
+            this.goUp.Name = "goUp";
+            this.goUp.Size = new System.Drawing.Size(30, 20);
+            this.goUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.goUp.TabIndex = 63;
+            this.goUp.TabStop = false;
+            this.goUp.Click += new System.EventHandler(this.goUp_Click);
+            this.goUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.goUp_MouseDown);
+            this.goUp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.goUp_MouseUp);
+            // 
+            // goLeft
+            // 
+            this.goLeft.BackColor = System.Drawing.Color.Transparent;
+            this.goLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.goLeft.Image = global::SpectroChipApp.Properties.Resources.左;
+            this.goLeft.Location = new System.Drawing.Point(556, 533);
+            this.goLeft.Name = "goLeft";
+            this.goLeft.Size = new System.Drawing.Size(20, 30);
+            this.goLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.goLeft.TabIndex = 64;
+            this.goLeft.TabStop = false;
+            this.goLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.goLeft_MouseDown);
+            this.goLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.goLeft_MouseUp);
+            // 
+            // goDown
+            // 
+            this.goDown.BackColor = System.Drawing.Color.Transparent;
+            this.goDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.goDown.Image = global::SpectroChipApp.Properties.Resources.下;
+            this.goDown.Location = new System.Drawing.Point(575, 560);
+            this.goDown.Name = "goDown";
+            this.goDown.Size = new System.Drawing.Size(30, 20);
+            this.goDown.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.goDown.TabIndex = 65;
+            this.goDown.TabStop = false;
+            this.goDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.goDown_MouseDown);
+            this.goDown.MouseUp += new System.Windows.Forms.MouseEventHandler(this.goDown_MouseUp);
+            // 
+            // goRight
+            // 
+            this.goRight.BackColor = System.Drawing.Color.Transparent;
+            this.goRight.BackgroundImage = global::SpectroChipApp.Properties.Resources.右;
+            this.goRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.goRight.Location = new System.Drawing.Point(602, 533);
+            this.goRight.Name = "goRight";
+            this.goRight.Size = new System.Drawing.Size(20, 30);
+            this.goRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.goRight.TabIndex = 66;
+            this.goRight.TabStop = false;
+            this.goRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.goRight_MouseDown);
+            this.goRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.goRight_MouseUp);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1535, 948);
+            this.Controls.Add(this.goRight);
+            this.Controls.Add(this.goDown);
+            this.Controls.Add(this.goLeft);
+            this.Controls.Add(this.goUp);
+            this.Controls.Add(this.Fine_pic);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.chart3);
             this.Controls.Add(this.label21);
@@ -775,6 +878,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Fine_pic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.goUp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.goLeft)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.goDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.goRight)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -844,6 +952,12 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.PictureBox Fine_pic;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.PictureBox goUp;
+        private System.Windows.Forms.PictureBox goLeft;
+        private System.Windows.Forms.PictureBox goDown;
+        private System.Windows.Forms.PictureBox goRight;
     }
 }
 
