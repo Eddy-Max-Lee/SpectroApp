@@ -1,4 +1,5 @@
-﻿using MathNet.Numerics;//要裝，自己去youtube看怎麼裝
+﻿using CenterSpace.NMath.Core;
+using MathNet.Numerics;//要裝，自己去youtube看怎麼裝
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
 using System;
@@ -42,6 +43,12 @@ namespace SpectroChipApp
 
         private bool mouseIsDown = false;
         private Rectangle mouseRect = Rectangle.Empty;
+
+        // SG Fitting
+        public int left_length = 10;
+
+        public int right_length = 10;
+        public int Polynomial = 3;
 
         //波長校正用
         // private double[] xPixel_array=new double[10];
@@ -146,11 +153,14 @@ namespace SpectroChipApp
             double[] IntensityBlue = new double[W];
             double[] IntensityGray = new double[W];
 
+            var sgf = new SavitzkyGolayFilter(left_length, right_length, Polynomial);
+
             System.Windows.Forms.DataVisualization.Charting.Series seriesRed = new System.Windows.Forms.DataVisualization.Charting.Series("紅色", 1000);
             System.Windows.Forms.DataVisualization.Charting.Series seriesGreen = new System.Windows.Forms.DataVisualization.Charting.Series("綠色", 1000);
             System.Windows.Forms.DataVisualization.Charting.Series seriesBlue = new System.Windows.Forms.DataVisualization.Charting.Series("藍色", 1000);
             System.Windows.Forms.DataVisualization.Charting.Series seriesGray = new System.Windows.Forms.DataVisualization.Charting.Series("灰階", 1000);
             System.Windows.Forms.DataVisualization.Charting.Series seriesClb = new System.Windows.Forms.DataVisualization.Charting.Series("波長校正", 1000);
+            System.Windows.Forms.DataVisualization.Charting.Series seriesSG1 = new System.Windows.Forms.DataVisualization.Charting.Series("SG", 1000);
             //Console.WriteLine("W:"+W);
 
             /*
@@ -182,10 +192,15 @@ namespace SpectroChipApp
                 IntensityGreen[Pixel_x] = AGreen[Pixel_x] / H;//平均
                 IntensityBlue[Pixel_x] = ABlue[Pixel_x] / H;//平均
                 IntensityGray[Pixel_x] = AGray[Pixel_x] / H;//平均
-
+            }
+            var sg = new DoubleVector(IntensityGray);
+            var IntensitySG1 = sgf.Filter(sg);
+            var IntensitySG = IntensitySG1.ToArray();
+            for (Pixel_x = 0; Pixel_x < W; Pixel_x++)
+            {
                 double WL_x = 0;
                 double WL_x_max = 0;
-                int k = 0;
+                // int k = 0;
 
                 WL_x_max = parameter_buffer[4] * (Math.Pow(W - 1, 4)) + parameter_buffer[3] * (Math.Pow(W - 1, 3)) + parameter_buffer[2] * (Math.Pow(W - 1, 2)) + parameter_buffer[1] * W - 1 + parameter_buffer[0];
                 //this.chart3.BackColor = Color.Black;
@@ -218,17 +233,20 @@ namespace SpectroChipApp
                 seriesGreen.Color = Color.Green;
                 seriesBlue.Color = Color.Blue;
                 seriesGray.Color = Color.Gray;
+                seriesSG1.Color = Color.Orange;
 
                 seriesRed.Points.AddXY(Pixel_x, IntensityRed[Pixel_x]);
                 seriesGreen.Points.AddXY(Pixel_x, IntensityGreen[Pixel_x]);
                 seriesBlue.Points.AddXY(Pixel_x, IntensityBlue[Pixel_x]);
                 seriesGray.Points.AddXY(Pixel_x, IntensityGray[Pixel_x]);
-                seriesClb.Points.AddXY(WL_x, IntensityGray[Pixel_x]);
+                seriesClb.Points.AddXY(WL_x, IntensitySG[Pixel_x]);
+                seriesSG1.Points.AddXY(Pixel_x, IntensitySG[Pixel_x]);
 
                 seriesRed.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                 seriesGreen.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                 seriesBlue.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                 seriesGray.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                seriesSG1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
 
                 this.chart2.Series.Clear();
                 this.chart3.Series.Clear();
@@ -242,6 +260,8 @@ namespace SpectroChipApp
                     this.chart2.Series.Add(seriesBlue);
                 if (checkBox4.Checked)
                     this.chart2.Series.Add(seriesGray);
+                if (checkBox5.Checked)
+                    this.chart2.Series.Add(seriesSG1);
             }
             // im1.Save("gray.png");
             //pictureBox2.Refresh();

@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea28 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series28 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea29 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series29 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea30 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series30 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnStart = new System.Windows.Forms.Button();
@@ -104,6 +104,7 @@
             this.goLeft = new System.Windows.Forms.PictureBox();
             this.goDown = new System.Windows.Forms.PictureBox();
             this.goRight = new System.Windows.Forms.PictureBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updn_power)).BeginInit();
@@ -121,14 +122,13 @@
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.pictureBox1.Location = new System.Drawing.Point(9, 10);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(17, 18);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(640, 480);
+            this.pictureBox1.Size = new System.Drawing.Size(1173, 840);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
@@ -136,10 +136,10 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(25, 509);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(2);
+            this.btnStart.Location = new System.Drawing.Point(46, 891);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(35, 31);
+            this.btnStart.Size = new System.Drawing.Size(64, 54);
             this.btnStart.TabIndex = 1;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -147,62 +147,62 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(25, 600);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox2.Location = new System.Drawing.Point(46, 1050);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(597, 317);
+            this.pictureBox2.Size = new System.Drawing.Size(1095, 555);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
-            
             // 
             // XtextBox
             // 
-            this.XtextBox.Location = new System.Drawing.Point(262, 509);
+            this.XtextBox.Location = new System.Drawing.Point(480, 891);
+            this.XtextBox.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.XtextBox.Name = "XtextBox";
-            this.XtextBox.Size = new System.Drawing.Size(64, 22);
+            this.XtextBox.Size = new System.Drawing.Size(114, 33);
             this.XtextBox.TabIndex = 3;
             this.XtextBox.Text = "0";
-            
             this.XtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.XtextBox_KeyPress);
             // 
             // YtextBox
             // 
-            this.YtextBox.Location = new System.Drawing.Point(396, 508);
+            this.YtextBox.Location = new System.Drawing.Point(726, 889);
+            this.YtextBox.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.YtextBox.Name = "YtextBox";
-            this.YtextBox.Size = new System.Drawing.Size(64, 22);
+            this.YtextBox.Size = new System.Drawing.Size(114, 33);
             this.YtextBox.TabIndex = 4;
             this.YtextBox.Text = "200";
-         
             this.YtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.YtextBox_KeyPress);
             // 
             // HtextBox
             // 
-            this.HtextBox.Location = new System.Drawing.Point(396, 548);
+            this.HtextBox.Location = new System.Drawing.Point(726, 959);
+            this.HtextBox.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.HtextBox.Name = "HtextBox";
-            this.HtextBox.Size = new System.Drawing.Size(64, 22);
+            this.HtextBox.Size = new System.Drawing.Size(114, 33);
             this.HtextBox.TabIndex = 5;
             this.HtextBox.Text = "30";
-            
             this.HtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HtextBox_KeyPress);
             // 
             // WtextBox
             // 
-            this.WtextBox.Location = new System.Drawing.Point(262, 548);
+            this.WtextBox.Location = new System.Drawing.Point(480, 959);
+            this.WtextBox.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.WtextBox.Name = "WtextBox";
-            this.WtextBox.Size = new System.Drawing.Size(64, 22);
+            this.WtextBox.Size = new System.Drawing.Size(114, 33);
             this.WtextBox.TabIndex = 6;
             this.WtextBox.Text = "640";
-            
             this.WtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.WtextBox_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(89, 509);
+            this.label1.Location = new System.Drawing.Point(163, 891);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 16);
+            this.label1.Size = new System.Drawing.Size(128, 28);
             this.label1.TabIndex = 7;
             this.label1.Text = "ROI選取: ";
             // 
@@ -210,9 +210,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("新細明體", 10F);
-            this.label2.Location = new System.Drawing.Point(162, 512);
+            this.label2.Location = new System.Drawing.Point(297, 896);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 14);
+            this.label2.Size = new System.Drawing.Size(168, 24);
             this.label2.TabIndex = 8;
             this.label2.Text = "左上點(X座標):";
             // 
@@ -220,9 +221,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("新細明體", 10F);
-            this.label3.Location = new System.Drawing.Point(339, 511);
+            this.label3.Location = new System.Drawing.Point(622, 894);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 14);
+            this.label3.Size = new System.Drawing.Size(96, 24);
             this.label3.TabIndex = 9;
             this.label3.Text = "(Y座標):";
             // 
@@ -230,9 +232,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("新細明體", 10F);
-            this.label4.Location = new System.Drawing.Point(189, 551);
+            this.label4.Location = new System.Drawing.Point(347, 964);
+            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 14);
+            this.label4.Size = new System.Drawing.Size(112, 24);
             this.label4.TabIndex = 10;
             this.label4.Text = "水平寬度:";
             // 
@@ -240,18 +243,20 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("新細明體", 10F);
-            this.label5.Location = new System.Drawing.Point(328, 551);
+            this.label5.Location = new System.Drawing.Point(601, 964);
+            this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 14);
+            this.label5.Size = new System.Drawing.Size(112, 24);
             this.label5.TabIndex = 11;
             this.label5.Text = "垂直高度:";
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button1.Location = new System.Drawing.Point(466, 507);
+            this.button1.Location = new System.Drawing.Point(854, 887);
+            this.button1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(54, 63);
+            this.button1.Size = new System.Drawing.Size(99, 110);
             this.button1.TabIndex = 12;
             this.button1.Text = "更新ROI";
             this.button1.UseVisualStyleBackColor = true;
@@ -259,180 +264,199 @@
             // 
             // p2
             // 
-            this.p2.Location = new System.Drawing.Point(700, 104);
+            this.p2.Location = new System.Drawing.Point(1283, 182);
+            this.p2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.p2.Name = "p2";
-            this.p2.Size = new System.Drawing.Size(58, 22);
+            this.p2.Size = new System.Drawing.Size(103, 33);
             this.p2.TabIndex = 13;
             this.p2.Text = "275.5";
             // 
             // p1
             // 
-            this.p1.Location = new System.Drawing.Point(700, 76);
+            this.p1.Location = new System.Drawing.Point(1283, 133);
+            this.p1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.p1.Name = "p1";
-            this.p1.Size = new System.Drawing.Size(58, 22);
+            this.p1.Size = new System.Drawing.Size(103, 33);
             this.p1.TabIndex = 14;
             this.p1.Text = "231.5";
-  
             // 
             // p3
             // 
-            this.p3.Location = new System.Drawing.Point(700, 132);
+            this.p3.Location = new System.Drawing.Point(1283, 231);
+            this.p3.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.p3.Name = "p3";
-            this.p3.Size = new System.Drawing.Size(58, 22);
+            this.p3.Size = new System.Drawing.Size(103, 33);
             this.p3.TabIndex = 15;
             this.p3.Text = "409.5";
             // 
             // p4
             // 
-            this.p4.Location = new System.Drawing.Point(700, 160);
+            this.p4.Location = new System.Drawing.Point(1283, 280);
+            this.p4.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.p4.Name = "p4";
-            this.p4.Size = new System.Drawing.Size(58, 22);
+            this.p4.Size = new System.Drawing.Size(103, 33);
             this.p4.TabIndex = 16;
             this.p4.Text = "559.5";
             // 
             // p5
             // 
-            this.p5.Location = new System.Drawing.Point(700, 188);
+            this.p5.Location = new System.Drawing.Point(1283, 329);
+            this.p5.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.p5.Name = "p5";
-            this.p5.Size = new System.Drawing.Size(58, 22);
+            this.p5.Size = new System.Drawing.Size(103, 33);
             this.p5.TabIndex = 17;
             this.p5.Text = "609.5";
             // 
             // p6
             // 
-            this.p6.Location = new System.Drawing.Point(873, 76);
+            this.p6.Location = new System.Drawing.Point(1601, 133);
+            this.p6.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.p6.Name = "p6";
-            this.p6.Size = new System.Drawing.Size(58, 22);
+            this.p6.Size = new System.Drawing.Size(103, 33);
             this.p6.TabIndex = 18;
             this.p6.Text = "747.5";
             // 
             // p7
             // 
-            this.p7.Location = new System.Drawing.Point(873, 104);
+            this.p7.Location = new System.Drawing.Point(1601, 182);
+            this.p7.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.p7.Name = "p7";
-            this.p7.Size = new System.Drawing.Size(58, 22);
+            this.p7.Size = new System.Drawing.Size(103, 33);
             this.p7.TabIndex = 19;
             this.p7.Text = "821.5";
             // 
             // p8
             // 
-            this.p8.Location = new System.Drawing.Point(873, 132);
+            this.p8.Location = new System.Drawing.Point(1601, 231);
+            this.p8.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.p8.Name = "p8";
-            this.p8.Size = new System.Drawing.Size(58, 22);
+            this.p8.Size = new System.Drawing.Size(103, 33);
             this.p8.TabIndex = 20;
             this.p8.Text = "967.5";
             // 
             // p9
             // 
-            this.p9.Location = new System.Drawing.Point(873, 160);
+            this.p9.Location = new System.Drawing.Point(1601, 280);
+            this.p9.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.p9.Name = "p9";
-            this.p9.Size = new System.Drawing.Size(58, 22);
+            this.p9.Size = new System.Drawing.Size(103, 33);
             this.p9.TabIndex = 21;
             // 
             // p10
             // 
-            this.p10.Location = new System.Drawing.Point(873, 188);
+            this.p10.Location = new System.Drawing.Point(1601, 329);
+            this.p10.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.p10.Name = "p10";
-            this.p10.Size = new System.Drawing.Size(58, 22);
+            this.p10.Size = new System.Drawing.Size(103, 33);
             this.p10.TabIndex = 22;
             // 
             // w1
             // 
-            this.w1.Location = new System.Drawing.Point(763, 76);
+            this.w1.Location = new System.Drawing.Point(1399, 133);
+            this.w1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.w1.Name = "w1";
-            this.w1.Size = new System.Drawing.Size(58, 22);
+            this.w1.Size = new System.Drawing.Size(103, 33);
             this.w1.TabIndex = 23;
             this.w1.Text = "368.36";
-          
             // 
             // w2
             // 
-            this.w2.Location = new System.Drawing.Point(763, 104);
+            this.w2.Location = new System.Drawing.Point(1399, 182);
+            this.w2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.w2.Name = "w2";
-            this.w2.Size = new System.Drawing.Size(58, 22);
+            this.w2.Size = new System.Drawing.Size(103, 33);
             this.w2.TabIndex = 24;
             this.w2.Text = "406.72";
             // 
             // w3
             // 
-            this.w3.Location = new System.Drawing.Point(763, 132);
+            this.w3.Location = new System.Drawing.Point(1399, 231);
+            this.w3.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.w3.Name = "w3";
-            this.w3.Size = new System.Drawing.Size(58, 22);
+            this.w3.Size = new System.Drawing.Size(103, 33);
             this.w3.TabIndex = 25;
             this.w3.Text = "516.1";
             // 
             // w4
             // 
-            this.w4.Location = new System.Drawing.Point(763, 160);
+            this.w4.Location = new System.Drawing.Point(1399, 280);
+            this.w4.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.w4.Name = "w4";
-            this.w4.Size = new System.Drawing.Size(58, 22);
+            this.w4.Size = new System.Drawing.Size(103, 33);
             this.w4.TabIndex = 26;
             this.w4.Text = "635.32";
             // 
             // w5
             // 
-            this.w5.Location = new System.Drawing.Point(763, 188);
+            this.w5.Location = new System.Drawing.Point(1399, 329);
+            this.w5.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.w5.Name = "w5";
-            this.w5.Size = new System.Drawing.Size(58, 22);
+            this.w5.Size = new System.Drawing.Size(103, 33);
             this.w5.TabIndex = 27;
             this.w5.Text = "673.83";
             // 
             // w6
             // 
-            this.w6.Location = new System.Drawing.Point(936, 76);
+            this.w6.Location = new System.Drawing.Point(1716, 133);
+            this.w6.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.w6.Name = "w6";
-            this.w6.Size = new System.Drawing.Size(58, 22);
+            this.w6.Size = new System.Drawing.Size(103, 33);
             this.w6.TabIndex = 28;
             this.w6.Text = "781.87";
             // 
             // w7
             // 
-            this.w7.Location = new System.Drawing.Point(936, 104);
+            this.w7.Location = new System.Drawing.Point(1716, 182);
+            this.w7.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.w7.Name = "w7";
-            this.w7.Size = new System.Drawing.Size(58, 22);
+            this.w7.Size = new System.Drawing.Size(103, 33);
             this.w7.TabIndex = 29;
             this.w7.Text = "853.38";
             // 
             // w8
             // 
-            this.w8.Location = new System.Drawing.Point(936, 132);
+            this.w8.Location = new System.Drawing.Point(1716, 231);
+            this.w8.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.w8.Name = "w8";
-            this.w8.Size = new System.Drawing.Size(58, 22);
+            this.w8.Size = new System.Drawing.Size(103, 33);
             this.w8.TabIndex = 30;
             this.w8.Text = "980.94";
             // 
             // w9
             // 
-            this.w9.Location = new System.Drawing.Point(936, 160);
+            this.w9.Location = new System.Drawing.Point(1716, 280);
+            this.w9.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.w9.Name = "w9";
-            this.w9.Size = new System.Drawing.Size(58, 22);
+            this.w9.Size = new System.Drawing.Size(103, 33);
             this.w9.TabIndex = 31;
             // 
             // w10
             // 
-            this.w10.Location = new System.Drawing.Point(936, 188);
+            this.w10.Location = new System.Drawing.Point(1716, 329);
+            this.w10.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.w10.Name = "w10";
-            this.w10.Size = new System.Drawing.Size(58, 22);
+            this.w10.Size = new System.Drawing.Size(103, 33);
             this.w10.TabIndex = 32;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label6.Location = new System.Drawing.Point(674, 76);
+            this.label6.Location = new System.Drawing.Point(1236, 133);
+            this.label6.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(25, 24);
+            this.label6.Size = new System.Drawing.Size(47, 43);
             this.label6.TabIndex = 33;
             this.label6.Text = "1:";
-          
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label7.Location = new System.Drawing.Point(674, 104);
+            this.label7.Location = new System.Drawing.Point(1236, 182);
+            this.label7.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(25, 24);
+            this.label7.Size = new System.Drawing.Size(47, 43);
             this.label7.TabIndex = 34;
             this.label7.Text = "2:";
             // 
@@ -440,9 +464,10 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label8.Location = new System.Drawing.Point(674, 128);
+            this.label8.Location = new System.Drawing.Point(1236, 224);
+            this.label8.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(25, 24);
+            this.label8.Size = new System.Drawing.Size(47, 43);
             this.label8.TabIndex = 35;
             this.label8.Text = "3:";
             // 
@@ -450,9 +475,10 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label9.Location = new System.Drawing.Point(674, 160);
+            this.label9.Location = new System.Drawing.Point(1236, 280);
+            this.label9.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(25, 24);
+            this.label9.Size = new System.Drawing.Size(47, 43);
             this.label9.TabIndex = 36;
             this.label9.Text = "4:";
             // 
@@ -460,9 +486,10 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label10.Location = new System.Drawing.Point(674, 188);
+            this.label10.Location = new System.Drawing.Point(1236, 329);
+            this.label10.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(25, 24);
+            this.label10.Size = new System.Drawing.Size(47, 43);
             this.label10.TabIndex = 37;
             this.label10.Text = "5:";
             // 
@@ -470,9 +497,10 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label11.Location = new System.Drawing.Point(842, 76);
+            this.label11.Location = new System.Drawing.Point(1544, 133);
+            this.label11.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(25, 24);
+            this.label11.Size = new System.Drawing.Size(47, 43);
             this.label11.TabIndex = 38;
             this.label11.Text = "6:";
             // 
@@ -480,9 +508,10 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label12.Location = new System.Drawing.Point(842, 104);
+            this.label12.Location = new System.Drawing.Point(1544, 182);
+            this.label12.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(25, 24);
+            this.label12.Size = new System.Drawing.Size(47, 43);
             this.label12.TabIndex = 39;
             this.label12.Text = "7:";
             // 
@@ -490,9 +519,10 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label13.Location = new System.Drawing.Point(842, 133);
+            this.label13.Location = new System.Drawing.Point(1544, 233);
+            this.label13.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(25, 24);
+            this.label13.Size = new System.Drawing.Size(47, 43);
             this.label13.TabIndex = 40;
             this.label13.Text = "8:";
             // 
@@ -500,9 +530,10 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label14.Location = new System.Drawing.Point(842, 160);
+            this.label14.Location = new System.Drawing.Point(1544, 280);
+            this.label14.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(25, 24);
+            this.label14.Size = new System.Drawing.Size(47, 43);
             this.label14.TabIndex = 41;
             this.label14.Text = "9:";
             // 
@@ -510,9 +541,10 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label15.Location = new System.Drawing.Point(832, 188);
+            this.label15.Location = new System.Drawing.Point(1525, 329);
+            this.label15.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(36, 24);
+            this.label15.Size = new System.Drawing.Size(67, 43);
             this.label15.TabIndex = 42;
             this.label15.Text = "10:";
             // 
@@ -520,9 +552,10 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label16.Location = new System.Drawing.Point(707, 49);
+            this.label16.Location = new System.Drawing.Point(1296, 86);
+            this.label16.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(51, 24);
+            this.label16.Size = new System.Drawing.Size(93, 43);
             this.label16.TabIndex = 43;
             this.label16.Text = "Pixel";
             // 
@@ -530,9 +563,10 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label17.Location = new System.Drawing.Point(869, 49);
+            this.label17.Location = new System.Drawing.Point(1593, 86);
+            this.label17.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(51, 24);
+            this.label17.Size = new System.Drawing.Size(93, 43);
             this.label17.TabIndex = 44;
             this.label17.Text = "Pixel";
             // 
@@ -540,9 +574,10 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label18.Location = new System.Drawing.Point(759, 49);
+            this.label18.Location = new System.Drawing.Point(1392, 86);
+            this.label18.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(62, 24);
+            this.label18.Size = new System.Drawing.Size(112, 43);
             this.label18.TabIndex = 45;
             this.label18.Text = "λ(nm)";
             // 
@@ -550,9 +585,10 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label19.Location = new System.Drawing.Point(932, 49);
+            this.label19.Location = new System.Drawing.Point(1709, 86);
+            this.label19.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(62, 24);
+            this.label19.Size = new System.Drawing.Size(112, 43);
             this.label19.TabIndex = 46;
             this.label19.Text = "λ(nm)";
             // 
@@ -560,18 +596,20 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label20.Location = new System.Drawing.Point(746, 245);
+            this.label20.Location = new System.Drawing.Point(1368, 429);
+            this.label20.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(52, 24);
+            this.label20.Size = new System.Drawing.Size(95, 43);
             this.label20.TabIndex = 47;
             this.label20.Text = "冪次:";
             // 
             // btn_cali
             // 
             this.btn_cali.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btn_cali.Location = new System.Drawing.Point(877, 227);
+            this.btn_cali.Location = new System.Drawing.Point(1608, 397);
+            this.btn_cali.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btn_cali.Name = "btn_cali";
-            this.btn_cali.Size = new System.Drawing.Size(117, 80);
+            this.btn_cali.Size = new System.Drawing.Size(215, 140);
             this.btn_cali.TabIndex = 48;
             this.btn_cali.Text = "計算校正";
             this.btn_cali.UseVisualStyleBackColor = true;
@@ -580,9 +618,10 @@
             // updn_power
             // 
             this.updn_power.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.updn_power.Location = new System.Drawing.Point(804, 242);
+            this.updn_power.Location = new System.Drawing.Point(1474, 424);
+            this.updn_power.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.updn_power.Name = "updn_power";
-            this.updn_power.Size = new System.Drawing.Size(44, 27);
+            this.updn_power.Size = new System.Drawing.Size(81, 42);
             this.updn_power.TabIndex = 49;
             this.updn_power.Value = new decimal(new int[] {
             3,
@@ -592,30 +631,31 @@
             // 
             // chart1
             // 
-            chartArea28.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea28);
-            this.chart1.Location = new System.Drawing.Point(665, 600);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.Location = new System.Drawing.Point(1219, 1050);
+            this.chart1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.chart1.Name = "chart1";
-            series28.ChartArea = "ChartArea1";
-            series28.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series28.Name = "Series1";
-            this.chart1.Series.Add(series28);
-            this.chart1.Size = new System.Drawing.Size(346, 317);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(634, 555);
             this.chart1.TabIndex = 50;
             this.chart1.Text = "chart1";
-            
             // 
             // chart2
             // 
-            chartArea29.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea29);
-            this.chart2.Location = new System.Drawing.Point(1044, 12);
+            chartArea2.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea2);
+            this.chart2.Location = new System.Drawing.Point(1914, 21);
+            this.chart2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.chart2.Name = "chart2";
-            series29.ChartArea = "ChartArea1";
-            series29.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series29.Name = "Series1";
-            this.chart2.Series.Add(series29);
-            this.chart2.Size = new System.Drawing.Size(468, 434);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series2.Name = "Series1";
+            this.chart2.Series.Add(series2);
+            this.chart2.Size = new System.Drawing.Size(858, 760);
             this.chart2.TabIndex = 51;
             this.chart2.Text = "chart2";
             // 
@@ -624,22 +664,23 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.checkBox1.ForeColor = System.Drawing.Color.Red;
-            this.checkBox1.Location = new System.Drawing.Point(1120, 452);
+            this.checkBox1.Location = new System.Drawing.Point(2053, 791);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(57, 24);
+            this.checkBox1.Size = new System.Drawing.Size(93, 39);
             this.checkBox1.TabIndex = 52;
             this.checkBox1.Text = "Red";
             this.checkBox1.UseVisualStyleBackColor = true;
-            
             // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
             this.checkBox2.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.checkBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.checkBox2.Location = new System.Drawing.Point(1183, 452);
+            this.checkBox2.Location = new System.Drawing.Point(2169, 791);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(74, 24);
+            this.checkBox2.Size = new System.Drawing.Size(121, 39);
             this.checkBox2.TabIndex = 53;
             this.checkBox2.Text = "Green";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -649,9 +690,10 @@
             this.checkBox3.AutoSize = true;
             this.checkBox3.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.checkBox3.ForeColor = System.Drawing.Color.Blue;
-            this.checkBox3.Location = new System.Drawing.Point(1263, 452);
+            this.checkBox3.Location = new System.Drawing.Point(2316, 791);
+            this.checkBox3.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(61, 24);
+            this.checkBox3.Size = new System.Drawing.Size(98, 39);
             this.checkBox3.TabIndex = 54;
             this.checkBox3.Text = "Blue";
             this.checkBox3.UseVisualStyleBackColor = true;
@@ -661,19 +703,21 @@
             this.checkBox4.AutoSize = true;
             this.checkBox4.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.checkBox4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.checkBox4.Location = new System.Drawing.Point(1326, 452);
+            this.checkBox4.Location = new System.Drawing.Point(2431, 791);
+            this.checkBox4.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(106, 24);
+            this.checkBox4.Size = new System.Drawing.Size(177, 39);
             this.checkBox4.TabIndex = 55;
             this.checkBox4.Text = "Gray Scale";
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // P0textBox
             // 
-            this.P0textBox.Location = new System.Drawing.Point(700, 364);
+            this.P0textBox.Location = new System.Drawing.Point(1283, 637);
+            this.P0textBox.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.P0textBox.Multiline = true;
             this.P0textBox.Name = "P0textBox";
-            this.P0textBox.Size = new System.Drawing.Size(279, 126);
+            this.P0textBox.Size = new System.Drawing.Size(508, 218);
             this.P0textBox.TabIndex = 57;
             this.P0textBox.Text = "200";
             // 
@@ -681,9 +725,10 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label21.Location = new System.Drawing.Point(696, 337);
+            this.label21.Location = new System.Drawing.Point(1276, 590);
+            this.label21.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(86, 24);
+            this.label21.Size = new System.Drawing.Size(155, 43);
             this.label21.TabIndex = 58;
             this.label21.Text = "校正參數";
             // 
@@ -691,24 +736,26 @@
             // 
             this.chart3.BorderSkin.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chart3.BorderSkin.PageColor = System.Drawing.Color.Black;
-            chartArea30.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea30);
-            this.chart3.Location = new System.Drawing.Point(1044, 483);
+            chartArea3.Name = "ChartArea1";
+            this.chart3.ChartAreas.Add(chartArea3);
+            this.chart3.Location = new System.Drawing.Point(1914, 845);
+            this.chart3.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.chart3.Name = "chart3";
-            series30.ChartArea = "ChartArea1";
-            series30.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series30.Name = "Series1";
-            this.chart3.Series.Add(series30);
-            this.chart3.Size = new System.Drawing.Size(468, 434);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series3.Name = "Series1";
+            this.chart3.Series.Add(series3);
+            this.chart3.Size = new System.Drawing.Size(858, 760);
             this.chart3.TabIndex = 59;
             this.chart3.Text = "chart3";
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button2.Location = new System.Drawing.Point(703, 275);
+            this.button2.Location = new System.Drawing.Point(1289, 481);
+            this.button2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(145, 32);
+            this.button2.Size = new System.Drawing.Size(266, 56);
             this.button2.TabIndex = 60;
             this.button2.Text = "匯入Json File";
             this.button2.UseVisualStyleBackColor = true;
@@ -721,9 +768,10 @@
             // 
             this.Fine_pic.BackColor = System.Drawing.Color.Transparent;
             this.Fine_pic.Image = global::SpectroChipApp.Properties.Resources.底0;
-            this.Fine_pic.Location = new System.Drawing.Point(532, 494);
+            this.Fine_pic.Location = new System.Drawing.Point(975, 864);
+            this.Fine_pic.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Fine_pic.Name = "Fine_pic";
-            this.Fine_pic.Size = new System.Drawing.Size(117, 101);
+            this.Fine_pic.Size = new System.Drawing.Size(215, 177);
             this.Fine_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Fine_pic.TabIndex = 62;
             this.Fine_pic.TabStop = false;
@@ -743,13 +791,13 @@
             this.goUp.BackColor = System.Drawing.Color.Transparent;
             this.goUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.goUp.Image = global::SpectroChipApp.Properties.Resources.上;
-            this.goUp.Location = new System.Drawing.Point(575, 512);
+            this.goUp.Location = new System.Drawing.Point(1054, 896);
+            this.goUp.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.goUp.Name = "goUp";
-            this.goUp.Size = new System.Drawing.Size(30, 20);
+            this.goUp.Size = new System.Drawing.Size(55, 35);
             this.goUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.goUp.TabIndex = 63;
             this.goUp.TabStop = false;
-            
             this.goUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.goUp_MouseDown);
             this.goUp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.goUp_MouseUp);
             // 
@@ -758,9 +806,10 @@
             this.goLeft.BackColor = System.Drawing.Color.Transparent;
             this.goLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.goLeft.Image = global::SpectroChipApp.Properties.Resources.左;
-            this.goLeft.Location = new System.Drawing.Point(556, 533);
+            this.goLeft.Location = new System.Drawing.Point(1019, 933);
+            this.goLeft.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.goLeft.Name = "goLeft";
-            this.goLeft.Size = new System.Drawing.Size(20, 30);
+            this.goLeft.Size = new System.Drawing.Size(37, 52);
             this.goLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.goLeft.TabIndex = 64;
             this.goLeft.TabStop = false;
@@ -772,9 +821,10 @@
             this.goDown.BackColor = System.Drawing.Color.Transparent;
             this.goDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.goDown.Image = global::SpectroChipApp.Properties.Resources.下;
-            this.goDown.Location = new System.Drawing.Point(575, 560);
+            this.goDown.Location = new System.Drawing.Point(1054, 980);
+            this.goDown.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.goDown.Name = "goDown";
-            this.goDown.Size = new System.Drawing.Size(30, 20);
+            this.goDown.Size = new System.Drawing.Size(55, 35);
             this.goDown.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.goDown.TabIndex = 65;
             this.goDown.TabStop = false;
@@ -786,21 +836,36 @@
             this.goRight.BackColor = System.Drawing.Color.Transparent;
             this.goRight.BackgroundImage = global::SpectroChipApp.Properties.Resources.右;
             this.goRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.goRight.Location = new System.Drawing.Point(602, 533);
+            this.goRight.Location = new System.Drawing.Point(1104, 933);
+            this.goRight.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.goRight.Name = "goRight";
-            this.goRight.Size = new System.Drawing.Size(20, 30);
+            this.goRight.Size = new System.Drawing.Size(37, 52);
             this.goRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.goRight.TabIndex = 66;
             this.goRight.TabStop = false;
             this.goRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.goRight_MouseDown);
             this.goRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.goRight_MouseUp);
             // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox5.Location = new System.Drawing.Point(2620, 791);
+            this.checkBox5.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(78, 39);
+            this.checkBox5.TabIndex = 67;
+            this.checkBox5.Text = "SG";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(1535, 948);
+            this.ClientSize = new System.Drawing.Size(2814, 1659);
+            this.Controls.Add(this.checkBox5);
             this.Controls.Add(this.goRight);
             this.Controls.Add(this.goDown);
             this.Controls.Add(this.goLeft);
@@ -867,7 +932,7 @@
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Spectrochip APP";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -946,6 +1011,7 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.TextBox P0textBox;
         private System.Windows.Forms.Label label21;
         public System.Windows.Forms.DataVisualization.Charting.Chart chart3;
@@ -958,6 +1024,7 @@
         private System.Windows.Forms.PictureBox goLeft;
         private System.Windows.Forms.PictureBox goDown;
         private System.Windows.Forms.PictureBox goRight;
+        
     }
 }
 
