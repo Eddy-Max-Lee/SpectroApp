@@ -128,7 +128,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
@@ -154,7 +154,7 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            
             // 
             // XtextBox
             // 
@@ -163,7 +163,7 @@
             this.XtextBox.Size = new System.Drawing.Size(64, 22);
             this.XtextBox.TabIndex = 3;
             this.XtextBox.Text = "0";
-            this.XtextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            
             this.XtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.XtextBox_KeyPress);
             // 
             // YtextBox
@@ -173,7 +173,7 @@
             this.YtextBox.Size = new System.Drawing.Size(64, 22);
             this.YtextBox.TabIndex = 4;
             this.YtextBox.Text = "200";
-            this.YtextBox.TextChanged += new System.EventHandler(this.YtextBox_TextChanged);
+         
             this.YtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.YtextBox_KeyPress);
             // 
             // HtextBox
@@ -183,7 +183,7 @@
             this.HtextBox.Size = new System.Drawing.Size(64, 22);
             this.HtextBox.TabIndex = 5;
             this.HtextBox.Text = "30";
-            this.HtextBox.TextChanged += new System.EventHandler(this.HtextBox_TextChanged);
+            
             this.HtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HtextBox_KeyPress);
             // 
             // WtextBox
@@ -193,7 +193,7 @@
             this.WtextBox.Size = new System.Drawing.Size(64, 22);
             this.WtextBox.TabIndex = 6;
             this.WtextBox.Text = "640";
-            this.WtextBox.TextChanged += new System.EventHandler(this.WtextBox_TextChanged);
+            
             this.WtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.WtextBox_KeyPress);
             // 
             // label1
@@ -272,7 +272,7 @@
             this.p1.Size = new System.Drawing.Size(58, 22);
             this.p1.TabIndex = 14;
             this.p1.Text = "231.5";
-            this.p1.TextChanged += new System.EventHandler(this.p1_TextChanged);
+  
             // 
             // p3
             // 
@@ -343,7 +343,7 @@
             this.w1.Size = new System.Drawing.Size(58, 22);
             this.w1.TabIndex = 23;
             this.w1.Text = "368.36";
-            this.w1.TextChanged += new System.EventHandler(this.w1_TextChanged);
+          
             // 
             // w2
             // 
@@ -424,7 +424,7 @@
             this.label6.Size = new System.Drawing.Size(25, 24);
             this.label6.TabIndex = 33;
             this.label6.Text = "1:";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
+          
             // 
             // label7
             // 
@@ -603,7 +603,7 @@
             this.chart1.Size = new System.Drawing.Size(346, 317);
             this.chart1.TabIndex = 50;
             this.chart1.Text = "chart1";
-            this.chart1.Click += new System.EventHandler(this.chart1_Click);
+            
             // 
             // chart2
             // 
@@ -630,7 +630,7 @@
             this.checkBox1.TabIndex = 52;
             this.checkBox1.Text = "Red";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            
             // 
             // checkBox2
             // 
@@ -749,7 +749,7 @@
             this.goUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.goUp.TabIndex = 63;
             this.goUp.TabStop = false;
-            this.goUp.Click += new System.EventHandler(this.goUp_Click);
+            
             this.goUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.goUp_MouseDown);
             this.goUp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.goUp_MouseUp);
             // 

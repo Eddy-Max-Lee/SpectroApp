@@ -27,3 +27,26 @@ E:\Repo_Direct\Csharp\SpectroChipApp\SpectroApp\SpectroChipApp\obj\Release\Spect
 E:\Repo_Direct\Csharp\SpectroChipApp\SpectroApp\SpectroChipApp\obj\Release\SpectroChipApp.exe
 E:\Repo_Direct\Csharp\SpectroChipApp\SpectroApp\SpectroChipApp\obj\Release\SpectroChipApp.pdb
 E:\Repo_Direct\Csharp\SpectroChipApp\SpectroApp\SpectroChipApp\obj\Release\SpectroChipApp.Form2.resources
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\dll\x86\OpenCvSharpExtern.dll
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\dll\x86\opencv_videoio_ffmpeg420.dll
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\dll\x64\OpenCvSharpExtern.dll
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\dll\x64\opencv_videoio_ffmpeg420_64.dll
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\MathNet.Numerics.dll
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\OpenCvSharp.Blob.dll
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\OpenCvSharp.dll
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\OpenCvSharp.Extensions.dll
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\MathNet.Numerics.xml
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\OpenCvSharp.xml
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\OpenCvSharp.Blob.xml
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\OpenCvSharp.Extensions.xml
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\obj\Release\SpectroChipApp.csprojAssemblyReference.cache
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\obj\Release\SpectroChipApp.Form1.resources
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\obj\Release\SpectroChipApp.Properties.Resources.resources
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\obj\Release\SpectroChipApp.csproj.GenerateResource.cache
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\obj\Release\SpectroChipApp.csproj.CoreCompileInputs.cache
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\obj\Release\SpectroChipApp.csproj.CopyComplete
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\obj\Release\SpectroChipApp.exe
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\obj\Release\SpectroChipApp.pdb
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\SpectroChipApp.exe.config
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\SpectroChipApp.exe
+C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\SpectroChipApp.pdb

@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MathNet.Numerics;//要裝，自己去youtube看怎麼裝
-using MathNet.Numerics.LinearRegression;
+﻿using MathNet.Numerics;//要裝，自己去youtube看怎麼裝
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
+using System.Threading;
+using System.Windows.Forms;
+
 //using System.Windows.Forms.DataVisualization.Charting;
 
 namespace SpectroChipApp
@@ -20,16 +15,17 @@ namespace SpectroChipApp
     public partial class Form1 : Form
     {
         // Create class-level accesible variables  取roi用
-        VideoCapture capture;
-        Mat frame;
-        Bitmap image;
-        Bitmap image_roi;//我哪邊都能用，超爽ㄉ//E04以後不可以再這樣搞
-        Bitmap image_roi_for_gray;
-        Bitmap image_roi_for_cali;
-        public int x=0;
-        public int y=200;
-        public int w=640;
-        public int h=30;
+        private VideoCapture capture;
+
+        private Mat frame;
+        private Bitmap image;
+        private Bitmap image_roi;//我哪邊都能用，超爽ㄉ//E04以後不可以再這樣搞
+        private Bitmap image_roi_for_gray;
+        private Bitmap image_roi_for_cali;
+        public int x = 0;
+        public int y = 200;
+        public int w = 640;
+        public int h = 30;
         public int X_Start = 0;
         public int Y_Start = 0;
         private bool isgoUpMouseDown = false;
@@ -37,31 +33,21 @@ namespace SpectroChipApp
         private bool isgoLeftMouseDown = false;
         private bool isgoRightMouseDown = false;
 
-
-        double[] parameter_buffer = new double[] { 0, 0, 0, 0, 0 };
-
-
+        private double[] parameter_buffer = new double[] { 0, 0, 0, 0, 0 };
 
         public int btnStart_Visible_flag = 1; //開始時btnStart是可見的
 
-
-
         private Thread camera;
-        bool isCameraRunning = false;
-
+        private bool isCameraRunning = false;
 
         private bool mouseIsDown = false;
         private Rectangle mouseRect = Rectangle.Empty;
-
 
         //波長校正用
         // private double[] xPixel_array=new double[10];
         //private double[] yWave_array = new double[10];
 
         //灰階用
-
-
-      
 
         private void CaptureCamera()
         {
@@ -72,16 +58,10 @@ namespace SpectroChipApp
 
         private void CaptureCameraCallback()
         {
-           // Thread.Sleep(100);//加了比較順
+            // Thread.Sleep(100);//加了比較順
             frame = new Mat();
 
             capture = new VideoCapture(0);
-
-
-
-
-
-
 
             capture.FrameHeight = 1280;
             capture.FrameWidth = 1920;
@@ -95,54 +75,42 @@ namespace SpectroChipApp
             {
                 while (isCameraRunning)
                 {
-
-
-
-
-
                     try
-                        {
-                            capture.Read(frame);
+                    {
+                        capture.Read(frame);
 
-                            Rect roi = new Rect(x, y, w, h);//首先要用个rect确定我们的兴趣区域在哪
+                        Rect roi = new Rect(x, y, w, h);//首先要用个rect确定我们的兴趣区域在哪
 
+                        Mat ImageROI = new Mat(frame, roi);//新建一个mat，把roi内的图像加载到里面去。
 
+                        image = BitmapConverter.ToBitmap(frame);
+                        image_roi = BitmapConverter.ToBitmap(ImageROI);
+                        image_roi_for_gray = BitmapConverter.ToBitmap(ImageROI);
+                        image_roi_for_cali = BitmapConverter.ToBitmap(ImageROI);
+                        //Cv2.ImShow("兴趣区域", ImageROI);
+                        // Cv2.ImShow("滚滚", image);
+                    }
+                    catch (InvalidCastException e)
+                    {
+                    }
 
-                            Mat ImageROI = new Mat(frame, roi);//新建一个mat，把roi内的图像加载到里面去。
+                    if (pictureBox1.Image != null)
+                    {
+                        pictureBox1.Image.Dispose();
+                    }
+                    pictureBox1.Image = image;
 
-                            image = BitmapConverter.ToBitmap(frame);
-                            image_roi = BitmapConverter.ToBitmap(ImageROI);
-                            image_roi_for_gray = BitmapConverter.ToBitmap(ImageROI);
-                            image_roi_for_cali = BitmapConverter.ToBitmap(ImageROI);
-                            //Cv2.ImShow("兴趣区域", ImageROI);
-                            // Cv2.ImShow("滚滚", image);
+                    if (pictureBox2.Image != null)
+                    {
+                        pictureBox2.Image.Dispose();
+                    }
 
-                        }
-                        catch (InvalidCastException e)
-                        {
-                        }
+                    pictureBox2.Image = image_roi;//最後把roi顯示在 pictureBox2的地方
 
-
-                        if (pictureBox1.Image != null)
-                        {
-                            pictureBox1.Image.Dispose();
-                        }
-                        pictureBox1.Image = image;
-
-
-                        if (pictureBox2.Image != null)
-                        {
-                            pictureBox2.Image.Dispose();
-                        }
-
-                        pictureBox2.Image = image_roi;//最後把roi顯示在 pictureBox2的地方
-
-                        this.Invoke(new Action(() =>
-                        {
-
-                            displayRoiSensorView(image_roi_for_gray);
+                    this.Invoke(new Action(() =>
+                    {
+                        displayRoiSensorView(image_roi_for_gray);
                         //DisplayRoiCalibratedView(image_roi_for_cali);
-
                     }));
 
                     Thread.Sleep(300);//加了比較順
@@ -152,12 +120,12 @@ namespace SpectroChipApp
                    System.Drawing.Imaging.PixelFormat format = image_roi.PixelFormat;
                    Bitmap image_roi_for_gray = image_roi.Clone(cloneRect, format);*/
                 }
-
             }
             btnStart_Visible_flag = 1;
         }
+
         //---------------------------------宜運函數(首)---------------------
-        
+
         private void displayRoiSensorView(Bitmap input_image)//育代
         {
             //this.chart2.Series.Clear();
@@ -190,11 +158,7 @@ namespace SpectroChipApp
                {
                    //theWL = parameter_buffer[4] * (Math.Pow(k, 4)) + parameter_buffer[3] * (Math.Pow(k, 3)) + parameter_buffer[2] * (Math.Pow(k, 2)) + parameter_buffer[1] * k + parameter_buffer[0];
                    //seriesClb.Points.AddXY(Convert.ToDouble(k), theWL);
-
-
                }*/
-
-
 
             for (Pixel_x = 0; Pixel_x < W; Pixel_x++)
             {
@@ -219,11 +183,9 @@ namespace SpectroChipApp
                 IntensityBlue[Pixel_x] = ABlue[Pixel_x] / H;//平均
                 IntensityGray[Pixel_x] = AGray[Pixel_x] / H;//平均
 
-
                 double WL_x = 0;
                 double WL_x_max = 0;
                 int k = 0;
-
 
                 WL_x_max = parameter_buffer[4] * (Math.Pow(W - 1, 4)) + parameter_buffer[3] * (Math.Pow(W - 1, 3)) + parameter_buffer[2] * (Math.Pow(W - 1, 2)) + parameter_buffer[1] * W - 1 + parameter_buffer[0];
                 //this.chart3.BackColor = Color.Black;
@@ -232,20 +194,16 @@ namespace SpectroChipApp
                 //this.chart3.ChartAreas[0].AxisX.Minimum = 0;
                 // this.chart3.ChartAreas[0].AxisX.Maximum = Math.Ceiling(WL_x_max); //<一定要改<--
 
-
-
                 //製作seriesClb
                 seriesClb.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                 seriesClb.Color = Color.Brown;
 
                 WL_x = Math.Round(parameter_buffer[4] * (Math.Pow(Pixel_x, 4)) + parameter_buffer[3] * (Math.Pow(Pixel_x, 3)) + parameter_buffer[2] * (Math.Pow(Pixel_x, 2)) + parameter_buffer[1] * Pixel_x + parameter_buffer[0], 2);
 
-
                 //設定座標大小
                 this.chart2.ChartAreas[0].AxisY.Minimum = 0;
                 this.chart2.ChartAreas[0].AxisX.Minimum = 0;
                 this.chart2.ChartAreas[0].AxisX.Maximum = W;
-
 
                 //設定標題
 
@@ -288,8 +246,6 @@ namespace SpectroChipApp
             // im1.Save("gray.png");
             //pictureBox2.Refresh();
             //pictureBox2.Image = im1;
-
-
         }
 
         /*  private void DisplayRoiCalibratedView(Bitmap input_image)
@@ -305,7 +261,6 @@ namespace SpectroChipApp
               double[] AClb = new double[W];
 
               double[] IntensityClb = new double[W];
-
 
               System.Windows.Forms.DataVisualization.Charting.Series seriesClb = new System.Windows.Forms.DataVisualization.Charting.Series("Clb", 1000);
 
@@ -347,22 +302,19 @@ namespace SpectroChipApp
 
                   seriesClb.Color = Color.Brown;
 
-
                   seriesClb.Points.AddXY(Pixel_x, IntensityClb[Pixel_x]);
 
                   seriesClb.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
 
                   this.chart3.Series.Clear();
 
-
-
                       this.chart3.Series.Add(seriesClb);
               }
               im1.Save("Clbgray.png");
               //pictureBox2.Refresh();
               //pictureBox2.Image = im1;
-
           }*/
+
         private void Load_SensorView_Chart()
         {
             //標題
@@ -384,12 +336,12 @@ namespace SpectroChipApp
             // this.chart2.Series.Add(seriesGray);
             checkBox4.Checked = true;
         }
+
         private void Load_CalibratedView_Chart()
         {
             this.chart3.Titles.Add("Calibrated View Point");
             this.chart3.Titles[0].ForeColor = Color.Black;
             this.chart3.Titles[0].Font = new System.Drawing.Font("標楷體", 16F);
-
         }
 
         private void Load_Cali_Chart()
@@ -400,10 +352,9 @@ namespace SpectroChipApp
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series("擬和函數", 1000);
             series1.Points.AddXY(0, 0);
         }
+
         private void Read_TextBox()
         {
-
-
             if (WtextBox.Text != "0" && HtextBox.Text != "0")
             {
                 //throw new NotImplementedException();
@@ -412,8 +363,7 @@ namespace SpectroChipApp
                 w = int.Parse(WtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
                 h = int.Parse(HtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
 
-
-                if (x + w > capture.FrameWidth) 
+                if (x + w > capture.FrameWidth)
                 {
                     if (w > capture.FrameWidth)
                     {
@@ -428,8 +378,7 @@ namespace SpectroChipApp
                     this.WtextBox.Text = w.ToString();
                 }
 
-
-                if (y + h > capture.FrameHeight) 
+                if (y + h > capture.FrameHeight)
                 {
                     if (h > capture.FrameHeight)
                     {
@@ -443,14 +392,12 @@ namespace SpectroChipApp
                     this.YtextBox.Text = y.ToString();
                     this.HtextBox.Text = h.ToString();
                 }
-                
-               
-                //this.WtextBox.Text = w.ToString();
-               // this.HtextBox.Text = h.ToString();
 
+                //this.WtextBox.Text = w.ToString();
+                // this.HtextBox.Text = h.ToString();
             }
-            else {
-                
+            else
+            {
                 XtextBox.Text = "0";
                 YtextBox.Text = "200";
                 WtextBox.Text = "640";
@@ -463,7 +410,8 @@ namespace SpectroChipApp
                 MessageBox.Show("請選擇有效的ROI");
                 isCameraRunning = true;
             }
-            }
+        }
+
         /// <summary>
         /// 初始化选择框
         /// </summary>
@@ -475,6 +423,7 @@ namespace SpectroChipApp
             Cursor.Clip = RectangleToScreen(new Rectangle(0, 0, ClientSize.Width, ClientSize.Height));
             mouseRect = new Rectangle(StartPoint.X, StartPoint.Y, 0, 0);
         }
+
         /// <summary>
         /// 在鼠标移动的时改变选择框的大小
         /// </summary>
@@ -486,6 +435,7 @@ namespace SpectroChipApp
             mouseRect.Height = p.Y - mouseRect.Top;
             DrawRectangle();
         }
+
         /// <summary>
         /// 绘制选择框
         /// </summary>
@@ -493,12 +443,11 @@ namespace SpectroChipApp
         {
             Rectangle rect = RectangleToScreen(mouseRect);
             ControlPaint.DrawReversibleFrame(rect, Color.Red, FrameStyle.Dashed);
-
         }
+
         //PaintEventArgs e
         private void DrawFixRectangle(PaintEventArgs e) //先用全域的xywh
         {
-
             // Create pen.
             Pen bluePen = new Pen(Color.Blue, 5);
 
@@ -506,9 +455,8 @@ namespace SpectroChipApp
             Rectangle rect = new Rectangle(x, y, w, h);
 
             // Draw rectangle to screen.
-           e.Graphics.DrawRectangle(bluePen, rect);
+            e.Graphics.DrawRectangle(bluePen, rect);
         }
-
 
         //-----------------------------宜運函數(尾)--------------------------------------
 
@@ -516,10 +464,7 @@ namespace SpectroChipApp
         {
             InitializeComponent();
             //goUp.FlatAppearance.BorderSize = 0;
-
         }
-
-
 
         private void Picturebox1_MouseUp(object sender, MouseEventArgs e)
         {
@@ -544,25 +489,16 @@ namespace SpectroChipApp
             w = 640;
             h = 30;
             //goUp.FlatAppearance.BorderSize = 0;
-          //  this.goUp.SendToBack();//将背景图片放到最下面
+            //  this.goUp.SendToBack();//将背景图片放到最下面
             //this.panel1.BackColor = Color.Transparent;//将Panel设为透明
             //this.panel1.Parent = this.Fine_pic;//将panel父控件设为背景图片控件
             //this.panel1.BringToFront();//将panel放在前面
-        }
-
-
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (btnStart.Text.Equals("▶"))
             {
-
-
                 //btnStart_Visible_flag = 0;
                 //Read_TextBox();
                 CaptureCamera();
@@ -574,7 +510,6 @@ namespace SpectroChipApp
             }
             else
             {
-
                 capture.Release();
 
                 btnStart.Text = "▶";
@@ -585,29 +520,11 @@ namespace SpectroChipApp
             }
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void WtextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click_1(object sender, EventArgs e)
         {
             Read_TextBox();
             //Console.WriteLine(mouseIsDown);
         }
-
-
-
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
@@ -616,24 +533,19 @@ namespace SpectroChipApp
             mouseIsDown = false;
             DrawRectangle();
             mouseRect = Rectangle.Empty;
-
-
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (mouseIsDown)
                 ResizeToRectangle(e.Location);
-
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             if (mouseIsDown == false)//點第一下
             {
-
                 DrawStart(e.Location);
-
 
                 if (e.X < 30)//X的右邊判斷跟照片大小FrameWidth有關 等SUNPLUS
                 {
@@ -675,8 +587,6 @@ namespace SpectroChipApp
                     YtextBox.Text = Convert.ToString(e.Y);
                 }
 
-     
-
                 Cursor.Clip = Rectangle.Empty;
                 mouseIsDown = false;
                 DrawRectangle();
@@ -687,23 +597,8 @@ namespace SpectroChipApp
             //Console.WriteLine(mouseIsDown);
         }
 
-        private void HtextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
         private void btn_cali_Click(object sender, EventArgs e)//開始波長校正
         {
-
-
-
             // xPixel_array = new double[];
             //yWave_array = new double[];
             List<double> xPixel_List = new List<double>();
@@ -881,7 +776,6 @@ namespace SpectroChipApp
             {1,8,9,7,105,11,50,999,500,1},
             {12,15,11,18,733,5,4,3,2,500} };
 
-
             //標題 最大數值
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series("第一條線", 1000);
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series("第二條線", 1000);
@@ -894,8 +788,6 @@ namespace SpectroChipApp
             series1.Font = new System.Drawing.Font("新細明體", 14);
             //series2.Font = new System.Drawing.Font("標楷體", 12);
 
-
-
             //折線圖
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
@@ -903,7 +795,6 @@ namespace SpectroChipApp
             //將數值顯示在線上
             series1.IsValueShownAsLabel = true;
             series2.IsValueShownAsLabel = false;
-
 
             //將數值新增至序列
             //1.點
@@ -915,7 +806,6 @@ namespace SpectroChipApp
             //2.擬和函數
             double equationVar;
             double[] para_buf = new double[] { 0, 0, 0, 0, 0 };
-
 
             for (int i = 0; i <= power; i++) //要改成power
             {
@@ -940,28 +830,6 @@ namespace SpectroChipApp
                 waveLength[i] = para_buf[4] * (Math.Pow(i, 4)) + para_buf[3] * (Math.Pow(i, 3)) + para_buf[2] * (Math.Pow(i, 2)) + para_buf[1] * i + para_buf[0];
                 //series2.Points.AddXY(Convert.ToDouble(i), equationVar);
             }*/
-
-
-        }
-
-        private void chart1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void p1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chart3_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -970,52 +838,25 @@ namespace SpectroChipApp
             {
                 isCameraRunning = false;
                 capture.Release();
-          
 
-                 btnStart.Text = "▶";
+                btnStart.Text = "▶";
                 DialogResult dialog = MessageBox.Show("你不能在影像串流進行時關閉程式\n確定強制關閉?", "警告!", MessageBoxButtons.OKCancel);
 
-            if(dialog == DialogResult.OK)
+                if (dialog == DialogResult.OK)
                 {
-
-
                     Thread.Sleep(1000);
                     Application.Exit();
-                }else if(dialog == DialogResult.Cancel)
+                }
+                else if (dialog == DialogResult.Cancel)
                 {
                     e.Cancel = true;
                 }
-            
-            
             }
         }
-
-        private void w1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        private void goUp_Click(object sender, EventArgs e)
-        {
- 
-        }
-
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             DrawFixRectangle(e);
-        }
-
-        private void YtextBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void goUp_MouseDown(object sender, MouseEventArgs e)
@@ -1039,7 +880,7 @@ namespace SpectroChipApp
 
         private void goUp_MouseUp(object sender, MouseEventArgs e)
         {
-            isgoUpMouseDown =false;
+            isgoUpMouseDown = false;
         }
 
         private void goDown_MouseDown(object sender, MouseEventArgs e)
@@ -1059,6 +900,7 @@ namespace SpectroChipApp
             Action handler = new Action(this.roiDown);     //定義委託
             handler.BeginInvoke(null, null);           //非同步呼叫
         }
+
         private void goDown_MouseUp(object sender, MouseEventArgs e)
         {
             isgoDownMouseDown = false;
@@ -1109,16 +951,15 @@ namespace SpectroChipApp
         {
             isgoRightMouseDown = false;
         }
+
         //---
         private void roiUp()
         {
             while (isgoUpMouseDown)
             {
-
-
                 //capture.FrameHeight = 1280;
                 //capture.FrameWidth = 1920;
-                if (y <= -1 || y >= capture.FrameHeight+h)
+                if (y <= -1 || y >= capture.FrameHeight + h)
                 {
                     this.Invoke(new Action(() => MessageBox.Show("超出設定值！", "警告")));
                     y = 0;
@@ -1129,19 +970,18 @@ namespace SpectroChipApp
                     y -= 1;   //計算：每次累加的單位，如果要累加的精度大點，該值設定大一些
                     if (y < 0) y = 0;
                     this.Invoke(new Action(() => this.YtextBox.Text = y.ToString()));  //介面顯示
-                    System.Threading.Thread.Sleep(100);    //如果要速度塊，將這個值修改小點 
+                    System.Threading.Thread.Sleep(100);    //如果要速度塊，將這個值修改小點
                 }
             }
         }
+
         private void roiDown()
         {
             while (isgoDownMouseDown)
             {
-
-
                 //capture.FrameHeight = 1280;
                 //capture.FrameWidth = 1920;
-                if (y <= -1 || y +h>= capture.FrameHeight )
+                if (y <= -1 || y + h >= capture.FrameHeight)
                 {
                     //this.Invoke(new Action(() => MessageBox.Show("超出設定值！", "警告")));
                     // y = 0;
@@ -1152,19 +992,18 @@ namespace SpectroChipApp
                     y += 1;   //計算：每次累加的單位，如果要累加的精度大點，該值設定大一些
                     if (y + h > capture.FrameHeight) { y = capture.FrameHeight - h - 1; }
                     this.Invoke(new Action(() => this.YtextBox.Text = y.ToString()));  //介面顯示
-                    System.Threading.Thread.Sleep(100);    //如果要速度塊，將這個值修改小點 
+                    System.Threading.Thread.Sleep(100);    //如果要速度塊，將這個值修改小點
                 }
             }
         }
+
         private void roiLeft()
         {
             while (isgoLeftMouseDown)
             {
-
-
                 //capture.FrameHeight = 1280;
                 //capture.FrameWidth = 1920;
-                if (x <= -1 || x+w >= capture.FrameWidth)
+                if (x <= -1 || x + w >= capture.FrameWidth)
                 {
                     this.Invoke(new Action(() => MessageBox.Show("超出設定值！", "警告")));
                     x = 0;
@@ -1172,19 +1011,18 @@ namespace SpectroChipApp
                 }
                 else
                 {
-                    x-= 1;   //計算：每次累加的單位，如果要累加的精度大點，該值設定大一些
+                    x -= 1;   //計算：每次累加的單位，如果要累加的精度大點，該值設定大一些
                     if (x < 0) x = 0;
                     this.Invoke(new Action(() => this.XtextBox.Text = x.ToString()));  //介面顯示
-                    System.Threading.Thread.Sleep(100);    //如果要速度塊，將這個值修改小點 
+                    System.Threading.Thread.Sleep(100);    //如果要速度塊，將這個值修改小點
                 }
             }
         }
+
         private void roiRight()
         {
             while (isgoRightMouseDown)
             {
-
-
                 //capture.FrameHeight = 1280;
                 //capture.FrameWidth = 1920;
                 if (x <= -1 || x >= capture.FrameWidth + w)
@@ -1199,7 +1037,7 @@ namespace SpectroChipApp
 
                     if (x + w >= capture.FrameWidth) x = capture.FrameWidth - w - 1;
                     this.Invoke(new Action(() => this.XtextBox.Text = x.ToString()));  //介面顯示
-                    System.Threading.Thread.Sleep(100);    //如果要速度塊，將這個值修改小點 
+                    System.Threading.Thread.Sleep(100);    //如果要速度塊，將這個值修改小點
                 }
             }
         }
@@ -1237,4 +1075,3 @@ namespace SpectroChipApp
         }
     }
 }
-
