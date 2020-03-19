@@ -1,4 +1,5 @@
-﻿using MathNet.Numerics;//要裝，自己去youtube看怎麼裝
+﻿using CenterSpace.NMath.Core;
+using MathNet.Numerics;//要裝，自己去youtube看怎麼裝
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
 using System;
@@ -7,7 +8,6 @@ using System.Drawing;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using CenterSpace.NMath.Core;
 
 //using System.Windows.Forms.DataVisualization.Charting;
 
