@@ -30,6 +30,10 @@ namespace SpectroChipApp
         public int h = 30;
         public int X_Start = 0;
         public int Y_Start = 0;
+        public double Exp = 1511;
+        public double Ag = 0;
+        public double Dg = 32;
+
         private bool isgoUpMouseDown = false;
         private bool isgoDownMouseDown = false;
         private bool isgoLeftMouseDown = false;
@@ -61,6 +65,9 @@ namespace SpectroChipApp
         {
             camera = new Thread(new ThreadStart(CaptureCameraCallback));
             camera.Start();
+            Thread.Sleep(100);
+            //Exp = capture.Get(15);
+            //EXPtextBox.Text = Exp.ToString();
             //btnStart.Visible = true;
         }
 
@@ -73,6 +80,8 @@ namespace SpectroChipApp
 
             capture.FrameHeight = 1280;
             capture.FrameWidth = 1920;
+            
+            
 
             //Console.WriteLine(capture.FrameHeight);
             //Console.WriteLine(capture.FrameWidth);
@@ -86,6 +95,8 @@ namespace SpectroChipApp
                     try
                     {
                         capture.Read(frame);
+
+                       
 
                         Rect roi = new Rect(x, y, w, h);//首先要用个rect确定我们的兴趣区域在哪
 
@@ -383,6 +394,7 @@ namespace SpectroChipApp
                 y = int.Parse(YtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
                 w = int.Parse(WtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
                 h = int.Parse(HtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
+                Exp = int.Parse(EXPtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
 
                 if (x + w > capture.FrameWidth)
                 {
@@ -528,6 +540,13 @@ namespace SpectroChipApp
                 btnStart.Visible = false;
                 Thread.Sleep(4000);
                 btnStart.Visible = true;
+                //---參數調整(首)----
+                Exp = capture.Get(15);
+                EXPtextBox.Text = Exp.ToString();
+                Dg = capture.Get(32);
+                DGtextBox.Text = Dg.ToString();
+                Ag = capture.Get(14);
+                AGtextBox.Text = Ag.ToString();
             }
             else
             {
@@ -1094,5 +1113,86 @@ namespace SpectroChipApp
                 e.Handled = true;
             }
         }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+
+         
+                Exp = Convert.ToDouble(trackBar1.Value); //範圍目前直接寫死
+            //int.Parse(XtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
+            if (isCameraRunning)
+            {
+                capture.Set(15, Exp);
+            }
+            EXPtextBox.Text = Exp.ToString();
+            
+            
+        }
+        private void trackBar2_ValueChanged(object sender, EventArgs e)
+        {
+            Dg = Convert.ToDouble(trackBar2.Value); //範圍目前直接寫死
+            //int.Parse(XtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
+            if (isCameraRunning)
+            {
+                capture.Set(32, Dg); 
+            }
+            DGtextBox.Text = Dg.ToString();
+        }
+        private void trackBar3_ValueChanged(object sender, EventArgs e)
+        {
+            Ag = Convert.ToDouble(trackBar3.Value); //範圍目前直接寫死
+            //int.Parse(XtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
+            if (isCameraRunning)
+            {
+                capture.Set(14, Ag);
+            }
+            AGtextBox.Text = Ag.ToString();
+        }
+        private void RESETbutton_Click(object sender, EventArgs e)
+        {
+            Exp = -2;
+            Dg = 0;
+            Ag = 32; //範圍目前直接寫死
+            //int.Parse(XtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
+            if (isCameraRunning)
+            {
+                capture.Set(15, Exp);
+                capture.Set(32, Dg);
+                capture.Set(14, Ag);
+            }
+            EXPtextBox.Text = Exp.ToString();
+            DGtextBox.Text = Dg.ToString();
+            AGtextBox.Text = Ag.ToString();
+            trackBar1.Value = Convert.ToInt32(Exp);
+            trackBar2.Value = Convert.ToInt32(Dg);
+            trackBar3.Value = Convert.ToInt32(Ag);
+        }
+
+        private void EXPtextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FPSlabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

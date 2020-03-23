@@ -2543,9 +2543,15 @@
             <param name="vecSize">vector size.</param>
             <returns></returns>
         </member>
-        <member name="M:OpenCvSharp.Cv2.TheRNG">
+        <member name="M:OpenCvSharp.Cv2.GetTheRNG">
             <summary>
-            returns the thread-local Random number generator
+            Returns the thread-local Random number generator
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Cv2.SetTheRNG(System.UInt64)">
+            <summary>
+            Sets the thread-local Random number generator
             </summary>
             <returns></returns>
         </member>
@@ -2585,7 +2591,14 @@
             <param name="mean">The mean value (expectation) of the generated random numbers</param>
             <param name="stddev">The standard deviation of the generated random numbers</param>
         </member>
-        <member name="M:OpenCvSharp.Cv2.RandShuffle(OpenCvSharp.InputOutputArray,System.Double,OpenCvSharp.RNG)">
+        <member name="M:OpenCvSharp.Cv2.RandShuffle(OpenCvSharp.InputOutputArray,System.Double)">
+            <summary>
+            shuffles the input array elements
+            </summary>
+            <param name="dst">The input/output numerical 1D array</param>
+            <param name="iterFactor">The scale factor that determines the number of random swap operations.</param>
+        </member>
+        <member name="M:OpenCvSharp.Cv2.RandShuffle(OpenCvSharp.InputOutputArray,System.Double,OpenCvSharp.RNG@)">
             <summary>
             shuffles the input array elements
             </summary>
@@ -3089,7 +3102,7 @@
             <param name="winName">Name of the window.</param>
             <returns></returns>
         </member>
-        <member name="M:OpenCvSharp.Cv2.SetMouseCallback(System.String,OpenCvSharp.CvMouseCallback,System.IntPtr)">
+        <member name="M:OpenCvSharp.Cv2.SetMouseCallback(System.String,OpenCvSharp.MouseCallback,System.IntPtr)">
             <summary>
             Sets the callback function for mouse events occuring within the specified window.
             </summary>
@@ -3097,7 +3110,7 @@
             <param name="onMouse">Reference to the function to be called every time mouse event occurs in the specified window. </param>
             <param name="userData"></param>
         </member>
-        <member name="M:OpenCvSharp.Cv2.GetMouseWheelDelta(OpenCvSharp.MouseEvent)">
+        <member name="M:OpenCvSharp.Cv2.GetMouseWheelDelta(OpenCvSharp.MouseEventTypes)">
             <summary>
             Gets the mouse-wheel motion delta, when handling mouse-wheel events cv::EVENT_MOUSEWHEEL and cv::EVENT_MOUSEHWHEEL.
             
@@ -3152,7 +3165,7 @@
             selection rectangle will correspond to the initial mouse position.</param>
             <returns>selected ROIs.</returns>
         </member>
-        <member name="M:OpenCvSharp.Cv2.CreateTrackbar(System.String,System.String,System.Int32@,System.Int32,OpenCvSharp.CvTrackbarCallback2,System.IntPtr)">
+        <member name="M:OpenCvSharp.Cv2.CreateTrackbar(System.String,System.String,System.Int32@,System.Int32,OpenCvSharp.TrackbarCallbackNative,System.IntPtr)">
             <summary>
             Creates a trackbar and attaches it to the specified window.
             The function createTrackbar creates a trackbar(a slider or range control) with the specified name 
@@ -3164,6 +3177,24 @@
             <param name="winName">Name of the window that will be used as a parent of the created trackbar.</param>
             <param name="value">Optional pointer to an integer variable whose value reflects the position of the slider.Upon creation,
              the slider position is defined by this variable.</param>
+            <param name="count">Maximal position of the slider. The minimal position is always 0.</param>
+            <param name="onChange">Pointer to the function to be called every time the slider changes position. 
+            This function should be prototyped as void Foo(int, void\*); , where the first parameter is the trackbar 
+            position and the second parameter is the user data(see the next parameter). If the callback is 
+            the NULL pointer, no callbacks are called, but only value is updated.</param>
+            <param name="userData">User data that is passed as is to the callback. It can be used to handle trackbar events without using global variables.</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Cv2.CreateTrackbar(System.String,System.String,System.Int32,OpenCvSharp.TrackbarCallbackNative,System.IntPtr)">
+            <summary>
+            Creates a trackbar and attaches it to the specified window.
+            The function createTrackbar creates a trackbar(a slider or range control) with the specified name 
+            and range, assigns a variable value to be a position synchronized with the trackbar and specifies 
+            the callback function onChange to be called on the trackbar position change.The created trackbar is 
+            displayed in the specified window winName.
+            </summary>
+            <param name="trackbarName">Name of the created trackbar.</param>
+            <param name="winName">Name of the window that will be used as a parent of the created trackbar.</param>
             <param name="count">Maximal position of the slider. The minimal position is always 0.</param>
             <param name="onChange">Pointer to the function to be called every time the slider changes position. 
             This function should be prototyped as void Foo(int, void\*); , where the first parameter is the trackbar 
@@ -6266,17 +6297,18 @@
         </member>
         <member name="M:OpenCvSharp.OpenCVException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <inheritdoc />
-            <summary>
-            </summary>
-            <param name="info"></param>
-            <param name="context"></param>
         </member>
         <member name="M:OpenCvSharp.OpenCVException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            
-            </summary>
-            <param name="info"></param>
-            <param name="context"></param>
+            <inheritdoc />
+        </member>
+        <member name="M:OpenCvSharp.OpenCVException.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenCvSharp.OpenCVException.#ctor(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenCvSharp.OpenCVException.#ctor(System.String,System.Exception)">
+            <inheritdoc />
         </member>
         <member name="T:OpenCvSharp.OpenCvSharpException">
             <summary>
@@ -6289,11 +6321,6 @@
         <member name="M:OpenCvSharp.OpenCvSharpException.#ctor(System.String)">
             <inheritdoc />
             <param name="message"></param>
-        </member>
-        <member name="M:OpenCvSharp.OpenCvSharpException.#ctor(System.String,System.Object[])">
-            <inheritdoc />
-            <param name="messageFormat"></param>
-            <param name="args"></param>
         </member>
         <member name="M:OpenCvSharp.OpenCvSharpException.#ctor(System.String,System.Exception)">
             <inheritdoc />
@@ -8076,11 +8103,23 @@
             <param name="node"></param>
             <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.FileNode.ToInt32">
+            <summary>
+            Returns the node content as an integer. If the node stores floating-point number, it is rounded.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:OpenCvSharp.FileNode.op_Explicit(OpenCvSharp.FileNode)~System.Single">
             <summary>
             Returns the node content as float
             </summary>
             <param name="node"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.FileNode.ToSingle">
+            <summary>
+            Returns the node content as System.Single
+            </summary>
             <returns></returns>
         </member>
         <member name="M:OpenCvSharp.FileNode.op_Explicit(OpenCvSharp.FileNode)~System.Double">
@@ -8090,6 +8129,12 @@
             <param name="node"></param>
             <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.FileNode.ToDouble">
+            <summary>
+            Returns the node content as double
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:OpenCvSharp.FileNode.op_Explicit(OpenCvSharp.FileNode)~System.String">
             <summary>
             Returns the node content as text string
@@ -8097,11 +8142,23 @@
             <param name="node"></param>
             <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.FileNode.ToString">
+            <summary>
+            Returns the node content as text string
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:OpenCvSharp.FileNode.op_Explicit(OpenCvSharp.FileNode)~OpenCvSharp.Mat">
             <summary>
             Returns the node content as OpenCV Mat
             </summary>
             <param name="node"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.FileNode.ToMat">
+            <summary>
+            Returns the node content as OpenCV Mat
+            </summary>
             <returns></returns>
         </member>
         <member name="P:OpenCvSharp.FileNode.Item(System.String)">
@@ -9918,9 +9975,8 @@
             
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MatExprRowColIndexer.Parent">
-            <summary>
-            
+        <member name="P:OpenCvSharp.MatExprRowColIndexer.Parent">
+            <summary> 
             </summary>
         </member>
         <member name="M:OpenCvSharp.MatExprRowColIndexer.#ctor(OpenCvSharp.MatExpr)">
@@ -9951,11 +10007,6 @@
         <member name="F:OpenCvSharp.Mat.TypeMap">
             <summary>
             typeof(T) -> MatType
-            </summary>
-        </member>
-        <member name="M:OpenCvSharp.Mat.#cctor">
-            <summary>
-            /
             </summary>
         </member>
         <member name="M:OpenCvSharp.Mat.#ctor(System.IntPtr)">
@@ -10168,11 +10219,6 @@
             <param name="mode"></param>
             <returns></returns>
         </member>
-        <member name="F:OpenCvSharp.Mat.SizeOf">
-            <summary>
-            sizeof(cv::Mat)
-            </summary>
-        </member>
         <member name="M:OpenCvSharp.Mat.Diag(OpenCvSharp.Mat)">
             <summary>
             Extracts a diagonal from a matrix, or creates a diagonal matrix.
@@ -10246,6 +10292,24 @@
             <param name="cols">Number of columns.</param>
             <param name="type">Created matrix type.</param>
             <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Mat.FromArray``1(``0[])">
+            <summary>
+            Initializes as N x 1 matrix and copies array data to this
+            </summary>
+            <param name="arr">Source array data to be copied to this</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.FromArray``1(``0[0:,0:])">
+            <summary>
+            Initializes as M x N matrix and copies array data to this
+            </summary>
+            <param name="arr">Source array data to be copied to this</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.FromArray``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Initializes as N x 1 matrix and copies array data to this
+            </summary>
+            <param name="enumerable">Source array data to be copied to this</param>
         </member>
         <member name="M:OpenCvSharp.Mat.op_UnaryNegation(OpenCvSharp.Mat)">
             <summary>
@@ -10775,17 +10839,521 @@
             </summary>
             <param name="nElems"></param>
         </member>
-        <member name="M:OpenCvSharp.Mat.Add``1(``0)">
+        <member name="M:OpenCvSharp.Mat.Add(System.Byte)">
             <summary>
             Adds elements to the bottom of the matrix. (Mat::push_back)
             </summary>
-            <param name="value">Added element(s)</param>
+            <param name="value">Added element</param>
         </member>
-        <member name="M:OpenCvSharp.Mat.PushBack``1(``0)">
+        <member name="M:OpenCvSharp.Mat.Add(System.SByte)">
             <summary>
-            Adds elements to the bottom of the matrix. (Mat.push_back)
+            Adds elements to the bottom of the matrix. (Mat::push_back)
             </summary>
-            <param name="m">Added line(s)</param>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(System.UInt16)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(System.Int16)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(System.Int32)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(System.Single)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(System.Double)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec2b)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec3b)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec4b)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec6b)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec2w)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec3w)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec4w)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec6w)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec2s)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec3s)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec4s)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec6s)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec2i)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec3i)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec4i)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec6i)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec2f)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec3f)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec4f)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec6f)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec2d)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec3d)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec4d)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Vec6d)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Point)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Point2d)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Point2f)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Point3i)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Point3d)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Point3f)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Size)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Size2d)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Size2f)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Rect)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Rect2d)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Rect2f)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(System.Byte)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(System.SByte)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(System.UInt16)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(System.Int16)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(System.Int32)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(System.Single)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(System.Double)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec2b)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec3b)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec4b)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec6b)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec2w)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec3w)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec4w)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec6w)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec2s)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec3s)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec4s)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec6s)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec2i)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec3i)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec4i)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec6i)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec2f)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec3f)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec4f)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec6f)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec2d)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec3d)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec4d)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Vec6d)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Point)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Point2d)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Point2f)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Point3i)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Point3d)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Point3f)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Size)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Size2d)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Size2f)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Rect)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Rect2d)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
+        </member>
+        <member name="M:OpenCvSharp.Mat.PushBack(OpenCvSharp.Rect2f)">
+            <summary>
+            Adds elements to the bottom of the matrix. (Mat::push_back)
+            </summary>
+            <param name="value">Added element</param>
         </member>
         <member name="M:OpenCvSharp.Mat.Add(OpenCvSharp.Mat)">
             <summary>
@@ -11894,7 +12462,14 @@
             <param name="mean">The mean value (expectation) of the generated random numbers</param>
             <param name="stddev">The standard deviation of the generated random numbers</param>
         </member>
-        <member name="M:OpenCvSharp.Mat.RandShuffle(System.Double,OpenCvSharp.RNG)">
+        <member name="M:OpenCvSharp.Mat.RandShuffle(System.Double)">
+            <summary>
+            shuffles the input array elements
+            </summary>
+            <param name="iterFactor">The scale factor that determines the number of random swap operations.</param>
+            <returns>The input/output numerical 1D array</returns>
+        </member>
+        <member name="M:OpenCvSharp.Mat.RandShuffle(System.Double,OpenCvSharp.RNG@)">
             <summary>
             shuffles the input array elements
             </summary>
@@ -13079,12 +13654,12 @@
             <param name="idx">Array of Mat::dims indices.</param>
             <returns>A value to the specified array element.</returns>
         </member>
-        <member name="F:OpenCvSharp.MatIndexer`1.Parent">
+        <member name="P:OpenCvSharp.MatIndexer`1.Parent">
             <summary>
             Parent matrix object
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MatIndexer`1.Steps">
+        <member name="P:OpenCvSharp.MatIndexer`1.Steps">
             <summary>
             Step byte length for each dimension
             </summary>
@@ -13100,24 +13675,6 @@
             Type-specific abstract matrix 
             </summary>
             <typeparam name="TElem">Element Type</typeparam>
-        </member>
-        <member name="M:OpenCvSharp.Mat`1.FromArray(`0[])">
-            <summary>
-            Initializes as N x 1 matrix and copies array data to this
-            </summary>
-            <param name="arr">Source array data to be copied to this</param>
-        </member>
-        <member name="M:OpenCvSharp.Mat`1.FromArray(`0[0:,0:])">
-            <summary>
-            Initializes as M x N matrix and copies array data to this
-            </summary>
-            <param name="arr">Source array data to be copied to this</param>
-        </member>
-        <member name="M:OpenCvSharp.Mat`1.FromArray(System.Collections.Generic.IEnumerable{`0})">
-            <summary>
-            Initializes as N x 1 matrix and copies array data to this
-            </summary>
-            <param name="enumerable">Source array data to be copied to this</param>
         </member>
         <member name="M:OpenCvSharp.Mat`1.#ctor">
             <summary>
@@ -13822,75 +14379,117 @@
             <remarks>operations.hpp</remarks>
         </member>
         <member name="P:OpenCvSharp.RNG.State">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:OpenCvSharp.RNG.#ctor">
-            <summary>
-            
+            <summary> 
             </summary>
         </member>
         <member name="M:OpenCvSharp.RNG.#ctor(System.UInt64)">
             <summary>
-            
+            Constructor
             </summary>
-            <param name="state"></param>
+            <param name="state">64-bit value used to initialize the RNG.</param>
         </member>
         <member name="M:OpenCvSharp.RNG.op_Explicit(OpenCvSharp.RNG)~System.Byte">
             <summary>
-            
+            (byte)RNG.next()
             </summary>
             <param name="self"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.RNG.ToByte">
+            <summary>
+            (byte)RNG.next()
+            </summary>
             <returns></returns>
         </member>
         <member name="M:OpenCvSharp.RNG.op_Explicit(OpenCvSharp.RNG)~System.SByte">
             <summary>
-            
+            (sbyte)RNG.next()
             </summary>
             <param name="self"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.RNG.ToSByte">
+            <summary>
+            (sbyte)RNG.next()
+            </summary>
             <returns></returns>
         </member>
         <member name="M:OpenCvSharp.RNG.op_Explicit(OpenCvSharp.RNG)~System.UInt16">
             <summary>
-            
+            (ushort)RNG.next()
             </summary>
             <param name="self"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.RNG.ToUInt16">
+            <summary>
+            (ushort)RNG.next()
+            </summary>
             <returns></returns>
         </member>
         <member name="M:OpenCvSharp.RNG.op_Explicit(OpenCvSharp.RNG)~System.Int16">
             <summary>
-            
+            (short)RNG.next()
             </summary>
             <param name="self"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.RNG.ToInt16">
+            <summary>
+            (short)RNG.next()
+            </summary>
             <returns></returns>
         </member>
         <member name="M:OpenCvSharp.RNG.op_Explicit(OpenCvSharp.RNG)~System.UInt32">
             <summary>
-            
+            (uint)RNG.next()
             </summary>
             <param name="self"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.RNG.ToUInt32">
+            <summary>
+            (uint)RNG.next()
+            </summary>
             <returns></returns>
         </member>
         <member name="M:OpenCvSharp.RNG.op_Explicit(OpenCvSharp.RNG)~System.Int32">
             <summary>
-            
+            (int)RNG.next()
             </summary>
             <param name="self"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.RNG.ToInt32">
+            <summary>
+            (int)RNG.next()
+            </summary>
             <returns></returns>
         </member>
         <member name="M:OpenCvSharp.RNG.op_Explicit(OpenCvSharp.RNG)~System.Single">
             <summary>
-            
+            returns a next random value as float (System.Single)
             </summary>
             <param name="self"></param>
             <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.RNG.ToSingle">
+            <summary>
+            returns a next random value as float (System.Single)
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:OpenCvSharp.RNG.op_Explicit(OpenCvSharp.RNG)~System.Double">
             <summary>
-            
+            returns a next random value as double (System.Double)
             </summary>
             <param name="self"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.RNG.ToDouble">
+            <summary>
+            returns a next random value as double (System.Double)
+            </summary>
             <returns></returns>
         </member>
         <member name="M:OpenCvSharp.RNG.Next">
@@ -13967,28 +14566,50 @@
              <param name="sigma">standard deviation of the distribution.</param>
              <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.RNG.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenCvSharp.RNG.Equals(OpenCvSharp.RNG)">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenCvSharp.RNG.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenCvSharp.RNG.op_Equality(OpenCvSharp.RNG,OpenCvSharp.RNG)">
+            <summary> 
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.RNG.op_Inequality(OpenCvSharp.RNG,OpenCvSharp.RNG)">
+            <summary> 
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
         <member name="T:OpenCvSharp.RNG_MT19937">
             <summary>
             Mersenne Twister random number generator
             </summary>
             <remarks>operations.hpp</remarks>
         </member>
-        <member name="M:OpenCvSharp.RNG_MT19937.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="M:OpenCvSharp.RNG_MT19937.#ctor(System.UInt32)">
             <summary>
-            
+            Constructor
             </summary>
             <param name="s"></param>
         </member>
         <member name="M:OpenCvSharp.RNG_MT19937.op_Explicit(OpenCvSharp.RNG_MT19937)~System.UInt32">
-            <summary>
-            
+            <summary> 
             </summary>
             <param name="self"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.RNG_MT19937.ToUInt32">
+            <summary> 
+            </summary>
             <returns></returns>
         </member>
         <member name="M:OpenCvSharp.RNG_MT19937.op_Explicit(OpenCvSharp.RNG_MT19937)~System.Int32">
@@ -13998,6 +14619,11 @@
             <param name="self"></param>
             <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.RNG_MT19937.ToInt32">
+            <summary> 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:OpenCvSharp.RNG_MT19937.op_Explicit(OpenCvSharp.RNG_MT19937)~System.Single">
             <summary>
             
@@ -14005,11 +14631,21 @@
             <param name="self"></param>
             <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.RNG_MT19937.ToSingle">
+            <summary> 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:OpenCvSharp.RNG_MT19937.op_Explicit(OpenCvSharp.RNG_MT19937)~System.Double">
             <summary>
             
             </summary>
             <param name="self"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.RNG_MT19937.ToDouble">
+            <summary> 
+            </summary>
             <returns></returns>
         </member>
         <member name="M:OpenCvSharp.RNG_MT19937.Seed(System.UInt32)">
@@ -14560,7 +15196,7 @@
             <param name="hashVal">If hashVal is not null, the element hash value is not computed but hashval is taken instead.</param>
             <returns>A value to the specified array element.</returns>
         </member>
-        <member name="F:OpenCvSharp.SparseMatIndexer`1.Parent">
+        <member name="P:OpenCvSharp.SparseMatIndexer`1.Parent">
             <summary>
             Parent matrix object
             </summary>
@@ -14621,7 +15257,7 @@
         </member>
         <member name="M:OpenCvSharp.DMatch.op_LessThan(OpenCvSharp.DMatch,OpenCvSharp.DMatch)">
             <summary>
-            Compares by distance (less is beter)
+            Compares by distance (less is better)
             </summary>
             <param name="d1"></param>
             <param name="d2"></param>
@@ -14629,7 +15265,7 @@
         </member>
         <member name="M:OpenCvSharp.DMatch.op_GreaterThan(OpenCvSharp.DMatch,OpenCvSharp.DMatch)">
             <summary>
-            Compares by distance (less is beter)
+            Compares by distance (less is better)
             </summary>
             <param name="d1"></param>
             <param name="d2"></param>
@@ -14650,10 +15286,7 @@
             <returns></returns>
         </member>
         <member name="M:OpenCvSharp.DMatch.ToString">
-            <summary>
-            
-            </summary>
-            <returns></returns>
+            <inheritdoc />
         </member>
         <member name="T:OpenCvSharp.KeyPoint">
             <summary>
@@ -14713,13 +15346,6 @@
             <param name="octave">Scale-space octave in which the feature has been found; may correlate with the size</param>
             <param name="classId">Point class (can be used by feature classifiers or object detectors)</param>
         </member>
-        <member name="M:OpenCvSharp.KeyPoint.Equals(OpenCvSharp.KeyPoint)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
-        </member>
         <member name="M:OpenCvSharp.KeyPoint.op_Equality(OpenCvSharp.KeyPoint,OpenCvSharp.KeyPoint)">
             <summary>
             Compares two CvPoint objects. The result specifies whether the members of each object are equal.
@@ -14736,31 +15362,29 @@
             <param name="rhs">A Point to compare.</param>
             <returns>This operator returns true if the members of left and right are unequal; otherwise, false.</returns>
         </member>
+        <member name="M:OpenCvSharp.KeyPoint.Equals(OpenCvSharp.KeyPoint)">
+            <inheritdoc />
+        </member>
         <member name="M:OpenCvSharp.KeyPoint.Equals(System.Object)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.KeyPoint.GetHashCode">
-            <summary>
-            Returns a hash code for this object.
-            </summary>
-            <returns>An integer value that specifies a hash value for this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.KeyPoint.ToString">
-            <summary>
-            Converts this object to a human readable string.
-            </summary>
-            <returns>A string that represents this object.</returns>
+            <inheritdoc />
         </member>
         <member name="T:OpenCvSharp.MatType">
             <summary>
             Matrix data type (depth and number of channels)
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MatType.Value">
+        <member name="F:OpenCvSharp.MatType.value">
+            <summary>
+            Entity value
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.MatType.Value">
             <summary>
             Entity value
             </summary>
@@ -14772,15 +15396,24 @@
             <param name="value"></param>
         </member>
         <member name="M:OpenCvSharp.MatType.op_Implicit(OpenCvSharp.MatType)~System.Int32">
-            <summary>
-            
+            <summary> 
             </summary>
             <param name="self"></param>
             <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.MatType.ToInt32">
+            <summary> 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:OpenCvSharp.MatType.op_Implicit(System.Int32)~OpenCvSharp.MatType">
-            <summary>
-            
+            <summary> 
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.MatType.FromInt32(System.Int32)">
+            <summary> 
             </summary>
             <param name="value"></param>
             <returns></returns>
@@ -14801,10 +15434,7 @@
             </summary>
         </member>
         <member name="M:OpenCvSharp.MatType.ToString">
-            <summary>
-            
-            </summary>
-            <returns></returns>
+            <inheritdoc />
         </member>
         <member name="F:OpenCvSharp.MatType.CV_8U">
             <summary>
@@ -15001,11 +15631,6 @@
             
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Point.SizeOf">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="M:OpenCvSharp.Point.#ctor(System.Int32,System.Int32)">
             <summary>
             
@@ -15033,13 +15658,6 @@
             </summary>
             <param name="vec"></param>
             <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.Point.Equals(OpenCvSharp.Point)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
         </member>
         <member name="M:OpenCvSharp.Point.op_Equality(OpenCvSharp.Point,OpenCvSharp.Point)">
             <summary>
@@ -15095,24 +15713,17 @@
             <param name="scale"></param>
             <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.Point.Equals(OpenCvSharp.Point)">
+            <inheritdoc />
+        </member>
         <member name="M:OpenCvSharp.Point.Equals(System.Object)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Point.GetHashCode">
-            <summary>
-            Returns a hash code for this object.
-            </summary>
-            <returns>An integer value that specifies a hash value for this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Point.ToString">
-            <summary>
-            Converts this object to a human readable string.
-            </summary>
-            <returns>A string that represents this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Point.Distance(OpenCvSharp.Point,OpenCvSharp.Point)">
             <summary>
@@ -15174,11 +15785,6 @@
             
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Point2d.SizeOf">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="M:OpenCvSharp.Point2d.#ctor(System.Double,System.Double)">
             <summary>
             
@@ -15213,13 +15819,6 @@
             </summary>
             <param name="vec"></param>
             <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.Point2d.Equals(OpenCvSharp.Point2d)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
         </member>
         <member name="M:OpenCvSharp.Point2d.op_Equality(OpenCvSharp.Point2d,OpenCvSharp.Point2d)">
             <summary>
@@ -15275,24 +15874,17 @@
             <param name="scale"></param>
             <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.Point2d.Equals(OpenCvSharp.Point2d)">
+            <inheritdoc />
+        </member>
         <member name="M:OpenCvSharp.Point2d.Equals(System.Object)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Point2d.GetHashCode">
-            <summary>
-            Returns a hash code for this object.
-            </summary>
-            <returns>An integer value that specifies a hash value for this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Point2d.ToString">
-            <summary>
-            Converts this object to a human readable string.
-            </summary>
-            <returns>A string that represents this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Point2d.Distance(OpenCvSharp.Point2d,OpenCvSharp.Point2d)">
             <summary>
@@ -15354,11 +15946,6 @@
             
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Point2f.SizeOf">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="M:OpenCvSharp.Point2f.#ctor(System.Single,System.Single)">
             <summary>
             
@@ -15393,13 +15980,6 @@
             </summary>
             <param name="vec"></param>
             <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.Point2f.Equals(OpenCvSharp.Point2f)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
         </member>
         <member name="M:OpenCvSharp.Point2f.op_Equality(OpenCvSharp.Point2f,OpenCvSharp.Point2f)">
             <summary>
@@ -15455,24 +16035,17 @@
             <param name="scale"></param>
             <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.Point2f.Equals(OpenCvSharp.Point2f)">
+            <inheritdoc />
+        </member>
         <member name="M:OpenCvSharp.Point2f.Equals(System.Object)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Point2f.GetHashCode">
-            <summary>
-            Returns a hash code for this object.
-            </summary>
-            <returns>An integer value that specifies a hash value for this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Point2f.ToString">
-            <summary>
-            Converts this object to a human readable string.
-            </summary>
-            <returns>A string that represents this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Point2f.Distance(OpenCvSharp.Point2f,OpenCvSharp.Point2f)">
             <summary>
@@ -15539,11 +16112,6 @@
             
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Point3d.SizeOf">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="M:OpenCvSharp.Point3d.#ctor(System.Double,System.Double,System.Double)">
             <summary>
             
@@ -15579,13 +16147,6 @@
             </summary>
             <param name="vec"></param>
             <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.Point3d.Equals(OpenCvSharp.Point3d)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
         </member>
         <member name="M:OpenCvSharp.Point3d.op_Equality(OpenCvSharp.Point3d,OpenCvSharp.Point3d)">
             <summary>
@@ -15641,24 +16202,17 @@
             <param name="scale"></param>
             <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.Point3d.Equals(OpenCvSharp.Point3d)">
+            <inheritdoc />
+        </member>
         <member name="M:OpenCvSharp.Point3d.Equals(System.Object)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Point3d.GetHashCode">
-            <summary>
-            Returns a hash code for this object.
-            </summary>
-            <returns>An integer value that specifies a hash value for this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Point3d.ToString">
-            <summary>
-            Converts this object to a human readable string.
-            </summary>
-            <returns>A string that represents this object.</returns>
+            <inheritdoc />
         </member>
         <member name="T:OpenCvSharp.Point3f">
             <summary>
@@ -15676,11 +16230,6 @@
             </summary>
         </member>
         <member name="F:OpenCvSharp.Point3f.Z">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Point3f.SizeOf">
             <summary>
             
             </summary>
@@ -15720,13 +16269,6 @@
             </summary>
             <param name="vec"></param>
             <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.Point3f.Equals(OpenCvSharp.Point3f)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
         </member>
         <member name="M:OpenCvSharp.Point3f.op_Equality(OpenCvSharp.Point3f,OpenCvSharp.Point3f)">
             <summary>
@@ -15782,24 +16324,17 @@
             <param name="scale"></param>
             <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.Point3f.Equals(OpenCvSharp.Point3f)">
+            <inheritdoc />
+        </member>
         <member name="M:OpenCvSharp.Point3f.Equals(System.Object)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Point3f.GetHashCode">
-            <summary>
-            Returns a hash code for this object.
-            </summary>
-            <returns>An integer value that specifies a hash value for this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Point3f.ToString">
-            <summary>
-            Converts this object to a human readable string.
-            </summary>
-            <returns>A string that represents this object.</returns>
+            <inheritdoc />
         </member>
         <member name="T:OpenCvSharp.Point3i">
             <summary>
@@ -15817,11 +16352,6 @@
             </summary>
         </member>
         <member name="F:OpenCvSharp.Point3i.Z">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Point3i.SizeOf">
             <summary>
             
             </summary>
@@ -15847,13 +16377,6 @@
             </summary>
             <param name="vec"></param>
             <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.Point3i.Equals(OpenCvSharp.Point3i)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
         </member>
         <member name="M:OpenCvSharp.Point3i.op_Equality(OpenCvSharp.Point3i,OpenCvSharp.Point3i)">
             <summary>
@@ -15909,28 +16432,21 @@
             <param name="scale"></param>
             <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.Point3i.Equals(OpenCvSharp.Point3i)">
+            <inheritdoc />
+        </member>
         <member name="M:OpenCvSharp.Point3i.Equals(System.Object)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Point3i.GetHashCode">
-            <summary>
-            Returns a hash code for this object.
-            </summary>
-            <returns>An integer value that specifies a hash value for this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Point3i.ToString">
-            <summary>
-            Converts this object to a human readable string.
-            </summary>
-            <returns>A string that represents this object.</returns>
+            <inheritdoc />
         </member>
         <member name="T:OpenCvSharp.Range">
             <summary>
-            
+            Template class specifying a continuous subsequence (slice) of a sequence.
             </summary>
         </member>
         <member name="F:OpenCvSharp.Range.Start">
@@ -15954,6 +16470,31 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="M:OpenCvSharp.Range.Equals(OpenCvSharp.Range)">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenCvSharp.Range.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenCvSharp.Range.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenCvSharp.Range.op_Equality(OpenCvSharp.Range,OpenCvSharp.Range)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Range.op_Inequality(OpenCvSharp.Range,OpenCvSharp.Range)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
         </member>
         <member name="T:OpenCvSharp.Rangef">
             <summary>
@@ -16014,11 +16555,6 @@
             
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Rect.SizeOf">
-            <summary>
-            sizeof(Rect)
-            </summary>
-        </member>
         <member name="F:OpenCvSharp.Rect.Empty">
             <summary>
             Represents a Rect structure with its properties left uninitialized. 
@@ -16048,13 +16584,6 @@
             <param name="top">The y-coordinate of the upper-left corner of this Rectangle structure.</param>
             <param name="right">The x-coordinate of the lower-right corner of this Rectangle structure.</param>
             <param name="bottom">The y-coordinate of the lower-right corner of this Rectangle structure.</param>
-        </member>
-        <member name="M:OpenCvSharp.Rect.Equals(OpenCvSharp.Rect)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
         </member>
         <member name="M:OpenCvSharp.Rect.op_Equality(OpenCvSharp.Rect,OpenCvSharp.Rect)">
             <summary>
@@ -16241,24 +16770,17 @@
             <param name="b">A rectangle to union. </param>
             <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.Rect.Equals(OpenCvSharp.Rect)">
+            <inheritdoc />
+        </member>
         <member name="M:OpenCvSharp.Rect.Equals(System.Object)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Rect.GetHashCode">
-            <summary>
-            Returns a hash code for this object.
-            </summary>
-            <returns>An integer value that specifies a hash value for this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Rect.ToString">
-            <summary>
-            Converts this object to a human readable string.
-            </summary>
-            <returns>A string that represents this object.</returns>
+            <inheritdoc />
         </member>
         <member name="T:OpenCvSharp.Rect2d">
             <summary>
@@ -16285,11 +16807,6 @@
             
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Rect2d.SizeOf">
-            <summary>
-            sizeof(Rect)
-            </summary>
-        </member>
         <member name="F:OpenCvSharp.Rect2d.Empty">
             <summary>
             Represents a Rect2d structure with its properties left uninitialized. 
@@ -16297,7 +16814,7 @@
         </member>
         <member name="M:OpenCvSharp.Rect2d.#ctor(System.Double,System.Double,System.Double,System.Double)">
             <summary>
-            
+            Constructor
             </summary>
             <param name="x"></param>
             <param name="y"></param>
@@ -16306,7 +16823,7 @@
         </member>
         <member name="M:OpenCvSharp.Rect2d.#ctor(OpenCvSharp.Point2d,OpenCvSharp.Size2d)">
             <summary>
-            
+            Constructor
             </summary>
             <param name="location"></param>
             <param name="size"></param>
@@ -16319,13 +16836,6 @@
             <param name="top"></param>
             <param name="right"></param>
             <param name="bottom"></param>
-        </member>
-        <member name="M:OpenCvSharp.Rect2d.Equals(OpenCvSharp.Rect2d)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
         </member>
         <member name="M:OpenCvSharp.Rect2d.op_Equality(OpenCvSharp.Rect2d,OpenCvSharp.Rect2d)">
             <summary>
@@ -16518,24 +17028,17 @@
             <param name="b">A rectangle to union. </param>
             <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.Rect2d.Equals(OpenCvSharp.Rect2d)">
+            <inheritdoc />
+        </member>
         <member name="M:OpenCvSharp.Rect2d.Equals(System.Object)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Rect2d.GetHashCode">
-            <summary>
-            Returns a hash code for this object.
-            </summary>
-            <returns>An integer value that specifies a hash value for this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Rect2d.ToString">
-            <summary>
-            Converts this object to a human readable string.
-            </summary>
-            <returns>A string that represents this object.</returns>
+            <inheritdoc />
         </member>
         <member name="T:OpenCvSharp.Rect2f">
             <summary>
@@ -16562,11 +17065,6 @@
             
             </summary>
         </member>
-        <member name="F:OpenCvSharp.Rect2f.SizeOf">
-            <summary>
-            sizeof(Rect)
-            </summary>
-        </member>
         <member name="F:OpenCvSharp.Rect2f.Empty">
             <summary>
             Represents a Rect2f structure with its properties left uninitialized. 
@@ -16574,7 +17072,7 @@
         </member>
         <member name="M:OpenCvSharp.Rect2f.#ctor(System.Single,System.Single,System.Single,System.Single)">
             <summary>
-            
+            Constructor
             </summary>
             <param name="x"></param>
             <param name="y"></param>
@@ -16583,7 +17081,7 @@
         </member>
         <member name="M:OpenCvSharp.Rect2f.#ctor(OpenCvSharp.Point2f,OpenCvSharp.Size2f)">
             <summary>
-            
+            Constructor
             </summary>
             <param name="location"></param>
             <param name="size"></param>
@@ -16597,16 +17095,9 @@
             <param name="right"></param>
             <param name="bottom"></param>
         </member>
-        <member name="M:OpenCvSharp.Rect2f.Equals(OpenCvSharp.Rect2f)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
-        </member>
         <member name="M:OpenCvSharp.Rect2f.op_Equality(OpenCvSharp.Rect2f,OpenCvSharp.Rect2f)">
             <summary>
-            Compares two Rectf objects. The result specifies whether the members of each object are equal.
+            Compares two Rect2f objects. The result specifies whether the members of each object are equal.
             </summary>
             <param name="lhs">A Point to compare.</param>
             <param name="rhs">A Point to compare.</param>
@@ -16614,7 +17105,7 @@
         </member>
         <member name="M:OpenCvSharp.Rect2f.op_Inequality(OpenCvSharp.Rect2f,OpenCvSharp.Rect2f)">
             <summary>
-            Compares two Rectf objects. The result specifies whether the members of each object are unequal.
+            Compares two Rect2f objects. The result specifies whether the members of each object are unequal.
             </summary>
             <param name="lhs">A Point to compare.</param>
             <param name="rhs">A Point to compare.</param>
@@ -16789,33 +17280,21 @@
             <param name="b">A rectangle to union. </param>
             <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.Rect2f.Equals(OpenCvSharp.Rect2f)">
+            <inheritdoc />
+        </member>
         <member name="M:OpenCvSharp.Rect2f.Equals(System.Object)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Rect2f.GetHashCode">
-            <summary>
-            Returns a hash code for this object.
-            </summary>
-            <returns>An integer value that specifies a hash value for this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Rect2f.ToString">
-            <summary>
-            Converts this object to a human readable string.
-            </summary>
-            <returns>A string that represents this object.</returns>
+            <inheritdoc />
         </member>
         <member name="T:OpenCvSharp.RotatedRect">
             <summary>
-            
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.RotatedRect.SizeOf">
-            <summary>
-            sizeof(RotatedRect)
+            The class represents rotated (i.e. not up-right) rectangles on a plane.
             </summary>
         </member>
         <member name="F:OpenCvSharp.RotatedRect.Center">
@@ -16835,7 +17314,7 @@
         </member>
         <member name="M:OpenCvSharp.RotatedRect.#ctor(OpenCvSharp.Point2f,OpenCvSharp.Size2f,System.Single)">
             <summary>
-            
+            Constructor
             </summary>
             <param name="center"></param>
             <param name="size"></param>
@@ -16923,8 +17402,14 @@
         </member>
         <member name="M:OpenCvSharp.Scalar.RandomColor">
             <summary>
-            
+            Gets random color
             </summary>
+        </member>
+        <member name="M:OpenCvSharp.Scalar.RandomColor(System.Random)">
+            <summary>
+            Gets random color
+            </summary>
+            <param name="random">.NET random number generator. This method uses Random.NextBytes()</param>
         </member>
         <member name="M:OpenCvSharp.Scalar.op_Explicit(OpenCvSharp.Scalar)~System.Double">
             <summary>
@@ -17052,24 +17537,17 @@
             <param name="p"></param>
             <returns></returns>
         </member>
+        <member name="M:OpenCvSharp.Scalar.Equals(OpenCvSharp.Scalar)">
+            <inheritdoc />
+        </member>
         <member name="M:OpenCvSharp.Scalar.Equals(System.Object)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Scalar.GetHashCode">
-            <summary>
-            Returns a hash code for this object.
-            </summary>
-            <returns>An integer value that specifies a hash value for this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Scalar.ToString">
-            <summary>
-            Converts this object to a human readable string.
-            </summary>
-            <returns>A string that represents this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Scalar.op_Equality(OpenCvSharp.Scalar,OpenCvSharp.Scalar)">
             <summary>
@@ -17125,13 +17603,6 @@
             <summary>
             
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.Scalar.Equals(OpenCvSharp.Scalar)">
-            <summary>
-            
-            </summary>
-            <param name="other"></param>
             <returns></returns>
         </member>
         <member name="F:OpenCvSharp.Scalar.AliceBlue">
@@ -17851,14 +18322,14 @@
         </member>
         <member name="M:OpenCvSharp.Size.#ctor(System.Int32,System.Int32)">
             <summary>
-            
+            Constructor
             </summary>
             <param name="width"></param>
             <param name="height"></param>
         </member>
         <member name="M:OpenCvSharp.Size.#ctor(System.Double,System.Double)">
             <summary>
-            
+            Constructor
             </summary>
             <param name="width"></param>
             <param name="height"></param>
@@ -17867,13 +18338,6 @@
             <summary>
             Zero size
             </summary>
-        </member>
-        <member name="M:OpenCvSharp.Size.Equals(OpenCvSharp.Size)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
         </member>
         <member name="M:OpenCvSharp.Size.op_Equality(OpenCvSharp.Size,OpenCvSharp.Size)">
             <summary>
@@ -17891,24 +18355,17 @@
             <param name="rhs">A Point to compare.</param>
             <returns>This operator returns true if the members of left and right are unequal; otherwise, false.</returns>
         </member>
+        <member name="M:OpenCvSharp.Size.Equals(OpenCvSharp.Size)">
+            <inheritdoc />
+        </member>
         <member name="M:OpenCvSharp.Size.Equals(System.Object)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Size.GetHashCode">
-            <summary>
-            Returns a hash code for this object.
-            </summary>
-            <returns>An integer value that specifies a hash value for this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Size.ToString">
-            <summary>
-            Converts this object to a human readable string.
-            </summary>
-            <returns>A string that represents this object.</returns>
+            <inheritdoc />
         </member>
         <member name="T:OpenCvSharp.Size2d">
             <summary>
@@ -17927,24 +18384,17 @@
         </member>
         <member name="M:OpenCvSharp.Size2d.#ctor(System.Single,System.Single)">
             <summary>
-            
+            Constructor
             </summary>
             <param name="width"></param>
             <param name="height"></param>
         </member>
         <member name="M:OpenCvSharp.Size2d.#ctor(System.Double,System.Double)">
             <summary>
-            
+            Constructor
             </summary>
             <param name="width"></param>
             <param name="height"></param>
-        </member>
-        <member name="M:OpenCvSharp.Size2d.Equals(OpenCvSharp.Size2d)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
         </member>
         <member name="M:OpenCvSharp.Size2d.op_Equality(OpenCvSharp.Size2d,OpenCvSharp.Size2d)">
             <summary>
@@ -17962,33 +18412,21 @@
             <param name="rhs">A Point to compare.</param>
             <returns>This operator returns true if the members of left and right are unequal; otherwise, false.</returns>
         </member>
+        <member name="M:OpenCvSharp.Size2d.Equals(OpenCvSharp.Size2d)">
+            <inheritdoc />
+        </member>
         <member name="M:OpenCvSharp.Size2d.Equals(System.Object)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Size2d.GetHashCode">
-            <summary>
-            Returns a hash code for this object.
-            </summary>
-            <returns>An integer value that specifies a hash value for this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Size2d.ToString">
-            <summary>
-            Converts this object to a human readable string.
-            </summary>
-            <returns>A string that represents this object.</returns>
+            <inheritdoc />
         </member>
         <member name="T:OpenCvSharp.Size2f">
             <summary>
             
-            </summary>
-        </member>
-        <member name="F:OpenCvSharp.Size2f.SizeOf">
-            <summary>
-            sizeof(Size2f)
             </summary>
         </member>
         <member name="F:OpenCvSharp.Size2f.Width">
@@ -18003,24 +18441,17 @@
         </member>
         <member name="M:OpenCvSharp.Size2f.#ctor(System.Single,System.Single)">
             <summary>
-            
+            Constructor
             </summary>
             <param name="width"></param>
             <param name="height"></param>
         </member>
         <member name="M:OpenCvSharp.Size2f.#ctor(System.Double,System.Double)">
             <summary>
-            
+            Constructor
             </summary>
             <param name="width"></param>
             <param name="height"></param>
-        </member>
-        <member name="M:OpenCvSharp.Size2f.Equals(OpenCvSharp.Size2f)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
         </member>
         <member name="M:OpenCvSharp.Size2f.op_Equality(OpenCvSharp.Size2f,OpenCvSharp.Size2f)">
             <summary>
@@ -18038,24 +18469,17 @@
             <param name="rhs">A Point to compare.</param>
             <returns>This operator returns true if the members of left and right are unequal; otherwise, false.</returns>
         </member>
+        <member name="M:OpenCvSharp.Size2f.Equals(OpenCvSharp.Size2f)">
+            <inheritdoc />
+        </member>
         <member name="M:OpenCvSharp.Size2f.Equals(System.Object)">
-            <summary>
-            Specifies whether this object contains the same members as the specified Object.
-            </summary>
-            <param name="obj">The Object to test.</param>
-            <returns>This method returns true if obj is the same type as this object and has the same members as this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Size2f.GetHashCode">
-            <summary>
-            Returns a hash code for this object.
-            </summary>
-            <returns>An integer value that specifies a hash value for this object.</returns>
+            <inheritdoc />
         </member>
         <member name="M:OpenCvSharp.Size2f.ToString">
-            <summary>
-            Converts this object to a human readable string.
-            </summary>
-            <returns>A string that represents this object.</returns>
+            <inheritdoc />
         </member>
         <member name="T:OpenCvSharp.TermCriteria">
             <summary>
@@ -22644,61 +23068,9 @@
             
             </summary>
         </member>
-        <member name="T:OpenCvSharp.CvMouseCallback">
-            <summary>
-            Delegate to be called every time mouse event occurs in the specified window.
-            </summary>
-            <param name="event">one of CV_EVENT_</param>
-            <param name="x">x-coordinates of mouse pointer in image coordinates</param>
-            <param name="y">y-coordinates of mouse pointer in image coordinates</param>
-            <param name="flags">a combination of CV_EVENT_FLAG</param>
-            <param name="userdata"></param>
-        </member>
         <member name="T:OpenCvSharp.CvTrackbar">
             <summary>
-            Trackbar that is shown on CvWindow
-            </summary>
-        </member>
-        <member name="M:OpenCvSharp.CvTrackbar.#ctor(System.String,System.String,OpenCvSharp.CvTrackbarCallback)">
-            <summary>
-            Constructor (value=0, max=100)
-            </summary>
-            <param name="name">Trackbar name</param>
-            <param name="window">Window name</param>
-            <param name="callback">Callback handler</param>
-        </member>
-        <member name="M:OpenCvSharp.CvTrackbar.#ctor(System.String,System.String,OpenCvSharp.CvTrackbarCallback2)">
-            <summary>
-            Constructor (value=0, max=100)
-            </summary>
-            <param name="name">Trackbar name</param>
-            <param name="window">Window name</param>
-            <param name="callback">Callback handler</param>
-        </member>
-        <member name="M:OpenCvSharp.CvTrackbar.#ctor(System.String,System.String,System.Int32,System.Int32,OpenCvSharp.CvTrackbarCallback)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="name">Trackbar name</param>
-            <param name="window">Window name</param>
-            <param name="value">Initial slider position</param>
-            <param name="max">The upper limit of the range this trackbar is working with. </param>
-            <param name="callback">Callback handler</param>
-        </member>
-        <member name="M:OpenCvSharp.CvTrackbar.#ctor(System.String,System.String,System.Int32,System.Int32,OpenCvSharp.CvTrackbarCallback2,System.Object)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="name">Trackbar name</param>
-            <param name="window">Window name</param>
-            <param name="value">Initial slider position</param>
-            <param name="max">The upper limit of the range this trackbar is working with. </param>
-            <param name="callback">Callback handler</param>
-            <param name="userdata"></param>
-        </member>
-        <member name="M:OpenCvSharp.CvTrackbar.DisposeUnmanaged">
-            <summary>
-            Releases unmanaged resources
+            Trackbar that is shown on OpenCV Window
             </summary>
         </member>
         <member name="P:OpenCvSharp.CvTrackbar.TrackbarName">
@@ -22711,29 +23083,42 @@
             Name of parent window
             </summary>
         </member>
+        <member name="P:OpenCvSharp.CvTrackbar.Callback">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:OpenCvSharp.CvTrackbar.Pos">
             <summary>
             Gets or sets a numeric value that represents the current position of the scroll box on the track bar. 
             </summary>
         </member>
-        <member name="P:OpenCvSharp.CvTrackbar.Max">
-            <summary>
-            Gets the upper limit of the range this trackbar is working with. 
-            </summary>
-        </member>
-        <member name="P:OpenCvSharp.CvTrackbar.Callback">
-            <summary>
-            Gets the callback delegate which occurs when the Value property of a track bar changes, either by movement of the scroll box or by manipulation in code. 
-            </summary>
-        </member>
-        <member name="P:OpenCvSharp.CvTrackbar.UserData">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="P:OpenCvSharp.CvTrackbar.Result">
             <summary>
-            
+            Result value of cv::createTrackbar
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.CvTrackbar.#ctor(System.String,System.String,OpenCvSharp.TrackbarCallback)">
+            <summary>
+            Constructor (value=0, max=100)
+            </summary>
+            <param name="name">Trackbar name</param>
+            <param name="window">Window name</param>
+            <param name="callback">Callback handler</param>
+        </member>
+        <member name="M:OpenCvSharp.CvTrackbar.#ctor(System.String,System.String,System.Int32,System.Int32,OpenCvSharp.TrackbarCallback)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="trackbarName">Trackbar name</param>
+            <param name="windowName">Window name</param>
+            <param name="initialPos">Initial slider position</param>
+            <param name="max">The upper limit of the range this trackbar is working with. </param>
+            <param name="callback">Callback handler</param>
+        </member>
+        <member name="M:OpenCvSharp.CvTrackbar.DisposeUnmanaged">
+            <summary>
+            Releases unmanaged resources
             </summary>
         </member>
         <member name="M:OpenCvSharp.CvTrackbar.SetMax(System.Int32)">
@@ -22749,26 +23134,6 @@
             The function sets the minimum position of the specified trackbar in the specified window.
             </summary>
             <param name="minVal">New minimum position.</param>
-        </member>
-        <member name="T:OpenCvSharp.CvTrackbarCallback">
-            <summary>
-            Delegate to be called every time the slider changes the position.
-            </summary>
-            <param name="pos"></param>
-        </member>
-        <member name="T:OpenCvSharp.CvTrackbarCallback2">
-            <summary>
-            Delegate to be called every time the slider changes the position.
-            </summary>
-            <param name="pos"></param>
-            <param name="userdata"></param>
-        </member>
-        <member name="T:OpenCvSharp.CvTrackbarCallback2Native">
-            <summary>
-            
-            </summary>
-            <param name="pos"></param>
-            <param name="userdata"></param>
         </member>
         <member name="T:OpenCvSharp.ButtonTypes">
             <summary>
@@ -22790,99 +23155,104 @@
             The button will be a radiobox button. The radiobox on the same buttonbar (same line) are exclusive; one on can be select at the time.
             </summary>
         </member>
-        <member name="T:OpenCvSharp.MouseEvent">
+        <member name="T:OpenCvSharp.MouseEventFlags">
             <summary>
-            Mouse events
+            Mouse Event Flags see cv::MouseCallback
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MouseEvent.MouseMove">
+        <member name="F:OpenCvSharp.MouseEventFlags.LButton">
             <summary>
-            [EVENT_MOUSEMOVE]
+            indicates that the left mouse button is down.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MouseEvent.LButtonDown">
+        <member name="F:OpenCvSharp.MouseEventFlags.RButton">
             <summary>
-            [EVENT_LBUTTONDOWN]
+            indicates that the right mouse button is down.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MouseEvent.RButtonDown">
+        <member name="F:OpenCvSharp.MouseEventFlags.MButton">
             <summary>
-            [EVENT_RBUTTONDOWN]
+            indicates that the middle mouse button is down.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MouseEvent.MButtonDown">
+        <member name="F:OpenCvSharp.MouseEventFlags.CtrlKey">
             <summary>
-            [CV_EVENT_MBUTTONDOWN]
+            indicates that CTRL Key is pressed.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MouseEvent.LButtonUp">
+        <member name="F:OpenCvSharp.MouseEventFlags.ShiftKey">
             <summary>
-            [EVENT_LBUTTONUP]
+            indicates that SHIFT Key is pressed.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MouseEvent.RButtonUp">
+        <member name="F:OpenCvSharp.MouseEventFlags.AltKey">
             <summary>
-            [EVENT_RBUTTONUP]
+            indicates that ALT Key is pressed.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MouseEvent.MButtonUp">
+        <member name="T:OpenCvSharp.MouseEventTypes">
             <summary>
-            [EVENT_MBUTTONUP]
+            Mouse Events 
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MouseEvent.LButtonDoubleClick">
+        <member name="F:OpenCvSharp.MouseEventTypes.MouseMove">
             <summary>
-            [EVENT_LBUTTONDBLCLK]
+            indicates that the mouse pointer has moved over the window.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MouseEvent.RButtonDoubleClick">
+        <member name="F:OpenCvSharp.MouseEventTypes.LButtonDown">
             <summary>
-            [EVENT_RBUTTONDBLCLK]
+            indicates that the left mouse button is pressed.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MouseEvent.MButtonDoubleClick">
+        <member name="F:OpenCvSharp.MouseEventTypes.RButtonDown">
             <summary>
-            [EVENT_MBUTTONDBLCLK]
+            indicates that the right mouse button is pressed.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MouseEvent.MouseWheel">
+        <member name="F:OpenCvSharp.MouseEventTypes.MButtonDown">
             <summary>
-            [EVENT_MOUSEWHEEL]
+            indicates that the middle mouse button is pressed.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MouseEvent.MouseHWheel">
+        <member name="F:OpenCvSharp.MouseEventTypes.LButtonUp">
             <summary>
-            [EVENT_MOUSEHWHEEL]
+            indicates that left mouse button is released.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MouseEvent.FlagLButton">
+        <member name="F:OpenCvSharp.MouseEventTypes.RButtonUp">
             <summary>
-            [EVENT_FLAG_LBUTTON]
+            indicates that right mouse button is released.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MouseEvent.FlagRButton">
+        <member name="F:OpenCvSharp.MouseEventTypes.MButtonUp">
             <summary>
-            [EVENT_FLAG_RBUTTON]
+            indicates that middle mouse button is released.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MouseEvent.FlagMButton">
+        <member name="F:OpenCvSharp.MouseEventTypes.LButtonDoubleClick">
             <summary>
-            [EVENT_FLAG_MBUTTON]
+            indicates that left mouse button is double clicked.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MouseEvent.FlagCtrlKey">
+        <member name="F:OpenCvSharp.MouseEventTypes.RButtonDoubleClick">
             <summary>
-            [EVENT_FLAG_CTRLKEY]
+            indicates that right mouse button is double clicked.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MouseEvent.FlagShiftKey">
+        <member name="F:OpenCvSharp.MouseEventTypes.MButtonDoubleClick">
             <summary>
-            [EVENT_FLAG_SHIFTKEY]
+            indicates that middle mouse button is double clicked.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.MouseEvent.FlagAltKey">
+        <member name="F:OpenCvSharp.MouseEventTypes.MouseWheel">
             <summary>
-            [EVENT_FLAG_ALTKEY]
+            positive and negative values mean forward and backward scrolling, respectively.
+            </summary>
+        </member>
+        <member name="F:OpenCvSharp.MouseEventTypes.MouseHWheel">
+            <summary>
+            positive and negative values mean right and left scrolling, respectively.
             </summary>
         </member>
         <member name="T:OpenCvSharp.WindowMode">
@@ -22978,6 +23348,29 @@
             <param name="fourcc"></param>
             <returns></returns>
         </member>
+        <member name="T:OpenCvSharp.MouseCallback">
+            <summary>
+            Delegate to be called every time mouse event occurs in the specified window.
+            </summary>
+            <param name="event">one of MouseEventTypes</param>
+            <param name="x">x-coordinates of mouse pointer in image coordinates</param>
+            <param name="y">y-coordinates of mouse pointer in image coordinates</param>
+            <param name="flags">a combination of MouseEventFlags</param>
+            <param name="userData"></param>
+        </member>
+        <member name="T:OpenCvSharp.TrackbarCallback">
+            <summary>
+            Delegate to be called every time the slider changes the position.
+            </summary>
+            <param name="pos"></param>
+        </member>
+        <member name="T:OpenCvSharp.TrackbarCallbackNative">
+            <summary>
+            
+            </summary>
+            <param name="pos"></param>
+            <param name="userData"></param>
+        </member>
         <member name="T:OpenCvSharp.Window">
             <summary>
             Wrapper of HighGUI window
@@ -23068,7 +23461,7 @@
             
             </summary>
         </member>
-        <member name="M:OpenCvSharp.Window.CreateTrackbar(System.String,OpenCvSharp.CvTrackbarCallback)">
+        <member name="M:OpenCvSharp.Window.CreateTrackbar(System.String,OpenCvSharp.TrackbarCallback)">
             <summary>
             Creates the trackbar and attaches it to this window
             </summary>
@@ -23076,43 +23469,14 @@
             <param name="callback">the function to be called every time the slider changes the position. This function should be prototyped as void Foo(int);</param>
             <returns></returns>
         </member>
-        <member name="M:OpenCvSharp.Window.CreateTrackbar(System.String,OpenCvSharp.CvTrackbarCallback2)">
+        <member name="M:OpenCvSharp.Window.CreateTrackbar(System.String,System.Int32,System.Int32,OpenCvSharp.TrackbarCallback)">
             <summary>
             Creates the trackbar and attaches it to this window
             </summary>
             <param name="trackbarName">Name of created trackbar. </param>
-            <param name="callback">the function to be called every time the slider changes the position. This function should be prototyped as void Foo(int);</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.Window.CreateTrackbar(System.String,System.Int32,System.Int32,OpenCvSharp.CvTrackbarCallback)">
-            <summary>
-            Creates the trackbar and attaches it to this window
-            </summary>
-            <param name="trackbarName">Name of created trackbar. </param>
-            <param name="value">The position of the slider</param>
+            <param name="initialPos">The position of the slider</param>
             <param name="max">Maximal position of the slider. Minimal position is always 0. </param>
             <param name="callback">the function to be called every time the slider changes the position. This function should be prototyped as void Foo(int);</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.Window.CreateTrackbar(System.String,System.Int32,System.Int32,OpenCvSharp.CvTrackbarCallback2)">
-            <summary>
-            Creates the trackbar and attaches it to this window
-            </summary>
-            <param name="trackbarName">Name of created trackbar. </param>
-            <param name="value">The position of the slider</param>
-            <param name="max">Maximal position of the slider. Minimal position is always 0. </param>
-            <param name="callback">the function to be called every time the slider changes the position. This function should be prototyped as void Foo(int);</param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenCvSharp.Window.CreateTrackbar2(System.String,System.Int32,System.Int32,OpenCvSharp.CvTrackbarCallback2,System.Object)">
-            <summary>
-            Creates the trackbar and attaches it to this window
-            </summary>
-            <param name="trackbarName">Name of created trackbar. </param>
-            <param name="value">The position of the slider</param>
-            <param name="max">Maximal position of the slider. Minimal position is always 0. </param>
-            <param name="callback">the function to be called every time the slider changes the position. This function should be prototyped as void Foo(int);</param>
-            <param name="userData"></param>
             <returns></returns>
         </member>
         <member name="M:OpenCvSharp.Window.DisplayOverlay(System.String,System.Int32)">
@@ -23210,12 +23574,12 @@
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="M:OpenCvSharp.Window.SetMouseCallback(OpenCvSharp.CvMouseCallback,System.IntPtr)">
+        <member name="M:OpenCvSharp.Window.SetMouseCallback(OpenCvSharp.MouseCallback,System.IntPtr)">
             <summary>
             Sets the callback function for mouse events occuting within the specified window.
             </summary>
             <param name="onMouse">Reference to the function to be called every time mouse event occurs in the specified window. </param>
-            <param name="userdata"></param>
+            <param name="userData"></param>
         </member>
         <member name="T:OpenCvSharp.ConvertImageModes">
             <summary>
@@ -23544,7 +23908,7 @@
             The number of labels -1
             </summary>
         </member>
-        <member name="M:OpenCvSharp.ConnectedComponents.#ctor(System.Collections.Generic.IList{OpenCvSharp.ConnectedComponents.Blob},System.Int32[0:,0:],System.Int32)">
+        <member name="M:OpenCvSharp.ConnectedComponents.#ctor(System.Collections.Generic.IReadOnlyList{OpenCvSharp.ConnectedComponents.Blob},System.Int32[0:,0:],System.Int32)">
             <summary>
             Constructor
             </summary>
@@ -23579,7 +23943,7 @@
             <param name="blob">Blob value.</param>
             <returns>Filtered image.</returns>
         </member>
-        <member name="M:OpenCvSharp.ConnectedComponents.FilterBlobs(OpenCvSharp.Mat,OpenCvSharp.Mat,System.Collections.Generic.IEnumerable{OpenCvSharp.ConnectedComponents.Blob})">
+        <member name="M:OpenCvSharp.ConnectedComponents.FilterByBlobs(OpenCvSharp.Mat,OpenCvSharp.Mat,System.Collections.Generic.IEnumerable{OpenCvSharp.ConnectedComponents.Blob})">
             <summary>
             Filter a image with the specified blob objects. 
             </summary>
@@ -25217,11 +25581,10 @@
             <param name="seg"></param>
             <returns></returns>
         </member>
-        <member name="M:OpenCvSharp.LineSegmentPoint.Length(OpenCvSharp.LineSegmentPoint)">
+        <member name="M:OpenCvSharp.LineSegmentPoint.Length">
             <summary>
             
             </summary>
-            <param name="s"></param>
             <returns></returns>
         </member>
         <member name="M:OpenCvSharp.LineSegmentPoint.Offset(System.Int32,System.Int32)">
@@ -28141,6 +28504,184 @@
             object by alternative features.
             </summary>
         </member>
+        <member name="T:OpenCvSharp.Tonemap">
+            <summary>
+            Base class for tonemapping algorithms - tools that are used to map HDR image to 8-bit range.
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Tonemap.#ctor">
+            <summary>
+            Constructor used by Tonemap.Create
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Tonemap.#ctor(System.IntPtr)">
+            <summary>
+            Constructor used by subclasses
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Tonemap.Create(System.Single)">
+            <summary>
+            Creates simple linear mapper with gamma correction
+            </summary>
+            <param name="gamma">positive value for gamma correction. Gamma value of 1.0 implies no correction, gamma
+            equal to 2.2f is suitable for most displays.
+            Generally gamma &gt; 1 brightens the image and gamma &lt; 1 darkens it.</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Tonemap.DisposeManaged">
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Tonemap.Process(OpenCvSharp.InputArray,OpenCvSharp.OutputArray)">
+            <summary>
+            Tonemaps image
+            </summary>
+            <param name="src">CV_32FC3 Mat (float 32 bits 3 channels)</param>
+            <param name="dst">CV_32FC3 Mat with values in [0, 1] range</param>
+        </member>
+        <member name="P:OpenCvSharp.Tonemap.Gamma">
+            <summary>
+            Gets or sets positive value for gamma correction. Gamma value of 1.0 implies no correction, gamma
+            equal to 2.2f is suitable for most displays.
+            Generally gamma &gt; 1 brightens the image and gamma &lt; 1 darkens it.
+            </summary>
+        </member>
+        <member name="T:OpenCvSharp.TonemapDrago">
+             <summary>
+             Adaptive logarithmic mapping is a fast global tonemapping algorithm that scales the image in logarithmic domain.
+            
+             Since it's a global operator the same function is applied to all the pixels, it is controlled by the bias parameter.
+             Optional saturation enhancement is possible as described in @cite FL02. For more information see @cite DM03.
+             </summary>
+        </member>
+        <member name="M:OpenCvSharp.TonemapDrago.#ctor(System.IntPtr)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.TonemapDrago.Create(System.Single,System.Single,System.Single)">
+            <summary>
+            Creates TonemapDrago object
+            </summary>
+            <param name="gamma">positive value for gamma correction. Gamma value of 1.0 implies no correction, gamma
+            equal to 2.2f is suitable for most displays.
+            Generally gamma &gt; 1 brightens the image and gamma &lt; 1 darkens it.</param>
+            <param name="saturation">positive saturation enhancement value. 1.0 preserves saturation, values greater 
+            than 1 increase saturation and values less than 1 decrease it.</param>
+            <param name="bias">value for bias function in [0, 1] range. Values from 0.7 to 0.9 usually give best 
+            results, default value is 0.85.</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.TonemapDrago.DisposeManaged">
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.TonemapDrago.Saturation">
+            <summary>
+            Gets or sets positive saturation enhancement value. 1.0 preserves saturation, values greater 
+            than 1 increase saturation and values less than 1 decrease it.
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.TonemapDrago.Bias">
+            <summary>
+            Gets or sets value for bias function in [0, 1] range. Values from 0.7 to 0.9 usually give best 
+            results, default value is 0.85.
+            </summary>
+        </member>
+        <member name="T:OpenCvSharp.TonemapMantiuk">
+             <summary>
+             This algorithm transforms image to contrast using gradients on all levels of gaussian pyramid,
+             transforms contrast values to HVS response and scales the response. After this the image is
+             reconstructed from new contrast values.
+            
+             For more information see @cite MM06.
+             </summary>
+        </member>
+        <member name="M:OpenCvSharp.TonemapMantiuk.#ctor(System.IntPtr)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.TonemapMantiuk.Create(System.Single,System.Single,System.Single)">
+            <summary>
+            Creates TonemapMantiuk object
+            </summary>
+            <param name="gamma">positive value for gamma correction. Gamma value of 1.0 implies no correction, gamma
+            equal to 2.2f is suitable for most displays.
+            Generally gamma &gt; 1 brightens the image and gamma &lt; 1 darkens it.</param>
+            <param name="scale">contrast scale factor. HVS response is multiplied by this parameter, thus compressing
+            dynamic range. Values from 0.6 to 0.9 produce best results.</param>
+            <param name="saturation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.TonemapMantiuk.DisposeManaged">
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.TonemapMantiuk.Scale">
+            <summary>
+            Gets or sets contrast scale factor. HVS response is multiplied by this parameter, thus compressing
+            dynamic range. Values from 0.6 to 0.9 produce best results.
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.TonemapMantiuk.Saturation">
+            <summary>
+            Gets or sets positive saturation enhancement value. 1.0 preserves saturation, values greater 
+            than 1 increase saturation and values less than 1 decrease it.
+            </summary>
+        </member>
+        <member name="T:OpenCvSharp.TonemapReinhard">
+             <summary>
+             This is a global tonemapping operator that models human visual system.
+            
+             Mapping function is controlled by adaptation parameter, that is computed using light adaptation and 
+             color adaptation. For more information see @cite RD05.
+             </summary>
+        </member>
+        <member name="M:OpenCvSharp.TonemapReinhard.#ctor(System.IntPtr)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.TonemapReinhard.Create(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Creates TonemapReinhard object
+            </summary>
+            <param name="gamma">positive value for gamma correction. Gamma value of 1.0 implies no correction, gamma
+            equal to 2.2f is suitable for most displays.
+            Generally gamma &gt; 1 brightens the image and gamma &lt; 1 darkens it.</param>
+            <param name="intensity">result intensity in [-8, 8] range. Greater intensity produces brighter results.</param>
+            <param name="lightAdapt">light adaptation in [0, 1] range. If 1 adaptation is based only on pixel 
+            value, if 0 it's global, otherwise it's a weighted mean of this two cases.</param>
+            <param name="colorAdapt">chromatic adaptation in [0, 1] range. If 1 channels are treated independently,
+            if 0 adaptation level is the same for each channel.</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.TonemapReinhard.DisposeManaged">
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.TonemapReinhard.Intensity">
+            <summary>
+            Gets or sets result intensity in [-8, 8] range. Greater intensity produces brighter results.
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.TonemapReinhard.LightAdaptation">
+            <summary>
+            Gets or sets light adaptation in [0, 1] range. If 1 adaptation is based only on pixel 
+            value, if 0 it's global, otherwise it's a weighted mean of this two cases.
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.TonemapReinhard.ColorAdaptation">
+            <summary>
+            Gets or sets chromatic adaptation in [0, 1] range. If 1 channels are treated independently,
+            if 0 adaptation level is the same for each channel.
+            </summary>
+        </member>
         <member name="T:OpenCvSharp.Quality.QualityBase">
             <summary>
             Quality Base Class
@@ -28948,19 +29489,19 @@
             Base class for Super Resolution algorithms.
             </summary>
         </member>
-        <member name="F:OpenCvSharp.SuperResolution.frameSource">
+        <member name="P:OpenCvSharp.SuperResolution.FrameSource">
             <summary>
             
             </summary>
         </member>
-        <member name="F:OpenCvSharp.SuperResolution.firstCall">
+        <member name="P:OpenCvSharp.SuperResolution.FirstCall">
             <summary>
             
             </summary>
         </member>
         <member name="M:OpenCvSharp.SuperResolution.#ctor">
             <summary>
-            
+            Constructor
             </summary>
         </member>
         <member name="M:OpenCvSharp.SuperResolution.CreateBTVL1">
@@ -29433,8 +29974,7 @@
             <returns></returns>
         </member>
         <member name="T:OpenCvSharp.Tracking.TrackerBoosting.Params">
-            <summary>
-            
+            <summary> 
             </summary>
         </member>
         <member name="F:OpenCvSharp.Tracking.TrackerBoosting.Params.NumClassifiers">
@@ -29594,8 +30134,7 @@
             <returns></returns>
         </member>
         <member name="T:OpenCvSharp.Tracking.TrackerKCF.Params">
-            <summary>
-            
+            <summary> 
             </summary>
         </member>
         <member name="F:OpenCvSharp.Tracking.TrackerKCF.Params.DetectThresh">
@@ -29699,8 +30238,7 @@
             <returns></returns>
         </member>
         <member name="T:OpenCvSharp.Tracking.TrackerMedianFlow.Params">
-            <summary>
-            
+            <summary> 
             </summary>
         </member>
         <member name="F:OpenCvSharp.Tracking.TrackerMedianFlow.Params.PointsInGrid">
@@ -29760,8 +30298,7 @@
             <returns></returns>
         </member>
         <member name="T:OpenCvSharp.Tracking.TrackerMIL.Params">
-            <summary>
-            
+            <summary> 
             </summary>
         </member>
         <member name="F:OpenCvSharp.Tracking.TrackerMIL.Params.SamplerInitInRadius">
@@ -31248,6 +31785,30 @@
              </summary>
              <returns>`true` (non-zero) in the case of success.</returns>
         </member>
+        <member name="M:OpenCvSharp.VideoCapture.Retrieve(OpenCvSharp.OutputArray,System.Int32)">
+             <summary>
+             Decodes and returns the grabbed video frame.
+            
+             The method decodes and returns the just grabbed frame. If no frames has been grabbed
+             (camera has been disconnected, or there are no more frames in video file), the method returns false
+             and the function returns an empty image (with %cv::Mat, test it with Mat::empty()).
+             </summary>
+             <param name="image">the video frame is returned here. If no frames has been grabbed the image will be empty.</param>
+             <param name="flag">it could be a frame index or a driver specific flag</param>
+             <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.VideoCapture.Retrieve(OpenCvSharp.OutputArray,OpenCvSharp.CameraChannels)">
+            <summary>
+            Decodes and returns the grabbed video frame.
+            
+            The method decodes and returns the just grabbed frame. If no frames has been grabbed
+            (camera has been disconnected, or there are no more frames in video file), the method returns false
+            and the function returns an empty image (with %cv::Mat, test it with Mat::empty()).
+            </summary>
+            <param name="image">the video frame is returned here. If no frames has been grabbed the image will be empty.</param>
+            <param name="streamIdx">non-zero streamIdx is only valid for multi-head camera live streams</param>
+            <returns></returns>
+        </member>
         <member name="M:OpenCvSharp.VideoCapture.Retrieve(OpenCvSharp.Mat,System.Int32)">
              <summary>
              Decodes and returns the grabbed video frame.
@@ -31283,6 +31844,17 @@
              <returns>the video frame is returned here. If no frames has been grabbed the image will be empty.</returns>
         </member>
         <member name="M:OpenCvSharp.VideoCapture.Read(OpenCvSharp.OutputArray)">
+             <summary>
+             Grabs, decodes and returns the next video frame.
+            
+             The method/function combines VideoCapture::grab() and VideoCapture::retrieve() in one call. This is the
+             most convenient method for reading video files or capturing data from decode and returns the just
+             grabbed frame. If no frames has been grabbed (camera has been disconnected, or there are no more
+             frames in video file), the method returns false and the function returns empty image (with %cv::Mat, test it with Mat::empty()).
+             </summary>
+             <returns>`false` if no frames has been grabbed</returns>
+        </member>
+        <member name="M:OpenCvSharp.VideoCapture.Read(OpenCvSharp.Mat)">
              <summary>
              Grabs, decodes and returns the next video frame.
             
@@ -31507,7 +32079,7 @@
             4-character code of codec used to compress the frames.
             </summary>
         </member>
-        <member name="P:OpenCvSharp.FourCC.Value">
+        <member name="F:OpenCvSharp.FourCC.Value">
             <summary>
             int value
             </summary>
@@ -31518,7 +32090,7 @@
             </summary>
             <param name="value"></param>
         </member>
-        <member name="M:OpenCvSharp.FourCC.FromEnum(OpenCvSharp.FourCCValues)">
+        <member name="M:OpenCvSharp.FourCC.FromFourCCValues(OpenCvSharp.FourCCValues)">
             <summary>
             Create from predefined FourCC value
             </summary>
@@ -31548,17 +32120,55 @@
             </summary>
             <param name="fourcc"></param>
         </member>
+        <member name="M:OpenCvSharp.FourCC.ToInt32">
+            <summary>
+            cast to int
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:OpenCvSharp.FourCC.op_Implicit(System.Int32)~OpenCvSharp.FourCC">
             <summary>
             implicit cast from int
             </summary>
             <param name="code"></param>
         </member>
+        <member name="M:OpenCvSharp.FourCC.FromInt32(System.Int32)">
+            <summary>
+            cast from int
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
         <member name="M:OpenCvSharp.FourCC.op_Implicit(OpenCvSharp.FourCCValues)~OpenCvSharp.FourCC">
             <summary>
             implicit cast from enum
             </summary>
             <param name="code"></param>
+        </member>
+        <member name="M:OpenCvSharp.FourCC.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenCvSharp.FourCC.Equals(OpenCvSharp.FourCC)">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenCvSharp.FourCC.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:OpenCvSharp.FourCC.op_Equality(OpenCvSharp.FourCC,OpenCvSharp.FourCC)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.FourCC.op_Inequality(OpenCvSharp.FourCC,OpenCvSharp.FourCC)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
         </member>
         <member name="T:OpenCvSharp.FourCCValues">
             <summary>
@@ -33286,7 +33896,7 @@
             <param name="sigma">expected noise standard deviation</param>
             <param name="psize">size of block side where dct is computed</param>
         </member>
-        <member name="M:OpenCvSharp.XPhoto.CvXPhoto.OilPainting(OpenCvSharp.InputArray,OpenCvSharp.OutputArray,System.Int32,System.Int32,System.Int32)">
+        <member name="M:OpenCvSharp.XPhoto.CvXPhoto.OilPainting(OpenCvSharp.InputArray,OpenCvSharp.OutputArray,System.Int32,System.Int32,OpenCvSharp.ColorConversionCodes)">
             <summary>
             oilPainting.
             See the book @cite Holzmann1988 for details.
@@ -33296,16 +33906,6 @@
             <param name="size">neighbouring size is 2-size+1</param>
             <param name="dynRatio">image is divided by dynRatio before histogram processing</param>
             <param name="code">color space conversion code(see ColorConversionCodes). Histogram will used only first plane</param>
-        </member>
-        <member name="M:OpenCvSharp.XPhoto.CvXPhoto.OilPainting(OpenCvSharp.InputArray,OpenCvSharp.OutputArray,System.Int32,System.Int32)">
-            <summary>
-            oilPainting.
-            See the book @cite Holzmann1988 for details.
-            </summary>
-            <param name="src">Input three-channel or one channel image (either CV_8UC3 or CV_8UC1)</param>
-            <param name="dst">Output image of the same size and type as src.</param>
-            <param name="size">neighbouring size is 2-size+1</param>
-            <param name="dynRatio">image is divided by dynRatio before histogram processing</param>
         </member>
         <member name="T:OpenCvSharp.XPhoto.Bm3dSteps">
             <summary>
@@ -33480,6 +34080,63 @@
             </summary>
             <param name="src">Input image</param>
             <param name="dst">White balancing result</param>
+        </member>
+        <member name="T:OpenCvSharp.XPhoto.TonemapDurand">
+             <summary>
+             This algorithm decomposes image into two layers: base layer and detail layer using bilateral filter
+             and compresses contrast of the base layer thus preserving all the details.
+            
+             This implementation uses regular bilateral filter from OpenCV.
+            
+             Saturation enhancement is possible as in cv::TonemapDrago.
+            
+             For more information see @cite DD02 .
+             </summary>
+        </member>
+        <member name="M:OpenCvSharp.XPhoto.TonemapDurand.#ctor(System.IntPtr)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.XPhoto.TonemapDurand.Create(System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Creates TonemapDurand object
+            </summary>
+            <param name="gamma">positive value for gamma correction. Gamma value of 1.0 implies no correction, gamma
+            equal to 2.2f is suitable for most displays.
+            Generally gamma &gt; 1 brightens the image and gamma &lt; 1 darkens it.</param>
+            <param name="contrast">resulting contrast on logarithmic scale, i. e. log(max / min), where max and min</param>
+            <param name="saturation">positive saturation enhancement value. 1.0 preserves saturation, values greater 
+            than 1 increase saturation and values less than 1 decrease it.</param>
+            <param name="sigmaSpace">bilateral filter sigma in coordinate space</param>
+            <param name="sigmaColor">bilateral filter sigma in color space</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.XPhoto.TonemapDurand.DisposeManaged">
+            <summary>
+            Releases managed resources
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.XPhoto.TonemapDurand.Saturation">
+            <summary>
+            Gets or sets positive saturation enhancement value. 1.0 preserves saturation, values greater 
+            than 1 increase saturation and values less than 1 decrease it.
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.XPhoto.TonemapDurand.Contrast">
+            <summary>
+            Gets or sets resulting contrast on logarithmic scale, i. e. log(max / min), where max and min
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.XPhoto.TonemapDurand.SigmaSpace">
+            <summary>
+            Gets or sets bilateral filter sigma in coordinate space
+            </summary>
+        </member>
+        <member name="P:OpenCvSharp.XPhoto.TonemapDurand.SigmaColor">
+            <summary>
+            Gets or sets bilateral filter sigma in color space
+            </summary>
         </member>
         <member name="T:OpenCvSharp.XPhoto.WhiteBalancer">
             <summary>
@@ -33707,13 +34364,6 @@
             
             </summary>
         </member>
-        <member name="M:OpenCvSharp.Util.ArrayAddress1`1.op_Implicit(OpenCvSharp.Util.ArrayAddress1{`0})~System.IntPtr">
-            <summary>
-            
-            </summary>
-            <param name="self"></param>
-            <returns></returns>
-        </member>
         <member name="P:OpenCvSharp.Util.ArrayAddress1`1.Length">
             <summary>
             
@@ -33742,26 +34392,16 @@
             Releases unmanaged resources
             </summary>
         </member>
-        <member name="P:OpenCvSharp.Util.ArrayAddress2`1.Pointer">
+        <member name="M:OpenCvSharp.Util.ArrayAddress2`1.GetPointer">
             <summary>
-            
             </summary>
         </member>
-        <member name="M:OpenCvSharp.Util.ArrayAddress2`1.op_Implicit(OpenCvSharp.Util.ArrayAddress2{`0})~System.IntPtr[]">
-            <summary>
-            
-            </summary>
-            <param name="self"></param>
-            <returns></returns>
-        </member>
-        <member name="P:OpenCvSharp.Util.ArrayAddress2`1.Dim1Length">
-            <summary>
-            
+        <member name="M:OpenCvSharp.Util.ArrayAddress2`1.GetDim1Length">
+            <summary> 
             </summary>
         </member>
-        <member name="P:OpenCvSharp.Util.ArrayAddress2`1.Dim2Lengths">
-            <summary>
-            
+        <member name="M:OpenCvSharp.Util.ArrayAddress2`1.GetDim2Lengths">
+            <summary> 
             </summary>
         </member>
         <member name="T:OpenCvSharp.Util.DynamicInvoker`1">
@@ -33869,6 +34509,44 @@
             <summary>
             Runtime type
             </summary>
+        </member>
+        <member name="T:OpenCvSharp.Util.ReadOnlyArray2D`1">
+            <summary>
+            Readonly rectangular array (T[,])
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:OpenCvSharp.Util.ReadOnlyArray2D`1.#ctor(`0[0:,0:])">
+            <summary>
+            Constructor
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="P:OpenCvSharp.Util.ReadOnlyArray2D`1.Item(System.Int32,System.Int32)">
+            <summary>
+            Indexer
+            </summary>
+            <param name="index0"></param>
+            <param name="index1"></param>
+            <returns></returns>
+        </member>
+        <member name="P:OpenCvSharp.Util.ReadOnlyArray2D`1.Length">
+            <summary>
+            Gets the total number of elements in all the dimensions of the System.Array.
+            </summary>
+        </member>
+        <member name="M:OpenCvSharp.Util.ReadOnlyArray2D`1.GetLength(System.Int32)">
+            <summary>
+            Gets a 32-bit integer that represents the number of elements in the specified dimension of the System.Array.
+            </summary>
+            <param name="dimension"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenCvSharp.Util.ReadOnlyArray2D`1.GetBuffer">
+            <summary>
+            Returns internal buffer
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:OpenCvSharp.Util.ScopedGCHandle">
             <summary>
@@ -35369,17 +36047,17 @@
             Releases unmanaged resources
             </summary>
         </member>
-        <member name="P:OpenCvSharp.VectorOfVectorFloat.Size1">
+        <member name="M:OpenCvSharp.VectorOfVectorFloat.GetSize1">
             <summary>
             vector.size()
             </summary>
         </member>
         <member name="P:OpenCvSharp.VectorOfVectorFloat.Size">
             <summary>
-            
+            vector.size()
             </summary>
         </member>
-        <member name="P:OpenCvSharp.VectorOfVectorFloat.Size2">
+        <member name="M:OpenCvSharp.VectorOfVectorFloat.GetSize2">
             <summary>
             vector[i].size()
             </summary>
@@ -35416,17 +36094,17 @@
             Releases unmanaged resources
             </summary>
         </member>
-        <member name="P:OpenCvSharp.VectorOfVectorInt.Size1">
+        <member name="M:OpenCvSharp.VectorOfVectorInt.GetSize1">
             <summary>
             vector.size()
             </summary>
         </member>
         <member name="P:OpenCvSharp.VectorOfVectorInt.Size">
             <summary>
-            
+            vector.size()
             </summary>
         </member>
-        <member name="P:OpenCvSharp.VectorOfVectorInt.Size2">
+        <member name="M:OpenCvSharp.VectorOfVectorInt.GetSize2">
             <summary>
             vector[i].size()
             </summary>
