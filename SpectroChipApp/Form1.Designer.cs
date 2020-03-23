@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnStart = new System.Windows.Forms.Button();
@@ -264,7 +264,7 @@
             // 
             // p2
             // 
-            this.p2.Location = new System.Drawing.Point(700, 104);
+            this.p2.Location = new System.Drawing.Point(764, 104);
             this.p2.Name = "p2";
             this.p2.Size = new System.Drawing.Size(58, 22);
             this.p2.TabIndex = 13;
@@ -272,15 +272,16 @@
             // 
             // p1
             // 
-            this.p1.Location = new System.Drawing.Point(700, 76);
+            this.p1.Location = new System.Drawing.Point(764, 76);
             this.p1.Name = "p1";
             this.p1.Size = new System.Drawing.Size(58, 22);
             this.p1.TabIndex = 14;
             this.p1.Text = "231.5";
+            this.p1.TextChanged += new System.EventHandler(this.p1_TextChanged);
             // 
             // p3
             // 
-            this.p3.Location = new System.Drawing.Point(700, 132);
+            this.p3.Location = new System.Drawing.Point(764, 132);
             this.p3.Name = "p3";
             this.p3.Size = new System.Drawing.Size(58, 22);
             this.p3.TabIndex = 15;
@@ -288,7 +289,7 @@
             // 
             // p4
             // 
-            this.p4.Location = new System.Drawing.Point(700, 160);
+            this.p4.Location = new System.Drawing.Point(764, 160);
             this.p4.Name = "p4";
             this.p4.Size = new System.Drawing.Size(58, 22);
             this.p4.TabIndex = 16;
@@ -296,7 +297,7 @@
             // 
             // p5
             // 
-            this.p5.Location = new System.Drawing.Point(700, 188);
+            this.p5.Location = new System.Drawing.Point(764, 188);
             this.p5.Name = "p5";
             this.p5.Size = new System.Drawing.Size(58, 22);
             this.p5.TabIndex = 17;
@@ -304,7 +305,7 @@
             // 
             // p6
             // 
-            this.p6.Location = new System.Drawing.Point(873, 76);
+            this.p6.Location = new System.Drawing.Point(945, 77);
             this.p6.Name = "p6";
             this.p6.Size = new System.Drawing.Size(58, 22);
             this.p6.TabIndex = 18;
@@ -312,7 +313,7 @@
             // 
             // p7
             // 
-            this.p7.Location = new System.Drawing.Point(873, 104);
+            this.p7.Location = new System.Drawing.Point(945, 105);
             this.p7.Name = "p7";
             this.p7.Size = new System.Drawing.Size(58, 22);
             this.p7.TabIndex = 19;
@@ -320,7 +321,7 @@
             // 
             // p8
             // 
-            this.p8.Location = new System.Drawing.Point(873, 132);
+            this.p8.Location = new System.Drawing.Point(945, 133);
             this.p8.Name = "p8";
             this.p8.Size = new System.Drawing.Size(58, 22);
             this.p8.TabIndex = 20;
@@ -328,21 +329,21 @@
             // 
             // p9
             // 
-            this.p9.Location = new System.Drawing.Point(873, 160);
+            this.p9.Location = new System.Drawing.Point(945, 161);
             this.p9.Name = "p9";
             this.p9.Size = new System.Drawing.Size(58, 22);
             this.p9.TabIndex = 21;
             // 
             // p10
             // 
-            this.p10.Location = new System.Drawing.Point(873, 188);
+            this.p10.Location = new System.Drawing.Point(945, 189);
             this.p10.Name = "p10";
             this.p10.Size = new System.Drawing.Size(58, 22);
             this.p10.TabIndex = 22;
             // 
             // w1
             // 
-            this.w1.Location = new System.Drawing.Point(763, 76);
+            this.w1.Location = new System.Drawing.Point(700, 77);
             this.w1.Name = "w1";
             this.w1.Size = new System.Drawing.Size(58, 22);
             this.w1.TabIndex = 23;
@@ -350,7 +351,7 @@
             // 
             // w2
             // 
-            this.w2.Location = new System.Drawing.Point(763, 104);
+            this.w2.Location = new System.Drawing.Point(700, 105);
             this.w2.Name = "w2";
             this.w2.Size = new System.Drawing.Size(58, 22);
             this.w2.TabIndex = 24;
@@ -358,7 +359,7 @@
             // 
             // w3
             // 
-            this.w3.Location = new System.Drawing.Point(763, 132);
+            this.w3.Location = new System.Drawing.Point(700, 133);
             this.w3.Name = "w3";
             this.w3.Size = new System.Drawing.Size(58, 22);
             this.w3.TabIndex = 25;
@@ -366,7 +367,7 @@
             // 
             // w4
             // 
-            this.w4.Location = new System.Drawing.Point(763, 160);
+            this.w4.Location = new System.Drawing.Point(700, 161);
             this.w4.Name = "w4";
             this.w4.Size = new System.Drawing.Size(58, 22);
             this.w4.TabIndex = 26;
@@ -374,7 +375,7 @@
             // 
             // w5
             // 
-            this.w5.Location = new System.Drawing.Point(763, 188);
+            this.w5.Location = new System.Drawing.Point(700, 189);
             this.w5.Name = "w5";
             this.w5.Size = new System.Drawing.Size(58, 22);
             this.w5.TabIndex = 27;
@@ -382,7 +383,7 @@
             // 
             // w6
             // 
-            this.w6.Location = new System.Drawing.Point(936, 76);
+            this.w6.Location = new System.Drawing.Point(877, 76);
             this.w6.Name = "w6";
             this.w6.Size = new System.Drawing.Size(58, 22);
             this.w6.TabIndex = 28;
@@ -390,7 +391,7 @@
             // 
             // w7
             // 
-            this.w7.Location = new System.Drawing.Point(936, 104);
+            this.w7.Location = new System.Drawing.Point(877, 104);
             this.w7.Name = "w7";
             this.w7.Size = new System.Drawing.Size(58, 22);
             this.w7.TabIndex = 29;
@@ -398,7 +399,7 @@
             // 
             // w8
             // 
-            this.w8.Location = new System.Drawing.Point(936, 132);
+            this.w8.Location = new System.Drawing.Point(877, 132);
             this.w8.Name = "w8";
             this.w8.Size = new System.Drawing.Size(58, 22);
             this.w8.TabIndex = 30;
@@ -406,14 +407,14 @@
             // 
             // w9
             // 
-            this.w9.Location = new System.Drawing.Point(936, 160);
+            this.w9.Location = new System.Drawing.Point(877, 160);
             this.w9.Name = "w9";
             this.w9.Size = new System.Drawing.Size(58, 22);
             this.w9.TabIndex = 31;
             // 
             // w10
             // 
-            this.w10.Location = new System.Drawing.Point(936, 188);
+            this.w10.Location = new System.Drawing.Point(877, 188);
             this.w10.Name = "w10";
             this.w10.Size = new System.Drawing.Size(58, 22);
             this.w10.TabIndex = 32;
@@ -522,7 +523,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label16.Location = new System.Drawing.Point(707, 49);
+            this.label16.Location = new System.Drawing.Point(771, 49);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(51, 24);
             this.label16.TabIndex = 43;
@@ -532,7 +533,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label17.Location = new System.Drawing.Point(869, 49);
+            this.label17.Location = new System.Drawing.Point(941, 50);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(51, 24);
             this.label17.TabIndex = 44;
@@ -542,7 +543,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label18.Location = new System.Drawing.Point(759, 49);
+            this.label18.Location = new System.Drawing.Point(696, 50);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(62, 24);
             this.label18.TabIndex = 45;
@@ -552,7 +553,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label19.Location = new System.Drawing.Point(932, 49);
+            this.label19.Location = new System.Drawing.Point(873, 49);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(62, 24);
             this.label19.TabIndex = 46;
@@ -594,28 +595,28 @@
             // 
             // chart1
             // 
-            chartArea7.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea7);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Location = new System.Drawing.Point(665, 600);
             this.chart1.Name = "chart1";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series7.Name = "Series1";
-            this.chart1.Series.Add(series7);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(346, 317);
             this.chart1.TabIndex = 50;
             this.chart1.Text = "chart1";
             // 
             // chart2
             // 
-            chartArea8.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea8);
+            chartArea2.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea2);
             this.chart2.Location = new System.Drawing.Point(1044, 12);
             this.chart2.Name = "chart2";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series8.Name = "Series1";
-            this.chart2.Series.Add(series8);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series2.Name = "Series1";
+            this.chart2.Series.Add(series2);
             this.chart2.Size = new System.Drawing.Size(468, 434);
             this.chart2.TabIndex = 51;
             this.chart2.Text = "chart2";
@@ -691,14 +692,14 @@
             // 
             this.chart3.BorderSkin.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chart3.BorderSkin.PageColor = System.Drawing.Color.Black;
-            chartArea9.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea9);
+            chartArea3.Name = "ChartArea1";
+            this.chart3.ChartAreas.Add(chartArea3);
             this.chart3.Location = new System.Drawing.Point(1044, 483);
             this.chart3.Name = "chart3";
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series9.Name = "Series1";
-            this.chart3.Series.Add(series9);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series3.Name = "Series1";
+            this.chart3.Series.Add(series3);
             this.chart3.Size = new System.Drawing.Size(468, 434);
             this.chart3.TabIndex = 59;
             this.chart3.Text = "chart3";
@@ -982,8 +983,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(1535, 779);
+            this.ClientSize = new System.Drawing.Size(1535, 942);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.FPSlabel);
             this.Controls.Add(this.checkBox5);

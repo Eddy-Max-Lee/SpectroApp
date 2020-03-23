@@ -33,6 +33,7 @@ namespace SpectroChipApp
         public double Exp = 1511;
         public double Ag = 0;
         public double Dg = 32;
+        public double Fps = 0.0;
 
         private bool isgoUpMouseDown = false;
         private bool isgoDownMouseDown = false;
@@ -80,6 +81,7 @@ namespace SpectroChipApp
 
             capture.FrameHeight = 1280;
             capture.FrameWidth = 1920;
+
             
             
 
@@ -129,7 +131,14 @@ namespace SpectroChipApp
                     this.Invoke(new Action(() =>
                     {
                         displayRoiSensorView(image_roi_for_gray);
+                        
                         //DisplayRoiCalibratedView(image_roi_for_cali);
+                    }));
+
+                    this.Invoke(new Action(() =>
+                    {
+                   //     Fps = capture.Get(5);
+                     //   FPSlabel.Text = (Fps*10000).ToString()+" fps";
                     }));
 
                     Thread.Sleep(300);//加了比較順
@@ -526,6 +535,7 @@ namespace SpectroChipApp
             //this.panel1.BackColor = Color.Transparent;//将Panel设为透明
             //this.panel1.Parent = this.Fine_pic;//将panel父控件设为背景图片控件
             //this.panel1.BringToFront();//将panel放在前面
+  
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -1193,6 +1203,14 @@ namespace SpectroChipApp
 
         }
 
+        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
 
+        }
+
+        private void p1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
