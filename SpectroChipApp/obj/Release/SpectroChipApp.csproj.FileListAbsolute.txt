@@ -66,3 +66,41 @@ C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\x86\nmath_sf_x86.dll
 C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\Microsoft.Solver.Foundation.dll
 C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\NMathPremium.dll
 C:\SpectroChip Lab\SpectroApp\SpectroChipApp\bin\Release\NMathPremium.xml
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\obj\Release\SpectroChipApp.csprojAssemblyReference.cache
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\obj\Release\SpectroChipApp.Form1.resources
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\obj\Release\SpectroChipApp.Properties.Resources.resources
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\obj\Release\SpectroChipApp.csproj.GenerateResource.cache
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\dll\x86\OpenCvSharpExtern.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\dll\x86\opencv_videoio_ffmpeg420.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\dll\x64\OpenCvSharpExtern.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\dll\x64\opencv_videoio_ffmpeg420_64.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\x64\cublas64_75.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\x64\cudart64_75.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\x64\cufft64_75.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\x64\culapack.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\x64\libiomp5md.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\x64\NMathPremiumKernelx64.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\x64\nmath_cuda_x64.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\x64\nmath_premium_native_x64.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\x64\nmath_sf_x64.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\x86\libiomp5md.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\x86\NMathPremiumKernelx86.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\x86\nmath_premium_native_x86.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\x86\nmath_sf_x86.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\SpectroChipApp.exe.config
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\SpectroChipApp.exe
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\SpectroChipApp.pdb
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\MathNet.Numerics.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\Microsoft.Solver.Foundation.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\NMathPremium.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\OpenCvSharp.Blob.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\OpenCvSharp.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\OpenCvSharp.Extensions.dll
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\MathNet.Numerics.xml
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\NMathPremium.xml
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\OpenCvSharp.xml
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\OpenCvSharp.Blob.xml
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\OpenCvSharp.Extensions.xml
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\obj\Release\SpectroChipApp.csproj.CopyComplete
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\obj\Release\SpectroChipApp.exe
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\obj\Release\SpectroChipApp.pdb
