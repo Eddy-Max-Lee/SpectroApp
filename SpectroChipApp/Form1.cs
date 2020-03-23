@@ -13,6 +13,7 @@ using System.Windows.Forms;
 
 namespace SpectroChipApp
 {
+
     public partial class Form1 : Form
     {
         // Create class-level accesible variables  取roi用
