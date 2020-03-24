@@ -28,6 +28,10 @@ namespace SpectroChipApp
         public int y = 200;
         public int w = 640;
         public int h = 30;
+        public int x_chart = 0;
+        public int y_chart= 200;
+        public int w_chart = 640;
+        public int h_chart = 30;
         public int X_Start = 0;
         public int Y_Start = 0;
         public double Exp = 1511;
@@ -393,7 +397,64 @@ namespace SpectroChipApp
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series("擬和函數", 1000);
             series1.Points.AddXY(0, 0);
         }
+        private void Read_TextBox_chart() {
+            if (WtextBox_chart.Text != "0" && HtextBox_chart.Text != "0")
+            {
 
+                x_chart = int.Parse(XtextBox_chart.Text, CultureInfo.InvariantCulture.NumberFormat);
+                y_chart = int.Parse(YtextBox_chart.Text, CultureInfo.InvariantCulture.NumberFormat);
+                w_chart = int.Parse(WtextBox_chart.Text, CultureInfo.InvariantCulture.NumberFormat);
+                h_chart = int.Parse(HtextBox_chart.Text, CultureInfo.InvariantCulture.NumberFormat);
+              
+                /*
+                if (x_chart + w_chart > capture.FrameWidth)
+                {
+                    if (w_chart > capture.FrameWidth)
+                    {
+                        w_chart = capture.FrameWidth;
+                        x_chart = 0;
+                    }
+                    else
+                    {
+                        x_chart = capture.FrameWidth - w_chart;
+                    }
+                    this.XtextBox_chart.Text = x_chart.ToString();
+                    this.WtextBox_chart.Text = w_chart.ToString();
+                }
+
+                if (y_chart + h_chart > capture.FrameHeight)
+                {
+                    if (h_chart > capture.FrameHeight)
+                    {
+                        h_chart = capture.FrameHeight;
+                        y_chart = 0;
+                    }
+                    else
+                    {
+                        y_chart = capture.FrameHeight - h_chart;
+                    }
+                    this.YtextBox_chart.Text = y_chart.ToString();
+                    this.HtextBox_chart.Text = h_chart.ToString();
+                }
+                */
+                //this.WtextBox.Text = w.ToString();
+                // this.HtextBox.Text = h.ToString();
+            }
+            else
+            {
+                XtextBox_chart.Text = "0";
+                YtextBox_chart.Text = "200";
+                WtextBox_chart.Text = "640";
+                HtextBox_chart.Text = "30";
+                x_chart = 0;
+                y_chart = 200;
+                w_chart = 640;
+                h_chart = 30;
+                
+                MessageBox.Show("請選擇有效的區間");
+      
+            }
+        }
         private void Read_TextBox()
         {
             if (WtextBox.Text != "0" && HtextBox.Text != "0")
@@ -495,6 +556,18 @@ namespace SpectroChipApp
 
             // Create rectangle.
             Rectangle rect = new Rectangle(x, y, w, h);
+
+            // Draw rectangle to screen.
+            e.Graphics.DrawRectangle(bluePen, rect);
+        }
+
+        private void DrawFixRectangle_chart(PaintEventArgs e) //先用全域的xywh
+        {
+            // Create pen.
+            Pen bluePen = new Pen(Color.Blue, 5);
+
+            // Create rectangle.
+            Rectangle rect = new Rectangle(x_chart, y_chart, w_chart, h_chart);
 
             // Draw rectangle to screen.
             e.Graphics.DrawRectangle(bluePen, rect);
@@ -1211,6 +1284,72 @@ namespace SpectroChipApp
         private void p1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void chart2_Paint(object sender, PaintEventArgs e)
+        {
+            DrawFixRectangle_chart(e);
+        }
+
+        private void chart2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chart2_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (mouseIsDown == false)//點第一下
+            {
+                DrawStart(e.Location);
+
+                if (e.X < 30)//X的右邊判斷跟照片大小FrameWidth有關 等SUNPLUS
+                {
+                    X_Start = 0;
+                }
+                else
+                {
+                    X_Start = e.X;
+                }
+
+                Y_Start = e.Y;
+
+                XtextBox_chart.Text = Convert.ToString(X_Start);
+                YtextBox_chart.Text = Convert.ToString(Y_Start);
+
+                mouseIsDown = true;
+            }
+            else//點第二下
+            {
+                Capture = false;
+
+                WtextBox_chart.Text = Convert.ToString(Math.Abs(e.X - X_Start));
+                HtextBox_chart.Text = Convert.ToString(Math.Abs(e.Y - Y_Start));
+
+                if (e.X >= X_Start && e.Y >= Y_Start)//左上->右下
+                {
+                }
+                if (e.X >= X_Start && e.Y <= Y_Start)//
+                {
+                    YtextBox_chart.Text = Convert.ToString(e.Y);
+                }
+                if (e.X <= X_Start && e.Y >= Y_Start)//不正常情況
+                {
+                    XtextBox_chart.Text = Convert.ToString(e.X);
+                }
+                if (e.X <= X_Start && e.Y <= Y_Start)//不正常情況
+                {
+                    XtextBox_chart.Text = Convert.ToString(e.X);
+                    YtextBox_chart.Text = Convert.ToString(e.Y);
+                }
+
+                Cursor.Clip = Rectangle.Empty;
+                mouseIsDown = false;
+                DrawRectangle();
+                //mouseRect = Rectangle.Empty;
+                
+                  Read_TextBox_chart();
+                //DrawFixRectangle();
+            }
         }
     }
 }

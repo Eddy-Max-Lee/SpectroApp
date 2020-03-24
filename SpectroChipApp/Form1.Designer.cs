@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnStart = new System.Windows.Forms.Button();
@@ -118,6 +118,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.DGtextBox = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.XtextBox_chart = new System.Windows.Forms.TextBox();
+            this.YtextBox_chart = new System.Windows.Forms.TextBox();
+            this.WtextBox_chart = new System.Windows.Forms.TextBox();
+            this.HtextBox_chart = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updn_power)).BeginInit();
@@ -595,31 +600,34 @@
             // 
             // chart1
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
+            chartArea7.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea7);
             this.chart1.Location = new System.Drawing.Point(665, 600);
             this.chart1.Name = "chart1";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series4.Name = "Series1";
-            this.chart1.Series.Add(series4);
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series7.Name = "Series1";
+            this.chart1.Series.Add(series7);
             this.chart1.Size = new System.Drawing.Size(346, 317);
             this.chart1.TabIndex = 50;
             this.chart1.Text = "chart1";
             // 
             // chart2
             // 
-            chartArea5.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea5);
+            chartArea8.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea8);
             this.chart2.Location = new System.Drawing.Point(1044, 12);
             this.chart2.Name = "chart2";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series5.Name = "Series1";
-            this.chart2.Series.Add(series5);
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series8.Name = "Series1";
+            this.chart2.Series.Add(series8);
             this.chart2.Size = new System.Drawing.Size(468, 434);
             this.chart2.TabIndex = 51;
             this.chart2.Text = "chart2";
+            this.chart2.Click += new System.EventHandler(this.chart2_Click);
+            this.chart2.Paint += new System.Windows.Forms.PaintEventHandler(this.chart2_Paint);
+            this.chart2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.chart2_MouseDown);
             // 
             // checkBox1
             // 
@@ -692,14 +700,14 @@
             // 
             this.chart3.BorderSkin.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chart3.BorderSkin.PageColor = System.Drawing.Color.Black;
-            chartArea6.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea6);
+            chartArea9.Name = "ChartArea1";
+            this.chart3.ChartAreas.Add(chartArea9);
             this.chart3.Location = new System.Drawing.Point(1044, 483);
             this.chart3.Name = "chart3";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series6.Name = "Series1";
-            this.chart3.Series.Add(series6);
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series9.Name = "Series1";
+            this.chart3.Series.Add(series9);
             this.chart3.Size = new System.Drawing.Size(468, 434);
             this.chart3.TabIndex = 59;
             this.chart3.Text = "chart3";
@@ -979,13 +987,58 @@
             this.DGtextBox.TabIndex = 73;
             this.DGtextBox.Text = "1";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // XtextBox_chart
+            // 
+            this.XtextBox_chart.Location = new System.Drawing.Point(1518, 139);
+            this.XtextBox_chart.Name = "XtextBox_chart";
+            this.XtextBox_chart.ReadOnly = true;
+            this.XtextBox_chart.Size = new System.Drawing.Size(64, 22);
+            this.XtextBox_chart.TabIndex = 74;
+            this.XtextBox_chart.Text = "0";
+            // 
+            // YtextBox_chart
+            // 
+            this.YtextBox_chart.Location = new System.Drawing.Point(1518, 194);
+            this.YtextBox_chart.Name = "YtextBox_chart";
+            this.YtextBox_chart.ReadOnly = true;
+            this.YtextBox_chart.Size = new System.Drawing.Size(64, 22);
+            this.YtextBox_chart.TabIndex = 75;
+            this.YtextBox_chart.Text = "200";
+            // 
+            // WtextBox_chart
+            // 
+            this.WtextBox_chart.Location = new System.Drawing.Point(1518, 242);
+            this.WtextBox_chart.Name = "WtextBox_chart";
+            this.WtextBox_chart.ReadOnly = true;
+            this.WtextBox_chart.Size = new System.Drawing.Size(64, 22);
+            this.WtextBox_chart.TabIndex = 76;
+            this.WtextBox_chart.Text = "20";
+            // 
+            // HtextBox_chart
+            // 
+            this.HtextBox_chart.Location = new System.Drawing.Point(1517, 294);
+            this.HtextBox_chart.Name = "HtextBox_chart";
+            this.HtextBox_chart.ReadOnly = true;
+            this.HtextBox_chart.Size = new System.Drawing.Size(64, 22);
+            this.HtextBox_chart.TabIndex = 77;
+            this.HtextBox_chart.Text = "30";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(1535, 942);
+            this.ClientSize = new System.Drawing.Size(1593, 942);
+            this.Controls.Add(this.HtextBox_chart);
+            this.Controls.Add(this.WtextBox_chart);
+            this.Controls.Add(this.YtextBox_chart);
+            this.Controls.Add(this.XtextBox_chart);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.FPSlabel);
             this.Controls.Add(this.checkBox5);
@@ -1159,6 +1212,11 @@
         private System.Windows.Forms.TrackBar trackBar2;
         private System.Windows.Forms.TextBox DGtextBox;
         private System.Windows.Forms.Button RESETbutton;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.TextBox XtextBox_chart;
+        private System.Windows.Forms.TextBox YtextBox_chart;
+        private System.Windows.Forms.TextBox WtextBox_chart;
+        private System.Windows.Forms.TextBox HtextBox_chart;
     }
 }
 
