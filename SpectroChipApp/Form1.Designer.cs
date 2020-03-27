@@ -219,7 +219,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(19, 29);
+            this.label2.Location = new System.Drawing.Point(17, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 15);
             this.label2.TabIndex = 8;
@@ -239,12 +239,13 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label4.Location = new System.Drawing.Point(19, 68);
+            this.label4.Location = new System.Drawing.Point(17, 68);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(102, 15);
             this.label4.TabIndex = 10;
             this.label4.Text = "水平寬度(W):";
             this.label4.Click += new System.EventHandler(this.label4_Click);
+            this.label4.DoubleClick += new System.EventHandler(this.label4_DoubleClick);
             // 
             // label5
             // 
@@ -876,13 +877,13 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.LightGray;
+            this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.XtextBox);
             this.tabPage1.Controls.Add(this.YtextBox);
             this.tabPage1.Controls.Add(this.HtextBox);
             this.tabPage1.Controls.Add(this.WtextBox);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);

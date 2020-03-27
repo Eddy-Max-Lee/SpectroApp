@@ -135,7 +135,7 @@ namespace SpectroChipApp
 
                     this.Invoke(new Action(() =>
                     {
-                        displayRoiSensorView(image_roi_for_gray, x, x+w);
+                        displayRoiSensorView(image_roi_for_gray, x,x+w);
                         
                         //DisplayRoiCalibratedView(image_roi_for_cali);
                     }));
@@ -226,16 +226,19 @@ namespace SpectroChipApp
 
            var IntensityGau = Gaussian(IntensitySG, Pixel_x, 3);
 
+            double WL_x;
+            double WL_x_min;
+            double WL_x_max;
+
             for (Pixel_x = 0; Pixel_x < W; Pixel_x++)
             {
-                double WL_x = 0;
-                double WL_x_max = 0;
+
                 // int k = 0;
 
-                WL_x_max = parameter_buffer[4] * (Math.Pow(W - 1, 4)) + parameter_buffer[3] * (Math.Pow(W - 1, 3)) + parameter_buffer[2] * (Math.Pow(W - 1, 2)) + parameter_buffer[1] * W - 1 + parameter_buffer[0];
+                //WL_x_max = parameter_buffer[4] * (Math.Pow(W - 1, 4)) + parameter_buffer[3] * (Math.Pow(W - 1, 3)) + parameter_buffer[2] * (Math.Pow(W - 1, 2)) + parameter_buffer[1] * W - 1 + parameter_buffer[0];
                 //this.chart3.BackColor = Color.Black;
                 //this.chart1.ChartAreas[0].AxisX.Interval = 5;
-                this.chart3.ChartAreas[0].AxisY.Minimum = 0;
+                //this.chart3.ChartAreas[0].AxisY.Minimum = 0;
                 //this.chart3.ChartAreas[0].AxisX.Minimum = 0;
                 // this.chart3.ChartAreas[0].AxisX.Maximum = Math.Ceiling(WL_x_max); //<一定要改<--
 
@@ -243,12 +246,19 @@ namespace SpectroChipApp
                 seriesClb.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                 seriesClb.Color = Color.Brown;
 
-                WL_x = Math.Round(parameter_buffer[4] * (Math.Pow(Pixel_x, 4)) + parameter_buffer[3] * (Math.Pow(Pixel_x, 3)) + parameter_buffer[2] * (Math.Pow(Pixel_x, 2)) + parameter_buffer[1] * Pixel_x + parameter_buffer[0], 2);
-
+                WL_x = Math.Round(parameter_buffer[4] * (Math.Pow(Pixel_x+start_pixel, 4)) + parameter_buffer[3] * (Math.Pow(Pixel_x + start_pixel, 3)) + parameter_buffer[2] * (Math.Pow(Pixel_x + start_pixel, 2)) + parameter_buffer[1] * (Pixel_x + start_pixel )+ parameter_buffer[0], 2);
+                WL_x_min = Math.Round(parameter_buffer[4] * (Math.Pow(start_pixel, 4)) + parameter_buffer[3] * (Math.Pow(start_pixel, 3)) + parameter_buffer[2] * (Math.Pow( start_pixel, 2)) + parameter_buffer[1] * (start_pixel) + parameter_buffer[0], 2);
+                WL_x_max = Math.Round(parameter_buffer[4] * (Math.Pow(W + start_pixel, 4)) + parameter_buffer[3] * (Math.Pow(W + start_pixel, 3)) + parameter_buffer[2] * (Math.Pow(W + start_pixel, 2)) + parameter_buffer[1] * (W + start_pixel) + parameter_buffer[0], 2);
                 //設定座標大小
                 this.chart2.ChartAreas[0].AxisY.Minimum = 0;
-                this.chart2.ChartAreas[0].AxisX.Minimum = 0;
-                this.chart2.ChartAreas[0].AxisX.Maximum = W;
+                this.chart2.ChartAreas[0].AxisY.Maximum = 300;
+                this.chart2.ChartAreas[0].AxisX.Minimum = start_pixel;
+                this.chart2.ChartAreas[0].AxisX.Maximum = end_pixel;
+
+                this.chart3.ChartAreas[0].AxisY.Minimum = 0;
+                this.chart3.ChartAreas[0].AxisY.Maximum = 300;
+                this.chart3.ChartAreas[0].AxisX.Minimum = WL_x_min;
+                this.chart3.ChartAreas[0].AxisX.Maximum = WL_x_max;
 
                 //設定標題
 
@@ -266,13 +276,13 @@ namespace SpectroChipApp
                 seriesSG1.Color = Color.Orange;
                 seriesGau.Color = Color.Pink;
 
-                seriesRed.Points.AddXY(Pixel_x, IntensityRed[Pixel_x]);
-                seriesGreen.Points.AddXY(Pixel_x, IntensityGreen[Pixel_x]);
-                seriesBlue.Points.AddXY(Pixel_x, IntensityBlue[Pixel_x]);
-                seriesGray.Points.AddXY(Pixel_x, IntensityGray[Pixel_x]);
+                seriesRed.Points.AddXY(Pixel_x + start_pixel, IntensityRed[Pixel_x]);
+                seriesGreen.Points.AddXY(Pixel_x + start_pixel, IntensityGreen[Pixel_x]);
+                seriesBlue.Points.AddXY(Pixel_x + start_pixel, IntensityBlue[Pixel_x]);
+                seriesGray.Points.AddXY(Pixel_x + start_pixel, IntensityGray[Pixel_x]);
                 seriesClb.Points.AddXY(WL_x, IntensitySG[Pixel_x]);
-                seriesSG1.Points.AddXY(Pixel_x, IntensitySG[Pixel_x]);
-                seriesGau.Points.AddXY(Pixel_x, IntensityGau[Pixel_x]);
+                seriesSG1.Points.AddXY(Pixel_x + start_pixel, IntensitySG[Pixel_x]);
+                seriesGau.Points.AddXY(Pixel_x+start_pixel, IntensityGau[Pixel_x]);
 
                 seriesRed.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                 seriesGreen.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
@@ -1394,6 +1404,16 @@ namespace SpectroChipApp
                   Read_TextBox_chart();
                 //DrawFixRectangle();
             }
+        }
+
+        private void label4_DoubleClick(object sender, EventArgs e)
+        {
+#pragma warning disable CA1305 // 指定 IFormatProvider
+            this.WtextBox.Text = Convert.ToString(capture.FrameWidth);
+
+
+#pragma warning restore CA1305 // 指定 IFormatProvider
+            Read_TextBox();
         }
     }
 }
