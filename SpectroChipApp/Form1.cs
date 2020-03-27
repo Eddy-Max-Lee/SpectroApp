@@ -135,7 +135,7 @@ namespace SpectroChipApp
 
                     this.Invoke(new Action(() =>
                     {
-                        displayRoiSensorView(image_roi_for_gray);
+                        displayRoiSensorView(image_roi_for_gray, x, x+w);
                         
                         //DisplayRoiCalibratedView(image_roi_for_cali);
                     }));
@@ -159,7 +159,7 @@ namespace SpectroChipApp
 
         //---------------------------------宜運函數(首)---------------------
 
-        private void displayRoiSensorView(Bitmap input_image)//育代
+        private void displayRoiSensorView(Bitmap input_image,int start_pixel, int end_pixel)//育代
         {
             //this.chart2.Series.Clear();
 
