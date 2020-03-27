@@ -1,5 +1,6 @@
 ﻿using CenterSpace.NMath.Core;
 using MathNet.Numerics;//要裝，自己去youtube看怎麼裝
+using MathNet.Numerics.LinearAlgebra;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;         
 using System;
@@ -122,7 +123,7 @@ namespace SpectroChipApp
                     if (pictureBox1.Image != null)
                     {
                         pictureBox1.Image.Dispose();
-                    }
+                    } 
                     pictureBox1.Image = image;
 
                     if (pictureBox2.Image != null)
@@ -186,6 +187,7 @@ namespace SpectroChipApp
             System.Windows.Forms.DataVisualization.Charting.Series seriesGray = new System.Windows.Forms.DataVisualization.Charting.Series("灰階", 1000);
             System.Windows.Forms.DataVisualization.Charting.Series seriesClb = new System.Windows.Forms.DataVisualization.Charting.Series("波長校正", 1000);
             System.Windows.Forms.DataVisualization.Charting.Series seriesSG1 = new System.Windows.Forms.DataVisualization.Charting.Series("SG", 1000);
+            System.Windows.Forms.DataVisualization.Charting.Series seriesGau = new System.Windows.Forms.DataVisualization.Charting.Series("高斯", 1000);
             //Console.WriteLine("W:"+W);
 
             /*
@@ -221,6 +223,9 @@ namespace SpectroChipApp
             var sg = new DoubleVector(IntensityGray);
             var IntensitySG1 = sgf.Filter(sg);
             var IntensitySG = IntensitySG1.ToArray();
+
+           var IntensityGau = Gaussian(IntensitySG, Pixel_x, 3);
+
             for (Pixel_x = 0; Pixel_x < W; Pixel_x++)
             {
                 double WL_x = 0;
@@ -259,6 +264,7 @@ namespace SpectroChipApp
                 seriesBlue.Color = Color.Blue;
                 seriesGray.Color = Color.Gray;
                 seriesSG1.Color = Color.Orange;
+                seriesGau.Color = Color.Pink;
 
                 seriesRed.Points.AddXY(Pixel_x, IntensityRed[Pixel_x]);
                 seriesGreen.Points.AddXY(Pixel_x, IntensityGreen[Pixel_x]);
@@ -266,16 +272,20 @@ namespace SpectroChipApp
                 seriesGray.Points.AddXY(Pixel_x, IntensityGray[Pixel_x]);
                 seriesClb.Points.AddXY(WL_x, IntensitySG[Pixel_x]);
                 seriesSG1.Points.AddXY(Pixel_x, IntensitySG[Pixel_x]);
+                seriesGau.Points.AddXY(Pixel_x, IntensityGau[Pixel_x]);
 
                 seriesRed.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                 seriesGreen.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                 seriesBlue.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                 seriesGray.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                 seriesSG1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                seriesGau.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
 
                 this.chart2.Series.Clear();
                 this.chart3.Series.Clear();
                 this.chart3.Series.Add(seriesClb);
+
+                this.chart2.Series.Add(seriesGau);
 
                 if (checkBox1.Checked)
                     this.chart2.Series.Add(seriesRed);
@@ -360,6 +370,40 @@ namespace SpectroChipApp
               //pictureBox2.Image = im1;
           }*/
 
+
+       private double[] Gaussian(double[] IntensitySG, int fitDatasCount, int order)
+        {
+            double[,] a = new double[fitDatasCount, order];
+            double[] b = new double[fitDatasCount];
+            double[] X = new double[3] { 0, 0, 0 };
+            double[] Gausian_y = new double[fitDatasCount];
+            for (int i = 0; i < fitDatasCount; i++)
+            {
+                b[i] = Math.Log(IntensitySG[i]);
+                a[i, 0] = 1;
+                a[i, 1] =i;
+                a[i, 2] = a[i, 1] * a[i, 1];
+            }
+            // Matrix.Equation(datas.Count, 3, a, b, X);
+            Matrix<double> m = Matrix<double>.Build.Random(3, 4);
+            Matrix<double> matrixA =Matrix<double>.Build.DenseOfArray(a);
+            // Matrix<double> matrixB = new MathNet.Numerics.LinearAlgebra.Matrix<double>(b, b.Length);
+            Matrix<double> matrixB = Matrix<double>.Build.DenseOfColumnArrays(b);
+            MathNet.Numerics.LinearAlgebra.Matrix<double> matrixC = matrixA.Solve(matrixB);
+            for (int i = 0; i < 3; i++)
+            {
+                X[i] = matrixC.ToArray()[i, 0]; 
+            }
+            //X = matrixC.SubMatrix
+            double S = -1 / X[2];
+            double xMax = X[1] * S / 2.0; //最大值的index
+            double yMax = Math.Exp(X[0] + xMax * xMax / S);
+            for (int i = 0; i < fitDatasCount; i++)
+            {
+                Gausian_y[i] = yMax * Math.Exp(-Math.Pow((i - xMax),2)/S );
+             }
+            return Gausian_y;
+        }
         private void Load_SensorView_Chart()
         {
             //標題
