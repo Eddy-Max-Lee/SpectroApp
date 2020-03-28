@@ -34,6 +34,8 @@ namespace SpectroChipApp
         public int w_chart = 640;
         public int h_chart = 30;
         public int X_Start = 0;
+        public int X_Start_chart =0;
+        public int  X_End_chart = 0;
         public int Y_Start = 0;
         public double Exp = 1511;
         public double Ag = 0;
@@ -192,7 +194,7 @@ namespace SpectroChipApp
             System.Windows.Forms.DataVisualization.Charting.Series seriesSG1 = new System.Windows.Forms.DataVisualization.Charting.Series("SG", 1000);
             System.Windows.Forms.DataVisualization.Charting.Series seriesGau = new System.Windows.Forms.DataVisualization.Charting.Series("高斯", 1000);
             //Console.WriteLine("W:"+W);
-
+            //System.Windows.Forms.DataVisualization.Charting.Cursor CursorX = new System.Windows.Forms.DataVisualization.Charting.Cursor();
             /*
                for (k = 0; k < W; k++)
                {
@@ -630,14 +632,17 @@ namespace SpectroChipApp
         {
             // Create pen.
             Pen RedPen = new Pen(Color.Red, 5);
+            Pen GrayPen = new Pen(Color.Red, 1);
 
             // Create rectangle.
             Rectangle rect = new Rectangle(x_chart, y_chart, w_chart, h_chart);
+            Rectangle full_rect = new Rectangle(0, 0, 468, 434);
 
             // Draw rectangle to screen.
             if (isPixelClick)
             {
-                e.Graphics.DrawRectangle(RedPen, rect);
+                e.Graphics.DrawRectangle(RedPen, full_rect);
+                //e.Graphics.Draw(RedPen, full_rect);
             }
         }
 
@@ -1371,21 +1376,26 @@ namespace SpectroChipApp
             {
                 if (mouseIsDown == false)//點第一下
                 {
+                    chart2.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
                     DrawStart(e.Location);
 
-                    if (e.X < 30)//X的右邊判斷跟照片大小FrameWidth有關 等SUNPLUS
+                    if (chart2.ChartAreas[0].CursorX.SelectionStart < 30)//X的右邊判斷跟照片大小FrameWidth有關 等SUNPLUS
                     {
-                        X_Start = 0;
+                        X_Start_chart = 0;
                     }
                     else
                     {
-                        X_Start = e.X;
+                        X_Start_chart = Convert.ToInt32(chart2.ChartAreas[0].CursorX.SelectionStart);
                     }
 
                     Y_Start = e.Y;
 
-                    XtextBox_chart.Text = Convert.ToString(X_Start);
+                    XtextBox_chart.Text = Convert.ToString(X_Start_chart);
                     YtextBox_chart.Text = Convert.ToString(Y_Start);
+                    // X_Start_chart = X_Start_chart - Convert.ToInt32(XtextBox.Text);
+                    X_End_chart = Convert.ToInt32(chart2.ChartAreas[0].CursorX.SelectionEnd);
+                 //   X_End_chart = Convert.ToInt32(chart2.ChartAreas[0].CursorX.SelectionEnd )- Convert.ToInt32(XtextBox.Text);
+                   // X_End_chart = X_Start_chart - Convert.ToInt32(XtextBox.Text);
 
                     mouseIsDown = true;
                 }
@@ -1393,25 +1403,18 @@ namespace SpectroChipApp
                 {
                     Capture = false;
 
-                    WtextBox_chart.Text = Convert.ToString(Math.Abs(e.X - X_Start));
+                    WtextBox_chart.Text = Convert.ToString(Math.Abs(Convert.ToInt32(chart2.ChartAreas[0].CursorX.SelectionStart) - X_Start));
                     HtextBox_chart.Text = Convert.ToString(Math.Abs(e.Y - Y_Start));
 
                     if (e.X >= X_Start && e.Y >= Y_Start)//左上->右下
                     {
                     }
-                    if (e.X >= X_Start && e.Y <= Y_Start)//
+
+                    if (e.X <= X_Start)//不正常情況
                     {
-                        YtextBox_chart.Text = Convert.ToString(e.Y);
+                        XtextBox_chart.Text = Convert.ToString(Convert.ToInt32(chart2.ChartAreas[0].CursorX.SelectionStart));
                     }
-                    if (e.X <= X_Start && e.Y >= Y_Start)//不正常情況
-                    {
-                        XtextBox_chart.Text = Convert.ToString(e.X);
-                    }
-                    if (e.X <= X_Start && e.Y <= Y_Start)//不正常情況
-                    {
-                        XtextBox_chart.Text = Convert.ToString(e.X);
-                        YtextBox_chart.Text = Convert.ToString(e.Y);
-                    }
+               
 
                     Cursor.Clip = Rectangle.Empty;
                     mouseIsDown = false;
@@ -1422,7 +1425,13 @@ namespace SpectroChipApp
                     //DrawFixRectangle();
                     Form2 f2 = new Form2(this);//產生Form2的物件，才可以使用它所提供的Method
                     isForm2Running = true;
-
+                    isPixelClick = false;
+                    chart2.ChartAreas[0].CursorX.IsUserEnabled = false;
+                    chart2.ChartAreas[0].CursorX.IsUserSelectionEnabled = false;
+                    chart2.ChartAreas[0].CursorY.IsUserEnabled = false;
+                    chart2.ChartAreas[0].CursorY.IsUserSelectionEnabled = false;
+                    chart2.ChartAreas[0].CursorX.LineColor = Color.Transparent;
+                    chart2.ChartAreas[0].CursorY.LineColor = Color.Transparent;
                     this.Enabled = false;//將Form1隱藏。由於在Form1的程式碼內使用this，所以this為Form1的物件本身
                     f2.Visible = true;//顯示第二個視窗
                 }
@@ -1444,6 +1453,56 @@ namespace SpectroChipApp
 
             isPixelClick = true;
 
+        }
+
+        private void chart2_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isPixelClick)
+            {
+                System.Drawing.Point mousePoint = new System.Drawing.Point(e.X, e.Y);
+
+                chart2.ChartAreas[0].CursorX.SetCursorPixelPosition(mousePoint, true);
+                chart2.ChartAreas[0].CursorY.SetCursorPixelPosition(mousePoint, true);
+
+                
+                if (mouseIsDown==false) {
+                    chart2.ChartAreas[0].CursorX.IsUserEnabled = true;
+                    chart2.ChartAreas[0].CursorX.IsUserSelectionEnabled = true; 
+            }
+             //   chart2.ChartAreas[0].CursorY.IsUserEnabled = true;
+             //   chart2.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
+
+                chart2.ChartAreas[0].CursorX.Interval = 0;
+                chart2.ChartAreas[0].CursorY.Interval = 0;
+              //  chart2.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
+               // chart2.ChartAreas[0].AxisY.ScaleView.Zoomable = true;
+
+                chart2.ChartAreas[0].CursorX.LineColor = Color.Black;
+                chart2.ChartAreas[0].CursorX.LineWidth = 1;
+                chart2.ChartAreas[0].CursorX.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+               // chart2.ChartAreas[0].CursorX.Interval = 20;
+                chart2.ChartAreas[0].CursorY.LineColor = Color.Black;
+                chart2.ChartAreas[0].CursorY.LineWidth = 1;
+                chart2.ChartAreas[0].CursorY.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+             //  chart2.ChartAreas[0].CursorY.Interval = 0;
+                //double kkk = chart2.ChartAreas[0].CursorX.Position;
+                double kkk=chart2.ChartAreas[0].CursorX.SelectionStart;
+                double ppp = chart2.ChartAreas[0].CursorX.SelectionEnd;
+
+
+
+            }
+            else {
+               /* chart2.ChartAreas[0].CursorX.IsUserEnabled = false;
+                chart2.ChartAreas[0].CursorX.IsUserSelectionEnabled = false;
+                chart2.ChartAreas[0].CursorY.IsUserEnabled = false;
+                chart2.ChartAreas[0].CursorY.IsUserSelectionEnabled = false;*/
+
+                this.chart2.ChartAreas[0].AxisY.Minimum = 0;
+                this.chart2.ChartAreas[0].AxisY.Maximum = 300;
+                this.chart2.ChartAreas[0].AxisX.Minimum = x;
+                this.chart2.ChartAreas[0].AxisX.Maximum =x + w;
+            }
         }
     }
 }

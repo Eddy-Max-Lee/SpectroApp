@@ -25,11 +25,28 @@ namespace SpectroChipApp
         }
 
         //---宜運函數==
-        private void display(double[] SG, int start_pixel, int end_pixel, int GauOrder)//
+        private void display(double[] SG, int start_pixel, int end_pixel,int roi_start_x, int GauOrder)//
         {
-           
+            //製造SG_Clip
+            double[] SG_Clip = new double[end_pixel - start_pixel];
+            //鋪0
+            for (int Pixel_x = 0; Pixel_x < end_pixel- start_pixel; Pixel_x++)
+            {
+                SG_Clip[Pixel_x] = 0;
+            }
+         //   foreach (int indexs in SG_Clip) { indexs = 0; }
 
-        
+          for (int Pixel_x = 0; Pixel_x < end_pixel - start_pixel; Pixel_x++)
+            {
+                SG_Clip[Pixel_x] = SG[Pixel_x + start_pixel-roi_start_x];
+            }
+
+
+
+
+
+            //-----------------------畫圖
+
             System.Windows.Forms.DataVisualization.Charting.Series seriesSG1 = new System.Windows.Forms.DataVisualization.Charting.Series("SG", 1000);
             System.Windows.Forms.DataVisualization.Charting.Series seriesGau = new System.Windows.Forms.DataVisualization.Charting.Series("高斯", 1000);
             //Console.WriteLine("W:"+W);
@@ -40,8 +57,8 @@ namespace SpectroChipApp
                    //theWL = parameter_buffer[4] * (Math.Pow(k, 4)) + parameter_buffer[3] * (Math.Pow(k, 3)) + parameter_buffer[2] * (Math.Pow(k, 2)) + parameter_buffer[1] * k + parameter_buffer[0];
                    //seriesClb.Points.AddXY(Convert.ToDouble(k), theWL);
                }*/
-
-            for (int Pixel_x = 0; Pixel_x < SG.Length; Pixel_x++)
+            //迴圈一: 畫上SG後的圖
+            for (int Pixel_x = 0; Pixel_x < SG_Clip.Length; Pixel_x++)
             {
 
 
@@ -65,7 +82,9 @@ namespace SpectroChipApp
 
                 seriesSG1.Color = Color.Orange;
 
-                seriesSG1.Points.AddXY(Pixel_x+ start_pixel, SG[Pixel_x]);
+                // seriesSG1.Points.AddXY(Pixel_x+start_pixel, SG[Pixel_x + start_pixel]);
+              // seriesSG1.Points.AddXY(Pixel_x + start_pixel- roi_start_x, SG_Clip[Pixel_x]);
+                seriesSG1.Points.AddXY(Pixel_x+ start_pixel, SG_Clip[Pixel_x]);
 
                 seriesSG1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                 seriesGau.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
@@ -93,7 +112,8 @@ namespace SpectroChipApp
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            display(f1.IntensitySG, f1.x, f1.x + f1.w,0);
+            display(f1.IntensitySG,f1.X_Start_chart, Convert.ToInt32(f1.chart2.ChartAreas[0].CursorX.SelectionEnd), f1.X_Start, 0);
+           // display(f1.IntensitySG, f1.X_Start_chart, f1.X_End_chart, f1.X_Start, 0);
         }
 
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
