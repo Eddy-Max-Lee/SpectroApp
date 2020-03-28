@@ -30,7 +30,7 @@ namespace SpectroChipApp
         public int w = 640;
         public int h = 30;
         public int x_chart = 0;
-        public int y_chart= 200;
+        public int y_chart = 200;
         public int w_chart = 640;
         public int h_chart = 30;
         public int X_Start = 0;
@@ -40,6 +40,7 @@ namespace SpectroChipApp
         public double Dg = 32;
         public double Fps = 0.0;
 
+        public double[] IntensitySG;
         private bool isgoUpMouseDown = false;
         private bool isgoDownMouseDown = false;
         private bool isgoLeftMouseDown = false;
@@ -51,6 +52,8 @@ namespace SpectroChipApp
 
         private Thread camera;
         private bool isCameraRunning = false;
+        public bool isForm2Running = false;
+        public bool isPixelClick = false;
 
         private bool mouseIsDown = false;
         private Rectangle mouseRect = Rectangle.Empty;
@@ -222,14 +225,19 @@ namespace SpectroChipApp
             }
             var sg = new DoubleVector(IntensityGray);
             var IntensitySG1 = sgf.Filter(sg);
-            var IntensitySG = IntensitySG1.ToArray();
+            IntensitySG = IntensitySG1.ToArray();
 
-           var IntensityGau = Gaussian(IntensitySG, Pixel_x, 3);
+            if (isForm2Running)
+            {
+                IntensitySG = IntensitySG1.ToArray();
+            }
+
+            var IntensityGau = Gaussian(IntensitySG, Pixel_x, 3);
 
             double WL_x;
             double WL_x_min;
             double WL_x_max;
-
+            //迴圈二
             for (Pixel_x = 0; Pixel_x < W; Pixel_x++)
             {
 
@@ -296,6 +304,9 @@ namespace SpectroChipApp
                 this.chart3.Series.Add(seriesClb);
 
                 this.chart2.Series.Add(seriesGau);
+
+
+        
 
                 if (checkBox1.Checked)
                     this.chart2.Series.Add(seriesRed);
@@ -618,13 +629,16 @@ namespace SpectroChipApp
         private void DrawFixRectangle_chart(PaintEventArgs e) //先用全域的xywh
         {
             // Create pen.
-            Pen bluePen = new Pen(Color.Blue, 5);
+            Pen RedPen = new Pen(Color.Red, 5);
 
             // Create rectangle.
             Rectangle rect = new Rectangle(x_chart, y_chart, w_chart, h_chart);
 
             // Draw rectangle to screen.
-            e.Graphics.DrawRectangle(bluePen, rect);
+            if (isPixelClick)
+            {
+                e.Graphics.DrawRectangle(RedPen, rect);
+            }
         }
 
         //-----------------------------宜運函數(尾)--------------------------------------
@@ -652,6 +666,7 @@ namespace SpectroChipApp
             Load_Cali_Chart();
             Load_SensorView_Chart();
             Load_CalibratedView_Chart();
+
             updn_power.Maximum = 4;
             x = 0;
             y = 200;
@@ -1352,57 +1367,65 @@ namespace SpectroChipApp
 
         private void chart2_MouseDown(object sender, MouseEventArgs e)
         {
-            if (mouseIsDown == false)//點第一下
+            if (isPixelClick)
             {
-                DrawStart(e.Location);
-
-                if (e.X < 30)//X的右邊判斷跟照片大小FrameWidth有關 等SUNPLUS
+                if (mouseIsDown == false)//點第一下
                 {
-                    X_Start = 0;
+                    DrawStart(e.Location);
+
+                    if (e.X < 30)//X的右邊判斷跟照片大小FrameWidth有關 等SUNPLUS
+                    {
+                        X_Start = 0;
+                    }
+                    else
+                    {
+                        X_Start = e.X;
+                    }
+
+                    Y_Start = e.Y;
+
+                    XtextBox_chart.Text = Convert.ToString(X_Start);
+                    YtextBox_chart.Text = Convert.ToString(Y_Start);
+
+                    mouseIsDown = true;
                 }
-                else
+                else//點第二下
                 {
-                    X_Start = e.X;
+                    Capture = false;
+
+                    WtextBox_chart.Text = Convert.ToString(Math.Abs(e.X - X_Start));
+                    HtextBox_chart.Text = Convert.ToString(Math.Abs(e.Y - Y_Start));
+
+                    if (e.X >= X_Start && e.Y >= Y_Start)//左上->右下
+                    {
+                    }
+                    if (e.X >= X_Start && e.Y <= Y_Start)//
+                    {
+                        YtextBox_chart.Text = Convert.ToString(e.Y);
+                    }
+                    if (e.X <= X_Start && e.Y >= Y_Start)//不正常情況
+                    {
+                        XtextBox_chart.Text = Convert.ToString(e.X);
+                    }
+                    if (e.X <= X_Start && e.Y <= Y_Start)//不正常情況
+                    {
+                        XtextBox_chart.Text = Convert.ToString(e.X);
+                        YtextBox_chart.Text = Convert.ToString(e.Y);
+                    }
+
+                    Cursor.Clip = Rectangle.Empty;
+                    mouseIsDown = false;
+                    DrawRectangle();
+                    //mouseRect = Rectangle.Empty;
+
+                    Read_TextBox_chart();
+                    //DrawFixRectangle();
+                    Form2 f2 = new Form2(this);//產生Form2的物件，才可以使用它所提供的Method
+                    isForm2Running = true;
+
+                    this.Enabled = false;//將Form1隱藏。由於在Form1的程式碼內使用this，所以this為Form1的物件本身
+                    f2.Visible = true;//顯示第二個視窗
                 }
-
-                Y_Start = e.Y;
-
-                XtextBox_chart.Text = Convert.ToString(X_Start);
-                YtextBox_chart.Text = Convert.ToString(Y_Start);
-
-                mouseIsDown = true;
-            }
-            else//點第二下
-            {
-                Capture = false;
-
-                WtextBox_chart.Text = Convert.ToString(Math.Abs(e.X - X_Start));
-                HtextBox_chart.Text = Convert.ToString(Math.Abs(e.Y - Y_Start));
-
-                if (e.X >= X_Start && e.Y >= Y_Start)//左上->右下
-                {
-                }
-                if (e.X >= X_Start && e.Y <= Y_Start)//
-                {
-                    YtextBox_chart.Text = Convert.ToString(e.Y);
-                }
-                if (e.X <= X_Start && e.Y >= Y_Start)//不正常情況
-                {
-                    XtextBox_chart.Text = Convert.ToString(e.X);
-                }
-                if (e.X <= X_Start && e.Y <= Y_Start)//不正常情況
-                {
-                    XtextBox_chart.Text = Convert.ToString(e.X);
-                    YtextBox_chart.Text = Convert.ToString(e.Y);
-                }
-
-                Cursor.Clip = Rectangle.Empty;
-                mouseIsDown = false;
-                DrawRectangle();
-                //mouseRect = Rectangle.Empty;
-                
-                  Read_TextBox_chart();
-                //DrawFixRectangle();
             }
         }
 
@@ -1414,6 +1437,13 @@ namespace SpectroChipApp
 
 #pragma warning restore CA1305 // 指定 IFormatProvider
             Read_TextBox();
+        }
+
+        private void p1_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            isPixelClick = true;
+
         }
     }
 }

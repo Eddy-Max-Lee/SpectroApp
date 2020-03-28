@@ -280,10 +280,12 @@
             // 
             this.p1.Location = new System.Drawing.Point(764, 76);
             this.p1.Name = "p1";
+            this.p1.ReadOnly = true;
             this.p1.Size = new System.Drawing.Size(58, 22);
             this.p1.TabIndex = 14;
             this.p1.Text = "231.5";
             this.p1.TextChanged += new System.EventHandler(this.p1_TextChanged);
+            this.p1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.p1_MouseDown);
             // 
             // p3
             // 
@@ -1102,6 +1104,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Spectrochip APP";
+            this.TransparencyKey = System.Drawing.Color.Maroon;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Click += new System.EventHandler(this.Form1_Click);
