@@ -234,7 +234,8 @@ namespace SpectroChipApp
                 IntensitySG = IntensitySG1.ToArray();
             }
 
-            var IntensityGau = Gaussian(IntensitySG, Pixel_x, 3);
+            //var IntensityGau = Gaussian(IntensitySG, Pixel_x, 3);
+            var IntensityGau = Gaussian(IntensitySG, IntensitySG.Length, 3);
 
             double WL_x;
             double WL_x_min;
@@ -394,7 +395,7 @@ namespace SpectroChipApp
           }*/
 
 
-       private double[] Gaussian(double[] IntensitySG, int fitDatasCount, int order)
+       public double[] Gaussian(double[] IntensitySG, int fitDatasCount, int order)
         {
             double[,] a = new double[fitDatasCount, order];
             double[] b = new double[fitDatasCount];

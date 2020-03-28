@@ -44,7 +44,7 @@ namespace SpectroChipApp
 
 
 
-
+            var IntensityGau = f1.Gaussian(SG_Clip, SG_Clip.Length, GauOrder);
             //-----------------------畫圖
 
             System.Windows.Forms.DataVisualization.Charting.Series seriesSG1 = new System.Windows.Forms.DataVisualization.Charting.Series("SG", 1000);
@@ -81,10 +81,11 @@ namespace SpectroChipApp
                 //給入數據畫圖
 
                 seriesSG1.Color = Color.Orange;
-
+                seriesGau.Color = Color.Red;
                 // seriesSG1.Points.AddXY(Pixel_x+start_pixel, SG[Pixel_x + start_pixel]);
-              // seriesSG1.Points.AddXY(Pixel_x + start_pixel- roi_start_x, SG_Clip[Pixel_x]);
+                // seriesSG1.Points.AddXY(Pixel_x + start_pixel- roi_start_x, SG_Clip[Pixel_x]);
                 seriesSG1.Points.AddXY(Pixel_x+ start_pixel, SG_Clip[Pixel_x]);
+                seriesGau.Points.AddXY(Pixel_x + start_pixel, IntensityGau[Pixel_x]);
 
                 seriesSG1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
                 seriesGau.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
@@ -112,7 +113,7 @@ namespace SpectroChipApp
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            display(f1.IntensitySG,f1.X_Start_chart, Convert.ToInt32(f1.chart2.ChartAreas[0].CursorX.SelectionEnd), f1.X_Start, 0);
+            display(f1.IntensitySG,f1.X_Start_chart, Convert.ToInt32(f1.chart2.ChartAreas[0].CursorX.SelectionEnd), f1.X_Start, 3);
            // display(f1.IntensitySG, f1.X_Start_chart, f1.X_End_chart, f1.X_Start, 0);
         }
 
