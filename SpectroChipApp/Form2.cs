@@ -27,6 +27,14 @@ namespace SpectroChipApp
         //---宜運函數==
         private void display(double[] SG, int start_pixel, int end_pixel,int roi_start_x, int GauOrder)//
         {
+
+            if (end_pixel - start_pixel < 0) {
+               int temp= end_pixel;
+                end_pixel = start_pixel;
+                start_pixel = temp;
+
+            }
+            
             //製造SG_Clip
             double[] SG_Clip = new double[end_pixel - start_pixel];
             //鋪0
@@ -42,13 +50,21 @@ namespace SpectroChipApp
             }
 
 
+            double[] IntensityGau;
+            double Pixel_Max;
+            double Intensity_Max;
+            f1.Gaussian(SG_Clip, SG_Clip.Length, GauOrder, out IntensityGau, out Pixel_Max, out Intensity_Max);
 
+            textBox1.Text = (Pixel_Max+start_pixel).ToString();
+        
+            textBox2.Text = Intensity_Max.ToString();
 
-            var IntensityGau = f1.Gaussian(SG_Clip, SG_Clip.Length, GauOrder);
+            //var IntensityGau = f1.Gaussian(SG_Clip, SG_Clip.Length, GauOrder);
             //-----------------------畫圖
 
             System.Windows.Forms.DataVisualization.Charting.Series seriesSG1 = new System.Windows.Forms.DataVisualization.Charting.Series("SG", 1000);
             System.Windows.Forms.DataVisualization.Charting.Series seriesGau = new System.Windows.Forms.DataVisualization.Charting.Series("高斯", 1000);
+            System.Windows.Forms.DataVisualization.Charting.Series Max_Point = new System.Windows.Forms.DataVisualization.Charting.Series("極值", 1);
             //Console.WriteLine("W:"+W);
 
             /*
@@ -82,19 +98,36 @@ namespace SpectroChipApp
 
                 seriesSG1.Color = Color.Orange;
                 seriesGau.Color = Color.Red;
+                Max_Point.Color = Color.Blue;
                 // seriesSG1.Points.AddXY(Pixel_x+start_pixel, SG[Pixel_x + start_pixel]);
                 // seriesSG1.Points.AddXY(Pixel_x + start_pixel- roi_start_x, SG_Clip[Pixel_x]);
                 seriesSG1.Points.AddXY(Pixel_x+ start_pixel, SG_Clip[Pixel_x]);
                 seriesGau.Points.AddXY(Pixel_x + start_pixel, IntensityGau[Pixel_x]);
+               
+                //Max_Point.BorderWidth = 20;
+                
 
-                seriesSG1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-                seriesGau.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
 
-                this.chart4.Series.Clear();
+                
 
-                this.chart4.Series.Add(seriesSG1);
-                this.chart4.Series.Add(seriesGau);
+
+               
             }
+            Max_Point.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            seriesSG1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            seriesGau.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            this.chart4.Series.Clear();
+
+            Max_Point.Points.AddXY(Pixel_Max + start_pixel, Intensity_Max);
+
+            Max_Point.IsValueShownAsLabel = true;
+            //Max_Point.font = "20";
+            //Max_Point.AxisLabel = (Pixel_Max + start_pixel).ToString() + "," + Intensity_Max.ToString();
+            Max_Point.Label ="("+ (Pixel_Max + start_pixel).ToString() + "," + Intensity_Max.ToString()+")";
+
+            this.chart4.Series.Add(seriesSG1);
+            this.chart4.Series.Add(seriesGau);     
+            this.chart4.Series.Add(Max_Point);
         }
 
             //---宜運函數(尾)-----------

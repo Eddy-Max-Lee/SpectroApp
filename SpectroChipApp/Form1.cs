@@ -42,6 +42,8 @@ namespace SpectroChipApp
         public double Dg = 32;
         public double Fps = 0.0;
 
+        public int Selected_P = 0; //讓Form2知道被按下的textbox是p幾
+
         public double[] IntensitySG;
         private bool isgoUpMouseDown = false;
         private bool isgoDownMouseDown = false;
@@ -235,7 +237,10 @@ namespace SpectroChipApp
             }
 
             //var IntensityGau = Gaussian(IntensitySG, Pixel_x, 3);
-            var IntensityGau = Gaussian(IntensitySG, IntensitySG.Length, 3);
+            double[] IntensityGau;
+            double Pixel_Max;
+            double Intensity_Max;
+             Gaussian(IntensitySG, IntensitySG.Length, 3, out IntensityGau, out Pixel_Max, out Intensity_Max);
 
             double WL_x;
             double WL_x_min;
@@ -395,12 +400,12 @@ namespace SpectroChipApp
           }*/
 
 
-       public double[] Gaussian(double[] IntensitySG, int fitDatasCount, int order)
+        public  double[] Gaussian(double[] IntensitySG, int fitDatasCount, int order, out double[] Gausian_y, out double xMax, out double yMax)
         {
             double[,] a = new double[fitDatasCount, order];
             double[] b = new double[fitDatasCount];
             double[] X = new double[3] { 0, 0, 0 };
-            double[] Gausian_y = new double[fitDatasCount];
+            Gausian_y = new double[fitDatasCount];
             for (int i = 0; i < fitDatasCount; i++)
             {
                 b[i] = Math.Log(IntensitySG[i]);
@@ -420,8 +425,8 @@ namespace SpectroChipApp
             }
             //X = matrixC.SubMatrix
             double S = -1 / X[2];
-            double xMax = X[1] * S / 2.0; //最大值的index
-            double yMax = Math.Exp(X[0] + xMax * xMax / S);
+             xMax = X[1] * S / 2.0; //最大值的index
+            yMax = Math.Exp(X[0] + xMax * xMax / S);
             for (int i = 0; i < fitDatasCount; i++)
             {
                 Gausian_y[i] = yMax * Math.Exp(-Math.Pow((i - xMax),2)/S );
@@ -708,10 +713,11 @@ namespace SpectroChipApp
             }
             else
             {
+                isCameraRunning = false;
                 capture.Release();
 
                 btnStart.Text = "▶";
-                isCameraRunning = false;
+               
                 btnStart.Visible = false;
                 Thread.Sleep(4000);
                 btnStart.Visible = true;
@@ -1427,6 +1433,7 @@ namespace SpectroChipApp
                     Form2 f2 = new Form2(this);//產生Form2的物件，才可以使用它所提供的Method
                     isForm2Running = true;
                     isPixelClick = false;
+                    //chart2.ChartAreas[0].CursorX.SelectionStart = 0;
                     chart2.ChartAreas[0].CursorX.IsUserEnabled = false;
                     chart2.ChartAreas[0].CursorX.IsUserSelectionEnabled = false;
                     chart2.ChartAreas[0].CursorY.IsUserEnabled = false;
@@ -1449,12 +1456,6 @@ namespace SpectroChipApp
             Read_TextBox();
         }
 
-        private void p1_MouseDown(object sender, MouseEventArgs e)
-        {
-
-            isPixelClick = true;
-
-        }
 
         private void chart2_MouseMove(object sender, MouseEventArgs e)
         {
@@ -1505,5 +1506,24 @@ namespace SpectroChipApp
                 this.chart2.ChartAreas[0].AxisX.Maximum =x + w;
             }
         }
+
+        private void P0textBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void p1_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            isPixelClick = true;
+            Selected_P = 1;
+        }
+
+
+        private void p2_MouseDown_1(object sender, MouseEventArgs e)
+        {
+            isPixelClick = true;
+            Selected_P = 2;
+        }
+
     }
 }

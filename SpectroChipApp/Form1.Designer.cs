@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnStart = new System.Windows.Forms.Button();
@@ -91,7 +91,7 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.P0textBox = new System.Windows.Forms.TextBox();
+            this.showParatextBox = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.button2 = new System.Windows.Forms.Button();
@@ -123,6 +123,7 @@
             this.YtextBox_chart = new System.Windows.Forms.TextBox();
             this.WtextBox_chart = new System.Windows.Forms.TextBox();
             this.HtextBox_chart = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updn_power)).BeginInit();
@@ -275,6 +276,7 @@
             this.p2.Size = new System.Drawing.Size(58, 22);
             this.p2.TabIndex = 13;
             this.p2.Text = "275.5";
+            this.p2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.p2_MouseDown_1);
             // 
             // p1
             // 
@@ -603,28 +605,28 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea7.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea7);
             this.chart1.Location = new System.Drawing.Point(665, 600);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series7.Name = "Series1";
+            this.chart1.Series.Add(series7);
             this.chart1.Size = new System.Drawing.Size(346, 317);
             this.chart1.TabIndex = 50;
             this.chart1.Text = "chart1";
             // 
             // chart2
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea2);
+            chartArea8.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea8);
             this.chart2.Location = new System.Drawing.Point(1044, 12);
             this.chart2.Name = "chart2";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series2.Name = "Series1";
-            this.chart2.Series.Add(series2);
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series8.Name = "Series1";
+            this.chart2.Series.Add(series8);
             this.chart2.Size = new System.Drawing.Size(468, 434);
             this.chart2.TabIndex = 51;
             this.chart2.Text = "chart2";
@@ -681,14 +683,15 @@
             this.checkBox4.Text = "Gray Scale";
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
-            // P0textBox
+            // showParatextBox
             // 
-            this.P0textBox.Location = new System.Drawing.Point(700, 364);
-            this.P0textBox.Multiline = true;
-            this.P0textBox.Name = "P0textBox";
-            this.P0textBox.Size = new System.Drawing.Size(279, 126);
-            this.P0textBox.TabIndex = 57;
-            this.P0textBox.Text = "200";
+            this.showParatextBox.Location = new System.Drawing.Point(700, 364);
+            this.showParatextBox.Multiline = true;
+            this.showParatextBox.Name = "showParatextBox";
+            this.showParatextBox.Size = new System.Drawing.Size(279, 126);
+            this.showParatextBox.TabIndex = 57;
+            this.showParatextBox.Text = "自動加寬功能無法正常付值給x";
+            this.showParatextBox.TextChanged += new System.EventHandler(this.P0textBox_TextChanged);
             // 
             // label21
             // 
@@ -704,14 +707,14 @@
             // 
             this.chart3.BorderSkin.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chart3.BorderSkin.PageColor = System.Drawing.Color.Black;
-            chartArea3.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea3);
+            chartArea9.Name = "ChartArea1";
+            this.chart3.ChartAreas.Add(chartArea9);
             this.chart3.Location = new System.Drawing.Point(1044, 483);
             this.chart3.Name = "chart3";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series3.Name = "Series1";
-            this.chart3.Series.Add(series3);
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series9.Name = "Series1";
+            this.chart3.Series.Add(series9);
             this.chart3.Size = new System.Drawing.Size(468, 434);
             this.chart3.TabIndex = 59;
             this.chart3.Text = "chart3";
@@ -1032,6 +1035,11 @@
             this.HtextBox_chart.TabIndex = 77;
             this.HtextBox_chart.Text = "30";
             // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1051,7 +1059,7 @@
             this.Controls.Add(this.chart3);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.goDown);
-            this.Controls.Add(this.P0textBox);
+            this.Controls.Add(this.showParatextBox);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.goLeft);
             this.Controls.Add(this.checkBox3);
@@ -1191,7 +1199,7 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.TextBox P0textBox;
+        private System.Windows.Forms.TextBox showParatextBox;
         private System.Windows.Forms.Label label21;
         public System.Windows.Forms.DataVisualization.Charting.Chart chart3;
         private System.Windows.Forms.Button button2;
@@ -1222,6 +1230,7 @@
         private System.Windows.Forms.TextBox YtextBox_chart;
         private System.Windows.Forms.TextBox WtextBox_chart;
         private System.Windows.Forms.TextBox HtextBox_chart;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
     }
 }
 
