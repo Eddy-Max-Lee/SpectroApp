@@ -96,7 +96,8 @@ namespace SpectroChipApp
 
                 //給入數據畫圖
 
-                seriesSG1.Color = Color.Orange;
+                seriesSG1.Color = Color.Cyan;
+                seriesSG1.BorderWidth = 5;
                 seriesGau.Color = Color.Red;
                 Max_Point.Color = Color.Blue;
                 // seriesSG1.Points.AddXY(Pixel_x+start_pixel, SG[Pixel_x + start_pixel]);
@@ -137,16 +138,58 @@ namespace SpectroChipApp
             private void button1_Click(object sender, EventArgs e)
         {
             //Form1 f1 = Form();//產生Form2的物件，才可以使用它所提供的Method
-            this.Close();
+            //f1.Max_From_f2 = textBox1.Text;
+           // f1.p3.Text = textBox1.Text;
+            switch (f1.Selected_P)
+            {
+                case 1:
+                    f1.p1.Text = textBox1.Text;
+                    break;
+                case 2:
+                    f1.p2.Text = textBox1.Text;
+                    break;
+                case 3:
+                    f1.p3.Text = textBox1.Text;
+                    break;
+                case 4:
+                    f1.p4.Text = textBox1.Text;
+                    break;
+                case 5:
+                    f1.p5.Text = textBox1.Text;
+                    break;
+                case 6:
+                    f1.p6.Text = textBox1.Text;
+                    break;
+                case 7:
+                    f1.p7.Text = textBox1.Text;
+                    break;
+                case 8:
+                    f1.p8.Text = textBox1.Text;
+                    break;
+                case 9:
+                    f1.p9.Text = textBox1.Text;
+                    break;
+                case 10:
+                    f1.p10.Text = textBox1.Text;
+                    break;
+                default:
+                    Console.WriteLine("nothing change，都好像沒有變");
+                    break;
+            }
+
+
+
+
             f1.Enabled = true;//將Form1隱藏。由於在Form1的程式碼內使用this，所以this為Form1的物件本身
                               //f.Visible = true;//顯示第二個視窗
             f1.isForm2Running = false;
             f1.isPixelClick = false;
+            this.Close();
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            display(f1.IntensitySG,f1.X_Start_chart, Convert.ToInt32(f1.chart2.ChartAreas[0].CursorX.SelectionEnd), f1.X_Start, 3);
+            display(f1.IntensitySG,f1.X_Start_chart, Convert.ToInt32(f1.chart2.ChartAreas[0].CursorX.SelectionEnd), f1.x, 3);
            // display(f1.IntensitySG, f1.X_Start_chart, f1.X_End_chart, f1.X_Start, 0);
         }
 
@@ -158,6 +201,11 @@ namespace SpectroChipApp
                               //f.Visible = true;//顯示第二個視窗
             f1.isForm2Running = false;
             f1.isPixelClick = false;
+        }
+
+        private void updn_power_ValueChanged(object sender, EventArgs e)
+        {
+            display(f1.IntensitySG, f1.X_Start_chart, Convert.ToInt32(f1.chart2.ChartAreas[0].CursorX.SelectionEnd), f1.x, Convert.ToInt32(updn_power.Value));
         }
     }
     

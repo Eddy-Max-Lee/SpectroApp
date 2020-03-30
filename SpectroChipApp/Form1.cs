@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -41,6 +42,8 @@ namespace SpectroChipApp
         public double Ag = 0;
         public double Dg = 32;
         public double Fps = 0.0;
+
+        public string Max_From_f2;
 
         public int Selected_P = 0; //讓Form2知道被按下的textbox是p幾
 
@@ -150,7 +153,7 @@ namespace SpectroChipApp
                     this.Invoke(new Action(() =>
                     {
                    //     Fps = capture.Get(5);
-                     //   FPSlabel.Text = (Fps*10000).ToString()+" fps";
+                     //   FPSlabel.Text =  (Fps*10000).ToString()+" fps";
                     }));
 
                     Thread.Sleep(300);//加了比較順
@@ -165,6 +168,26 @@ namespace SpectroChipApp
         }
 
         //---------------------------------宜運函數(首)---------------------
+        private static double CalculateStdDev(IEnumerable<double> values)
+        {
+            double ret = 0;
+            if (values.Count() > 0)
+            {
+                //  计算平均数   
+                double avg = values.Average();
+                //  计算各数值与平均数的差值的平方，然后求和 
+                double sum = values.Sum(d => Math.Pow(d - avg, 2));
+                //  除以数量，然后开方
+                ret = Math.Sqrt(sum / values.Count());
+            }
+            return ret;
+        }
+        private string MakeParaString(double[] parameters, double SD)
+        {
+            string str = "p0 = " + parameters[0] + "\r\np1 = " + parameters[1] + "\r\np2 = " + parameters[2] + "\r\np3 = " + parameters[3] + "\r\np4 = " + parameters[4]
+                               + "\r\n標準差(SD) = " + SD;
+            return str;
+        }
 
         private void displayRoiSensorView(Bitmap input_image,int start_pixel, int end_pixel)//育代
         {
@@ -234,6 +257,10 @@ namespace SpectroChipApp
             if (isForm2Running)
             {
                 IntensitySG = IntensitySG1.ToArray();
+            }else  //這樣寫在暫停狀態一定出事
+            {
+                //p1.Text= Max_From_f2;
+                //https://social.msdn.microsoft.com/Forums/zh-TW/ae29afe8-fb07-4ae4-95d9-b70483b1f881/199812151630340form3492021934200433829165292textbox303402054020659?forum=233
             }
 
             //var IntensityGau = Gaussian(IntensitySG, Pixel_x, 3);
@@ -404,7 +431,7 @@ namespace SpectroChipApp
         {
             double[,] a = new double[fitDatasCount, order];
             double[] b = new double[fitDatasCount];
-            double[] X = new double[3] { 0, 0, 0 };
+            double[] X = new double[order];
             Gausian_y = new double[fitDatasCount];
             for (int i = 0; i < fitDatasCount; i++)
             {
@@ -414,12 +441,13 @@ namespace SpectroChipApp
                 a[i, 2] = a[i, 1] * a[i, 1];
             }
             // Matrix.Equation(datas.Count, 3, a, b, X);
-            Matrix<double> m = Matrix<double>.Build.Random(3, 4);
+            //Matrix<double> m = Matrix<double>.Build.Random(3, 4);
+           //Matrix<double> m = Matrix<double>.Build.Random(order, order+1);
             Matrix<double> matrixA =Matrix<double>.Build.DenseOfArray(a);
             // Matrix<double> matrixB = new MathNet.Numerics.LinearAlgebra.Matrix<double>(b, b.Length);
             Matrix<double> matrixB = Matrix<double>.Build.DenseOfColumnArrays(b);
             MathNet.Numerics.LinearAlgebra.Matrix<double> matrixC = matrixA.Solve(matrixB);
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < order; i++)
             {
                 X[i] = matrixC.ToArray()[i, 0]; 
             }
@@ -538,6 +566,8 @@ namespace SpectroChipApp
                 w = int.Parse(WtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
                 h = int.Parse(HtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
                 Exp = int.Parse(EXPtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
+        
+
 
                 if (x + w > capture.FrameWidth)
                 {
@@ -726,6 +756,13 @@ namespace SpectroChipApp
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+
+
+  
+            Cursor.Clip = Rectangle.Empty;
+            mouseIsDown = false;
+            DrawRectangle();
+            //mouseRect = Rectangle.Empty;
             Read_TextBox();
             //Console.WriteLine(mouseIsDown);
         }
@@ -975,6 +1012,8 @@ namespace SpectroChipApp
             {
                 MessageBox.Show("格式錯誤");
             }
+          
+
             ///Cali-3畫圖囉
             int[,] array = new int[,] {
             {1,8,9,7,105,11,50,999,500,1},
@@ -1034,6 +1073,10 @@ namespace SpectroChipApp
                 waveLength[i] = para_buf[4] * (Math.Pow(i, 4)) + para_buf[3] * (Math.Pow(i, 3)) + para_buf[2] * (Math.Pow(i, 2)) + para_buf[1] * i + para_buf[0];
                 //series2.Points.AddXY(Convert.ToDouble(i), equationVar);
             }*/
+
+
+            ////Cali-4顯示一下參數
+            showParatextBox.Text = MakeParaString(para_buf, 2);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -1450,6 +1493,11 @@ namespace SpectroChipApp
         {
 #pragma warning disable CA1305 // 指定 IFormatProvider
             this.WtextBox.Text = Convert.ToString(capture.FrameWidth);
+            Cursor.Clip = Rectangle.Empty;
+            mouseIsDown = false;
+            DrawRectangle();
+            //mouseRect = Rectangle.Empty;
+            Read_TextBox();
 
 
 #pragma warning restore CA1305 // 指定 IFormatProvider
@@ -1514,15 +1562,141 @@ namespace SpectroChipApp
         private void p1_MouseDown(object sender, MouseEventArgs e)
         {
 
-            isPixelClick = true;
-            Selected_P = 1;
         }
 
 
         private void p2_MouseDown_1(object sender, MouseEventArgs e)
         {
+
+        }
+
+        private void p3_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void p4_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void p5_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void p6_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void p7_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void p8_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void p9_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void p10_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e) //水平擴展
+        {
+#pragma warning disable CA1305 // 指定 IFormatProvider
+            this.WtextBox.Text = Convert.ToString(capture.FrameWidth);
+            Cursor.Clip = Rectangle.Empty;
+            mouseIsDown = false;
+            DrawRectangle();
+            //mouseRect = Rectangle.Empty;
+            Read_TextBox();
+        }
+
+        private void updn_power_ValueChanged(object sender, EventArgs e)
+        {
+         
+        }
+
+        private void p2_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+
+
+        private void p1_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
+        private void p1_DoubleClick(object sender, EventArgs e)
+        {
+            isPixelClick = true;
+            Selected_P = 1;
+        }
+        private void p2_DoubleClick(object sender, EventArgs e)
+        {
             isPixelClick = true;
             Selected_P = 2;
+        }
+
+
+
+        private void p4_DoubleClick(object sender, EventArgs e)
+        {
+            isPixelClick = true;
+            Selected_P = 4;
+        }
+
+
+        private void p3_DoubleClick(object sender, EventArgs e)
+        {
+            isPixelClick = true;
+            Selected_P = 3;
+        }
+
+        private void p5_DoubleClick(object sender, EventArgs e)
+        {
+            isPixelClick = true;
+            Selected_P = 5;
+        }
+
+        private void p6_DoubleClick(object sender, EventArgs e)
+        {
+            isPixelClick = true;
+            Selected_P = 6;
+        }
+
+        private void p7_DoubleClick(object sender, EventArgs e)
+        {
+            isPixelClick = true;
+            Selected_P = 7;
+        }
+
+        private void p8_DoubleClick(object sender, EventArgs e)
+        {
+            isPixelClick = true;
+            Selected_P = 8;
+        }
+
+        private void p9_DoubleClick(object sender, EventArgs e)
+        {
+            isPixelClick = true;
+            Selected_P = 9;
+        }
+
+        private void p10_DoubleClick(object sender, EventArgs e)
+        {
+        isPixelClick = true;
+            Selected_P = 10;
         }
 
     }
