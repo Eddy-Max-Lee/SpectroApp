@@ -227,3 +227,4 @@ E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\obj\Debug\SpectroChipApp.c
 E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\obj\Debug\SpectroChipApp.exe
 E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\obj\Debug\SpectroChipApp.pdb
 E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\obj\Debug\SpectroChipApp.Form2.resources
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\obj\Debug\SpectroChipApp.Form3.resources

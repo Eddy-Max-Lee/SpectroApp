@@ -1699,5 +1699,11 @@ namespace SpectroChipApp
             Selected_P = 10;
         }
 
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Form3 f3 = new Form3(this);//產生Form2的物件，才可以使用它所提供的Method
+            //this.Enabled = false;//將Form1隱藏。由於在Form1的程式碼內使用this，所以this為Form1的物件本身
+            f3.Visible = true;//顯示第二個視窗
+        }
     }
 }
