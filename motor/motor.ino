@@ -1,18 +1,21 @@
 #include <String.h>
 #include <string.h>
-
-
+#include <Stepper.h>
+#define STEPS 200  //定義步進馬達每圈的步數
+Stepper stepper(STEPS, 11, 10, 9, 8); 
+// stepper(STEPS, 8, 9, 10, 11); 
 int Led=13; //led接13
 int buttonpin=3; //定義光遮斷器接3
 int val; //
 //int a=65;
 boolean b=true;
+
 /* rcv_text[9]="R1000000";//1+7位 
 //char send_text1[9]="Go right";//8位 
 //char send_text2[8];//7位 
 //char send_text3[6]="steps";//9位 //rcv_text去掉字首
 //char send_text_sum[15];//9位*/
-String rcv_text = "N0000000"; 
+String rcv_text = "I0000000"; //Initial 
 String steps_text = "1000000";
 int steps = 1000000;
 //String send_text = "Go right 1000000 steps"; 
@@ -25,8 +28,10 @@ void setup()
     Serial.println("Arduino Test"); 
     pinMode(Led,OUTPUT);//定義LED為輸出接口
     pinMode(buttonpin,INPUT); //定義光遮斷器輸出接口
+    stepper.setSpeed(140);  //馬達轉速
     }
 void loop(){
+  stepper.step(-100);
    c=0;
    while (Serial.available()) {
      if (Serial.available() > 0) {
@@ -62,34 +67,36 @@ void loop(){
   if(rcv_text[0]=='L'){//向左
    String send_text = String("Go left ");
    send_text = String(send_text+steps_text);
-   
-  Serial.println(send_text); 
+   Serial.println(send_text); 
+   stepper.step(-100);//逆半圈
+
 
   
   }else if(rcv_text[0]=='R'){//向右
    String send_text = String("Go right ");
    send_text = String(send_text+steps_text);
    Serial.println(send_text); 
+   stepper.step(100);//正半圈
 
    
   }else if(rcv_text[0]=='S'){//急停 S0000000
     
     Serial.println("stop!"); 
+    
+  }else if(rcv_text[0]=='N'){//開燈 N0000000
+    
+    Serial.println("LED is on"); 
+    
+  }else if(rcv_text[0]=='F'){//關燈 F0000000
+    
+    Serial.println("LED is off"); 
+    
   }else{
     //Serial.println("Invalid command"); 
     
   }
 
-
-
-
-
-
-
-
-
-
-   rcv_text="N0000000";
+   rcv_text="I0000000";
   
   
   /*

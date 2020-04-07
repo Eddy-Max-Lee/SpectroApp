@@ -30,6 +30,12 @@ namespace SpectroChipApp
         public int y = 200;
         public int w = 640;
         public int h = 30;
+        public double Wpic2real=1; //(capture.FrameWidth / 480)
+        public double Hpic2real=1;    //  (capture.FrameHeight / 320)
+        public int x_picturebox = 0;
+        public int y_picturebox = 200;
+        public int w_picturebox = 640;
+        public int h_picturebox = 30;
         public int x_chart = 0;
         public int y_chart = 200;
         public int w_chart = 640;
@@ -94,16 +100,16 @@ namespace SpectroChipApp
 
             capture = new VideoCapture(0);
 
-            capture.FrameHeight = 1280;
-            capture.FrameWidth = 1920;
+            Wpic2real = capture.FrameWidth / 480;
+           Hpic2real = capture.FrameHeight / 320 ;    
 
-            
-            
 
-            //Console.WriteLine(capture.FrameHeight);
-            //Console.WriteLine(capture.FrameWidth);
 
-            capture.Open(0);
+
+        //Console.WriteLine(capture.FrameHeight);
+        //Console.WriteLine(capture.FrameWidth);
+
+        capture.Open(0);
 
             if (capture.IsOpened())
             {
@@ -566,7 +572,17 @@ namespace SpectroChipApp
                 w = int.Parse(WtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
                 h = int.Parse(HtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
                 Exp = int.Parse(EXPtextBox.Text, CultureInfo.InvariantCulture.NumberFormat);
-        
+
+
+                x_picturebox = Convert.ToInt32(x / Wpic2real);
+                y_picturebox = Convert.ToInt32(y / Hpic2real);
+                w_picturebox = Convert.ToInt32(w / Wpic2real);
+                h_picturebox = Convert.ToInt32(h /Hpic2real);
+
+                pXtextBox.Text = x_picturebox.ToString();
+                pYtextBox.Text = y_picturebox.ToString();
+                pWtextBox.Text = w_picturebox.ToString();
+                pHtextBox.Text = h_picturebox.ToString();
 
 
                 if (x + w > capture.FrameWidth)
@@ -605,12 +621,12 @@ namespace SpectroChipApp
             else
             {
                 XtextBox.Text = "0";
-                YtextBox.Text = "200";
-                WtextBox.Text = "640";
+                YtextBox.Text = (capture.FrameHeight/2).ToString();
+                WtextBox.Text = capture.FrameWidth.ToString();
                 HtextBox.Text = "30";
                 x = 0;
-                y = 200;
-                w = 640;
+                y = capture.FrameHeight / 2;
+                w = capture.FrameWidth;
                 h = 30;
                 isCameraRunning = false;
                 MessageBox.Show("請選擇有效的ROI");
@@ -656,10 +672,15 @@ namespace SpectroChipApp
         {
             // Create pen.
             Pen bluePen = new Pen(Color.Blue, 5);
-
+            x_picturebox = Convert.ToInt32(x / Wpic2real);
+            y_picturebox = Convert.ToInt32(y / Hpic2real);
+            w_picturebox = Convert.ToInt32(w / Wpic2real);
+            h_picturebox = Convert.ToInt32(h / Hpic2real);
             // Create rectangle.
-            Rectangle rect = new Rectangle(x, y, w, h);
-
+            //Convert.ToInt16(Math.Floor(double(320 / capture.FrameHeight)))
+            //   Rectangle rect = new Rectangle(x*(480/capture.FrameWidth), y * (320 / capture.FrameHeight), w * (480 / capture.FrameWidth), h * (320 / capture.FrameHeight));
+            Rectangle rect = new Rectangle(x_picturebox, y_picturebox, w_picturebox, h_picturebox);
+          //  Rectangle rect = new Rectangle(x, y, w, h);
             // Draw rectangle to screen.
             e.Graphics.DrawRectangle(bluePen, rect);
         }
@@ -727,6 +748,7 @@ namespace SpectroChipApp
             {
                 //btnStart_Visible_flag = 0;
                 //Read_TextBox();
+
                 CaptureCamera();
                 btnStart.Text = "| |";
                 isCameraRunning = true;
@@ -740,6 +762,18 @@ namespace SpectroChipApp
                 DGtextBox.Text = Dg.ToString();
                 Ag = capture.Get(14);
                 AGtextBox.Text = Ag.ToString();
+
+                this.RealHtextBox.Text = capture.FrameHeight.ToString();//1280/4=320
+                this.RealWtextBox.Text = capture.FrameWidth.ToString(); //1920/4=480
+
+                Hpic2real = Convert.ToDouble(capture.FrameHeight);
+                Wpic2real =Convert.ToDouble(capture.FrameWidth);
+                Hpic2real = Hpic2real / 320.0;//(1280,480)/320
+                Wpic2real = Wpic2real / 480.000;//(1920,640)/480
+
+                Hp2rtextBox.Text = Hpic2real.ToString();
+                Wp2rtextBox.Text = Wpic2real.ToString();
+
             }
             else
             {
@@ -788,16 +822,16 @@ namespace SpectroChipApp
             {
                 DrawStart(e.Location);
 
-                if (e.X < 30)//X的右邊判斷跟照片大小FrameWidth有關 等SUNPLUS
+                if (e.X< 30)//X的右邊判斷跟照片大小FrameWidth有關 等SUNPLUS
                 {
                     X_Start = 0;
                 }
                 else
                 {
-                    X_Start = e.X;
+                    X_Start = Convert.ToInt32(e.X * Wpic2real);
                 }
 
-                Y_Start = e.Y;
+                Y_Start = Convert.ToInt32(e.Y* Hpic2real);
 
                 XtextBox.Text = Convert.ToString(X_Start);
                 YtextBox.Text = Convert.ToString(Y_Start);
@@ -808,24 +842,25 @@ namespace SpectroChipApp
             {
                 Capture = false;
 
-                WtextBox.Text = Convert.ToString(Math.Abs(e.X - X_Start));
-                HtextBox.Text = Convert.ToString(Math.Abs(e.Y - Y_Start));
 
-                if (e.X >= X_Start && e.Y >= Y_Start)//左上->右下
+                WtextBox.Text = Convert.ToString(Math.Abs(Convert.ToInt32(e.X * Wpic2real) - X_Start));
+                HtextBox.Text = Convert.ToString(Math.Abs(Convert.ToInt32(e.Y * Hpic2real) - Y_Start));
+
+                if (Convert.ToInt32(e.X * Wpic2real) >= X_Start && Convert.ToInt32(e.Y * Hpic2real) >= Y_Start)//左上->右下
                 {
                 }
-                if (e.X >= X_Start && e.Y <= Y_Start)//
+                if (Convert.ToInt32(e.X * Wpic2real) >= X_Start && Convert.ToInt32(e.Y * Hpic2real) <= Y_Start)//
                 {
-                    YtextBox.Text = Convert.ToString(e.Y);
+                    YtextBox.Text = Convert.ToString(Convert.ToInt32(e.Y * Hpic2real));
                 }
-                if (e.X <= X_Start && e.Y >= Y_Start)//不正常情況
+                if (Convert.ToInt32(e.X * Wpic2real) <= X_Start && Convert.ToInt32(e.Y * Hpic2real) >= Y_Start)//不正常情況
                 {
-                    XtextBox.Text = Convert.ToString(e.X);
+                    XtextBox.Text = Convert.ToString(Convert.ToInt32(e.X * Wpic2real));
                 }
-                if (e.X <= X_Start && e.Y <= Y_Start)//不正常情況
+                if (Convert.ToInt32(e.X * Wpic2real) <= X_Start && Convert.ToInt32(e.Y * Hpic2real) <= Y_Start)//不正常情況
                 {
-                    XtextBox.Text = Convert.ToString(e.X);
-                    YtextBox.Text = Convert.ToString(e.Y);
+                    XtextBox.Text = Convert.ToString(Convert.ToInt32(e.X * Wpic2real));
+                    YtextBox.Text = Convert.ToString(Convert.ToInt32(e.Y * Hpic2real));
                 }
 
                 Cursor.Clip = Rectangle.Empty;
@@ -1103,6 +1138,7 @@ namespace SpectroChipApp
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
+            
             DrawFixRectangle(e);
         }
 

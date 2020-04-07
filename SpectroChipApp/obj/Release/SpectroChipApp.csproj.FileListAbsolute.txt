@@ -104,3 +104,5 @@ E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\bin\Release\OpenCvSharp.Ex
 E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\obj\Release\SpectroChipApp.csproj.CopyComplete
 E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\obj\Release\SpectroChipApp.exe
 E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\obj\Release\SpectroChipApp.pdb
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\obj\Release\SpectroChipApp.Form2.resources
+E:\Repo_Direct\Csharp\SpectroApp(CK56)\SpectroChipApp\obj\Release\SpectroChipApp.Form3.resources

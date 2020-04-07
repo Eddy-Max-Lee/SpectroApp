@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnStart = new System.Windows.Forms.Button();
@@ -132,6 +132,19 @@
             this.label25 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.label26 = new System.Windows.Forms.Label();
+            this.RealWtextBox = new System.Windows.Forms.TextBox();
+            this.RealHtextBox = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.pXtextBox = new System.Windows.Forms.TextBox();
+            this.pYtextBox = new System.Windows.Forms.TextBox();
+            this.pHtextBox = new System.Windows.Forms.TextBox();
+            this.pWtextBox = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.Hp2rtextBox = new System.Windows.Forms.TextBox();
+            this.Wp2rtextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updn_power)).BeginInit();
@@ -155,11 +168,11 @@
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.pictureBox1.Location = new System.Drawing.Point(9, 10);
+            this.pictureBox1.Location = new System.Drawing.Point(76, 12);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(640, 480);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.Size = new System.Drawing.Size(480, 320);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
@@ -644,28 +657,28 @@
             // 
             // chart1
             // 
-            chartArea7.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea7);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Location = new System.Drawing.Point(665, 600);
             this.chart1.Name = "chart1";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series7.Name = "Series1";
-            this.chart1.Series.Add(series7);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(346, 317);
             this.chart1.TabIndex = 50;
             this.chart1.Text = "chart1";
             // 
             // chart2
             // 
-            chartArea8.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea8);
+            chartArea2.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea2);
             this.chart2.Location = new System.Drawing.Point(1044, 12);
             this.chart2.Name = "chart2";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series8.Name = "Series1";
-            this.chart2.Series.Add(series8);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series2.Name = "Series1";
+            this.chart2.Series.Add(series2);
             this.chart2.Size = new System.Drawing.Size(468, 434);
             this.chart2.TabIndex = 51;
             this.chart2.Text = "chart2";
@@ -747,14 +760,14 @@
             // 
             this.chart3.BorderSkin.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chart3.BorderSkin.PageColor = System.Drawing.Color.Black;
-            chartArea9.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea9);
+            chartArea3.Name = "ChartArea1";
+            this.chart3.ChartAreas.Add(chartArea3);
             this.chart3.Location = new System.Drawing.Point(1044, 483);
             this.chart3.Name = "chart3";
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series9.Name = "Series1";
-            this.chart3.Series.Add(series9);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series3.Name = "Series1";
+            this.chart3.Series.Add(series3);
             this.chart3.Size = new System.Drawing.Size(468, 434);
             this.chart3.TabIndex = 59;
             this.chart3.Text = "chart3";
@@ -1162,13 +1175,141 @@
             this.label26.TabIndex = 85;
             this.label26.Text = "----------------------------------------";
             // 
+            // RealWtextBox
+            // 
+            this.RealWtextBox.Location = new System.Drawing.Point(215, 351);
+            this.RealWtextBox.Name = "RealWtextBox";
+            this.RealWtextBox.Size = new System.Drawing.Size(64, 22);
+            this.RealWtextBox.TabIndex = 86;
+            this.RealWtextBox.Text = "0";
+            // 
+            // RealHtextBox
+            // 
+            this.RealHtextBox.Location = new System.Drawing.Point(306, 351);
+            this.RealHtextBox.Name = "RealHtextBox";
+            this.RealHtextBox.Size = new System.Drawing.Size(64, 22);
+            this.RealHtextBox.TabIndex = 87;
+            this.RealHtextBox.Text = "0";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label27.Location = new System.Drawing.Point(74, 354);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(135, 15);
+            this.label27.TabIndex = 88;
+            this.label27.Text = "輸入影像實際大小";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label28.Location = new System.Drawing.Point(113, 447);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(102, 15);
+            this.label28.TabIndex = 95;
+            this.label28.Text = "水平寬度(W):";
+            // 
+            // pXtextBox
+            // 
+            this.pXtextBox.Location = new System.Drawing.Point(215, 405);
+            this.pXtextBox.Name = "pXtextBox";
+            this.pXtextBox.Size = new System.Drawing.Size(64, 22);
+            this.pXtextBox.TabIndex = 89;
+            this.pXtextBox.Text = "0";
+            // 
+            // pYtextBox
+            // 
+            this.pYtextBox.Location = new System.Drawing.Point(385, 404);
+            this.pYtextBox.Name = "pYtextBox";
+            this.pYtextBox.Size = new System.Drawing.Size(64, 22);
+            this.pYtextBox.TabIndex = 90;
+            this.pYtextBox.Text = "200";
+            // 
+            // pHtextBox
+            // 
+            this.pHtextBox.Location = new System.Drawing.Point(385, 444);
+            this.pHtextBox.Name = "pHtextBox";
+            this.pHtextBox.Size = new System.Drawing.Size(64, 22);
+            this.pHtextBox.TabIndex = 91;
+            this.pHtextBox.Text = "30";
+            // 
+            // pWtextBox
+            // 
+            this.pWtextBox.Location = new System.Drawing.Point(215, 444);
+            this.pWtextBox.Name = "pWtextBox";
+            this.pWtextBox.Size = new System.Drawing.Size(64, 22);
+            this.pWtextBox.TabIndex = 92;
+            this.pWtextBox.Text = "640";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label29.Location = new System.Drawing.Point(113, 408);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(103, 15);
+            this.label29.TabIndex = 93;
+            this.label29.Text = "左上點X座標:";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label30.Location = new System.Drawing.Point(285, 407);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(103, 15);
+            this.label30.TabIndex = 94;
+            this.label30.Text = "左上點Y座標:";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label31.Location = new System.Drawing.Point(287, 447);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(99, 15);
+            this.label31.TabIndex = 96;
+            this.label31.Text = "垂直高度(H):";
+            // 
+            // Hp2rtextBox
+            // 
+            this.Hp2rtextBox.Location = new System.Drawing.Point(306, 375);
+            this.Hp2rtextBox.Name = "Hp2rtextBox";
+            this.Hp2rtextBox.Size = new System.Drawing.Size(64, 22);
+            this.Hp2rtextBox.TabIndex = 98;
+            this.Hp2rtextBox.Text = "0";
+            // 
+            // Wp2rtextBox
+            // 
+            this.Wp2rtextBox.Location = new System.Drawing.Point(215, 375);
+            this.Wp2rtextBox.Name = "Wp2rtextBox";
+            this.Wp2rtextBox.Size = new System.Drawing.Size(64, 22);
+            this.Wp2rtextBox.TabIndex = 97;
+            this.Wp2rtextBox.Text = "0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(1593, 942);
+            this.ClientSize = new System.Drawing.Size(1505, 964);
+            this.Controls.Add(this.Hp2rtextBox);
+            this.Controls.Add(this.Wp2rtextBox);
+            this.Controls.Add(this.label28);
+            this.Controls.Add(this.pXtextBox);
+            this.Controls.Add(this.pYtextBox);
+            this.Controls.Add(this.pHtextBox);
+            this.Controls.Add(this.pWtextBox);
+            this.Controls.Add(this.label29);
+            this.Controls.Add(this.label30);
+            this.Controls.Add(this.label31);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.RealHtextBox);
+            this.Controls.Add(this.RealWtextBox);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.label25);
@@ -1237,7 +1378,6 @@
             this.Controls.Add(this.p2);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnStart);
-            this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
@@ -1368,6 +1508,19 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox RealWtextBox;
+        private System.Windows.Forms.TextBox RealHtextBox;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TextBox pXtextBox;
+        private System.Windows.Forms.TextBox pYtextBox;
+        private System.Windows.Forms.TextBox pHtextBox;
+        private System.Windows.Forms.TextBox pWtextBox;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox Hp2rtextBox;
+        private System.Windows.Forms.TextBox Wp2rtextBox;
     }
 }
 
