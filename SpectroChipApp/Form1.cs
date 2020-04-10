@@ -44,6 +44,8 @@ namespace SpectroChipApp
         public int X_Start_chart =0;
         public int  X_End_chart = 0;
         public int Y_Start = 0;
+        public int W = 0;
+        public int H = 0;
         public double Exp = 1511;
         public double Ag = 0;
         public double Dg = 32;
@@ -73,7 +75,6 @@ namespace SpectroChipApp
 
         // SG Fitting
         public int left_length = 10;
-
         public int right_length = 10;
         public int Polynomial = 3;
 
@@ -199,7 +200,8 @@ namespace SpectroChipApp
         {
             //this.chart2.Series.Clear();
 
-            int W = input_image.Width, H = input_image.Height;
+            W = input_image.Width;
+            H = input_image.Height;
             //Bitmap image_roi_for_gray = new Bitmap(w, h);
 
             // Bitmap im1 = new Bitmap(w, h);//讀出原圖X軸 pixel
@@ -1740,6 +1742,19 @@ namespace SpectroChipApp
             Form3 f3 = new Form3(this);//產生Form2的物件，才可以使用它所提供的Method
             //this.Enabled = false;//將Form1隱藏。由於在Form1的程式碼內使用this，所以this為Form1的物件本身
             f3.Visible = true;//顯示第二個視窗
+        }
+
+        private void Button8_Click(object sender, EventArgs e)
+        {
+            Form4 f4 = new Form4(this);
+            f4.Visible = true;
+        }
+
+        private void Button9_Click(object sender, EventArgs e)
+        {
+            left_length = Convert.ToInt32(LtextBox.Text);
+            right_length = Convert.ToInt32(RtextBox.Text);
+            Polynomial = Convert.ToInt32(PtextBox.Text);
         }
     }
 }

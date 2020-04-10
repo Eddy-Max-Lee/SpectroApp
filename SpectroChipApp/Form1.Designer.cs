@@ -145,6 +145,22 @@
             this.label31 = new System.Windows.Forms.Label();
             this.Hp2rtextBox = new System.Windows.Forms.TextBox();
             this.Wp2rtextBox = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button8 = new System.Windows.Forms.Button();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.LtextBox = new System.Windows.Forms.TextBox();
+            this.RtextBox = new System.Windows.Forms.TextBox();
+            this.PtextBox = new System.Windows.Forms.TextBox();
+            this.button9 = new System.Windows.Forms.Button();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updn_power)).BeginInit();
@@ -162,6 +178,9 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
+            this.tabControl2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -205,7 +224,7 @@
             // 
             this.XtextBox.Location = new System.Drawing.Point(119, 13);
             this.XtextBox.Name = "XtextBox";
-            this.XtextBox.Size = new System.Drawing.Size(64, 22);
+            this.XtextBox.Size = new System.Drawing.Size(64, 21);
             this.XtextBox.TabIndex = 3;
             this.XtextBox.Text = "0";
             this.XtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.XtextBox_KeyPress);
@@ -214,7 +233,7 @@
             // 
             this.YtextBox.Location = new System.Drawing.Point(289, 12);
             this.YtextBox.Name = "YtextBox";
-            this.YtextBox.Size = new System.Drawing.Size(64, 22);
+            this.YtextBox.Size = new System.Drawing.Size(64, 21);
             this.YtextBox.TabIndex = 4;
             this.YtextBox.Text = "200";
             this.YtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.YtextBox_KeyPress);
@@ -223,7 +242,7 @@
             // 
             this.HtextBox.Location = new System.Drawing.Point(289, 52);
             this.HtextBox.Name = "HtextBox";
-            this.HtextBox.Size = new System.Drawing.Size(64, 22);
+            this.HtextBox.Size = new System.Drawing.Size(64, 21);
             this.HtextBox.TabIndex = 5;
             this.HtextBox.Text = "30";
             this.HtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HtextBox_KeyPress);
@@ -232,7 +251,7 @@
             // 
             this.WtextBox.Location = new System.Drawing.Point(119, 52);
             this.WtextBox.Name = "WtextBox";
-            this.WtextBox.Size = new System.Drawing.Size(64, 22);
+            this.WtextBox.Size = new System.Drawing.Size(64, 21);
             this.WtextBox.TabIndex = 6;
             this.WtextBox.Text = "640";
             this.WtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.WtextBox_KeyPress);
@@ -295,7 +314,7 @@
             this.p2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.p2.Location = new System.Drawing.Point(763, 146);
             this.p2.Name = "p2";
-            this.p2.Size = new System.Drawing.Size(58, 22);
+            this.p2.Size = new System.Drawing.Size(58, 21);
             this.p2.TabIndex = 13;
             this.p2.Text = "275.5";
             this.p2.DoubleClick += new System.EventHandler(this.p2_DoubleClick);
@@ -308,7 +327,7 @@
             this.p1.Location = new System.Drawing.Point(763, 118);
             this.p1.Name = "p1";
             this.p1.ReadOnly = true;
-            this.p1.Size = new System.Drawing.Size(58, 22);
+            this.p1.Size = new System.Drawing.Size(58, 21);
             this.p1.TabIndex = 14;
             this.p1.Text = "231.5";
             this.p1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.p1_MouseClick);
@@ -321,7 +340,7 @@
             this.p3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.p3.Location = new System.Drawing.Point(763, 174);
             this.p3.Name = "p3";
-            this.p3.Size = new System.Drawing.Size(58, 22);
+            this.p3.Size = new System.Drawing.Size(58, 21);
             this.p3.TabIndex = 15;
             this.p3.Text = "409.5";
             this.p3.DoubleClick += new System.EventHandler(this.p3_DoubleClick);
@@ -332,7 +351,7 @@
             this.p4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.p4.Location = new System.Drawing.Point(763, 202);
             this.p4.Name = "p4";
-            this.p4.Size = new System.Drawing.Size(58, 22);
+            this.p4.Size = new System.Drawing.Size(58, 21);
             this.p4.TabIndex = 16;
             this.p4.Text = "559.5";
             this.p4.DoubleClick += new System.EventHandler(this.p4_DoubleClick);
@@ -343,7 +362,7 @@
             this.p5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.p5.Location = new System.Drawing.Point(763, 230);
             this.p5.Name = "p5";
-            this.p5.Size = new System.Drawing.Size(58, 22);
+            this.p5.Size = new System.Drawing.Size(58, 21);
             this.p5.TabIndex = 17;
             this.p5.Text = "609.5";
             this.p5.DoubleClick += new System.EventHandler(this.p5_DoubleClick);
@@ -354,7 +373,7 @@
             this.p6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.p6.Location = new System.Drawing.Point(944, 119);
             this.p6.Name = "p6";
-            this.p6.Size = new System.Drawing.Size(58, 22);
+            this.p6.Size = new System.Drawing.Size(58, 21);
             this.p6.TabIndex = 18;
             this.p6.Text = "747.5";
             this.p6.DoubleClick += new System.EventHandler(this.p6_DoubleClick);
@@ -365,7 +384,7 @@
             this.p7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.p7.Location = new System.Drawing.Point(944, 147);
             this.p7.Name = "p7";
-            this.p7.Size = new System.Drawing.Size(58, 22);
+            this.p7.Size = new System.Drawing.Size(58, 21);
             this.p7.TabIndex = 19;
             this.p7.Text = "821.5";
             this.p7.DoubleClick += new System.EventHandler(this.p7_DoubleClick);
@@ -376,7 +395,7 @@
             this.p8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.p8.Location = new System.Drawing.Point(944, 175);
             this.p8.Name = "p8";
-            this.p8.Size = new System.Drawing.Size(58, 22);
+            this.p8.Size = new System.Drawing.Size(58, 21);
             this.p8.TabIndex = 20;
             this.p8.Text = "967.5";
             this.p8.DoubleClick += new System.EventHandler(this.p8_DoubleClick);
@@ -387,7 +406,7 @@
             this.p9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.p9.Location = new System.Drawing.Point(944, 203);
             this.p9.Name = "p9";
-            this.p9.Size = new System.Drawing.Size(58, 22);
+            this.p9.Size = new System.Drawing.Size(58, 21);
             this.p9.TabIndex = 21;
             this.p9.DoubleClick += new System.EventHandler(this.p9_DoubleClick);
             this.p9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.p9_MouseDown);
@@ -397,7 +416,7 @@
             this.p10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.p10.Location = new System.Drawing.Point(944, 231);
             this.p10.Name = "p10";
-            this.p10.Size = new System.Drawing.Size(58, 22);
+            this.p10.Size = new System.Drawing.Size(58, 21);
             this.p10.TabIndex = 22;
             this.p10.DoubleClick += new System.EventHandler(this.p10_DoubleClick);
             this.p10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.p10_MouseDown);
@@ -406,7 +425,7 @@
             // 
             this.w1.Location = new System.Drawing.Point(699, 119);
             this.w1.Name = "w1";
-            this.w1.Size = new System.Drawing.Size(58, 22);
+            this.w1.Size = new System.Drawing.Size(58, 21);
             this.w1.TabIndex = 23;
             this.w1.Text = "368.36";
             // 
@@ -414,7 +433,7 @@
             // 
             this.w2.Location = new System.Drawing.Point(699, 147);
             this.w2.Name = "w2";
-            this.w2.Size = new System.Drawing.Size(58, 22);
+            this.w2.Size = new System.Drawing.Size(58, 21);
             this.w2.TabIndex = 24;
             this.w2.Text = "406.72";
             // 
@@ -422,7 +441,7 @@
             // 
             this.w3.Location = new System.Drawing.Point(699, 175);
             this.w3.Name = "w3";
-            this.w3.Size = new System.Drawing.Size(58, 22);
+            this.w3.Size = new System.Drawing.Size(58, 21);
             this.w3.TabIndex = 25;
             this.w3.Text = "516.1";
             // 
@@ -430,7 +449,7 @@
             // 
             this.w4.Location = new System.Drawing.Point(699, 203);
             this.w4.Name = "w4";
-            this.w4.Size = new System.Drawing.Size(58, 22);
+            this.w4.Size = new System.Drawing.Size(58, 21);
             this.w4.TabIndex = 26;
             this.w4.Text = "635.32";
             // 
@@ -438,7 +457,7 @@
             // 
             this.w5.Location = new System.Drawing.Point(699, 231);
             this.w5.Name = "w5";
-            this.w5.Size = new System.Drawing.Size(58, 22);
+            this.w5.Size = new System.Drawing.Size(58, 21);
             this.w5.TabIndex = 27;
             this.w5.Text = "673.83";
             // 
@@ -446,7 +465,7 @@
             // 
             this.w6.Location = new System.Drawing.Point(876, 118);
             this.w6.Name = "w6";
-            this.w6.Size = new System.Drawing.Size(58, 22);
+            this.w6.Size = new System.Drawing.Size(58, 21);
             this.w6.TabIndex = 28;
             this.w6.Text = "781.87";
             // 
@@ -454,7 +473,7 @@
             // 
             this.w7.Location = new System.Drawing.Point(876, 146);
             this.w7.Name = "w7";
-            this.w7.Size = new System.Drawing.Size(58, 22);
+            this.w7.Size = new System.Drawing.Size(58, 21);
             this.w7.TabIndex = 29;
             this.w7.Text = "853.38";
             // 
@@ -462,7 +481,7 @@
             // 
             this.w8.Location = new System.Drawing.Point(876, 174);
             this.w8.Name = "w8";
-            this.w8.Size = new System.Drawing.Size(58, 22);
+            this.w8.Size = new System.Drawing.Size(58, 21);
             this.w8.TabIndex = 30;
             this.w8.Text = "980.94";
             // 
@@ -470,14 +489,14 @@
             // 
             this.w9.Location = new System.Drawing.Point(876, 202);
             this.w9.Name = "w9";
-            this.w9.Size = new System.Drawing.Size(58, 22);
+            this.w9.Size = new System.Drawing.Size(58, 21);
             this.w9.TabIndex = 31;
             // 
             // w10
             // 
             this.w10.Location = new System.Drawing.Point(876, 230);
             this.w10.Name = "w10";
-            this.w10.Size = new System.Drawing.Size(58, 22);
+            this.w10.Size = new System.Drawing.Size(58, 21);
             this.w10.TabIndex = 32;
             // 
             // label6
@@ -673,13 +692,13 @@
             // 
             chartArea2.Name = "ChartArea1";
             this.chart2.ChartAreas.Add(chartArea2);
-            this.chart2.Location = new System.Drawing.Point(1044, 12);
+            this.chart2.Location = new System.Drawing.Point(1097, 59);
             this.chart2.Name = "chart2";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             series2.Name = "Series1";
             this.chart2.Series.Add(series2);
-            this.chart2.Size = new System.Drawing.Size(468, 434);
+            this.chart2.Size = new System.Drawing.Size(335, 315);
             this.chart2.TabIndex = 51;
             this.chart2.Text = "chart2";
             this.chart2.Click += new System.EventHandler(this.chart2_Click);
@@ -692,7 +711,7 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.checkBox1.ForeColor = System.Drawing.Color.Red;
-            this.checkBox1.Location = new System.Drawing.Point(1120, 452);
+            this.checkBox1.Location = new System.Drawing.Point(23, 14);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(57, 24);
             this.checkBox1.TabIndex = 52;
@@ -704,7 +723,7 @@
             this.checkBox2.AutoSize = true;
             this.checkBox2.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.checkBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.checkBox2.Location = new System.Drawing.Point(1183, 452);
+            this.checkBox2.Location = new System.Drawing.Point(23, 62);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(74, 24);
             this.checkBox2.TabIndex = 53;
@@ -716,7 +735,7 @@
             this.checkBox3.AutoSize = true;
             this.checkBox3.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.checkBox3.ForeColor = System.Drawing.Color.Blue;
-            this.checkBox3.Location = new System.Drawing.Point(1263, 452);
+            this.checkBox3.Location = new System.Drawing.Point(139, 14);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(61, 24);
             this.checkBox3.TabIndex = 54;
@@ -728,7 +747,7 @@
             this.checkBox4.AutoSize = true;
             this.checkBox4.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.checkBox4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.checkBox4.Location = new System.Drawing.Point(1326, 452);
+            this.checkBox4.Location = new System.Drawing.Point(139, 62);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(106, 24);
             this.checkBox4.TabIndex = 55;
@@ -762,13 +781,13 @@
             this.chart3.BorderSkin.PageColor = System.Drawing.Color.Black;
             chartArea3.Name = "ChartArea1";
             this.chart3.ChartAreas.Add(chartArea3);
-            this.chart3.Location = new System.Drawing.Point(1044, 483);
+            this.chart3.Location = new System.Drawing.Point(1097, 600);
             this.chart3.Name = "chart3";
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             series3.Name = "Series1";
             this.chart3.Series.Add(series3);
-            this.chart3.Size = new System.Drawing.Size(468, 434);
+            this.chart3.Size = new System.Drawing.Size(358, 314);
             this.chart3.TabIndex = 59;
             this.chart3.Text = "chart3";
             // 
@@ -868,7 +887,7 @@
             this.checkBox5.AutoSize = true;
             this.checkBox5.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.checkBox5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkBox5.Location = new System.Drawing.Point(1429, 452);
+            this.checkBox5.Location = new System.Drawing.Point(23, 119);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(49, 24);
             this.checkBox5.TabIndex = 67;
@@ -893,7 +912,7 @@
             this.EXPtextBox.Location = new System.Drawing.Point(361, 7);
             this.EXPtextBox.Name = "EXPtextBox";
             this.EXPtextBox.ReadOnly = true;
-            this.EXPtextBox.Size = new System.Drawing.Size(64, 22);
+            this.EXPtextBox.Size = new System.Drawing.Size(64, 21);
             this.EXPtextBox.TabIndex = 69;
             this.EXPtextBox.Text = "-2";
             this.EXPtextBox.TextChanged += new System.EventHandler(this.EXPtextBox_TextChanged);
@@ -1022,7 +1041,7 @@
             this.AGtextBox.Location = new System.Drawing.Point(361, 58);
             this.AGtextBox.Name = "AGtextBox";
             this.AGtextBox.ReadOnly = true;
-            this.AGtextBox.Size = new System.Drawing.Size(64, 22);
+            this.AGtextBox.Size = new System.Drawing.Size(64, 21);
             this.AGtextBox.TabIndex = 76;
             this.AGtextBox.Text = "60";
             // 
@@ -1055,7 +1074,7 @@
             this.DGtextBox.Location = new System.Drawing.Point(361, 32);
             this.DGtextBox.Name = "DGtextBox";
             this.DGtextBox.ReadOnly = true;
-            this.DGtextBox.Size = new System.Drawing.Size(64, 22);
+            this.DGtextBox.Size = new System.Drawing.Size(64, 21);
             this.DGtextBox.TabIndex = 73;
             this.DGtextBox.Text = "1";
             // 
@@ -1069,7 +1088,7 @@
             this.XtextBox_chart.Location = new System.Drawing.Point(1518, 139);
             this.XtextBox_chart.Name = "XtextBox_chart";
             this.XtextBox_chart.ReadOnly = true;
-            this.XtextBox_chart.Size = new System.Drawing.Size(64, 22);
+            this.XtextBox_chart.Size = new System.Drawing.Size(64, 21);
             this.XtextBox_chart.TabIndex = 74;
             this.XtextBox_chart.Text = "0";
             // 
@@ -1078,7 +1097,7 @@
             this.YtextBox_chart.Location = new System.Drawing.Point(1518, 194);
             this.YtextBox_chart.Name = "YtextBox_chart";
             this.YtextBox_chart.ReadOnly = true;
-            this.YtextBox_chart.Size = new System.Drawing.Size(64, 22);
+            this.YtextBox_chart.Size = new System.Drawing.Size(64, 21);
             this.YtextBox_chart.TabIndex = 75;
             this.YtextBox_chart.Text = "200";
             // 
@@ -1087,7 +1106,7 @@
             this.WtextBox_chart.Location = new System.Drawing.Point(1518, 242);
             this.WtextBox_chart.Name = "WtextBox_chart";
             this.WtextBox_chart.ReadOnly = true;
-            this.WtextBox_chart.Size = new System.Drawing.Size(64, 22);
+            this.WtextBox_chart.Size = new System.Drawing.Size(64, 21);
             this.WtextBox_chart.TabIndex = 76;
             this.WtextBox_chart.Text = "20";
             // 
@@ -1096,7 +1115,7 @@
             this.HtextBox_chart.Location = new System.Drawing.Point(1517, 294);
             this.HtextBox_chart.Name = "HtextBox_chart";
             this.HtextBox_chart.ReadOnly = true;
-            this.HtextBox_chart.Size = new System.Drawing.Size(64, 22);
+            this.HtextBox_chart.Size = new System.Drawing.Size(64, 21);
             this.HtextBox_chart.TabIndex = 77;
             this.HtextBox_chart.Text = "30";
             // 
@@ -1179,7 +1198,7 @@
             // 
             this.RealWtextBox.Location = new System.Drawing.Point(215, 351);
             this.RealWtextBox.Name = "RealWtextBox";
-            this.RealWtextBox.Size = new System.Drawing.Size(64, 22);
+            this.RealWtextBox.Size = new System.Drawing.Size(64, 21);
             this.RealWtextBox.TabIndex = 86;
             this.RealWtextBox.Text = "0";
             // 
@@ -1187,7 +1206,7 @@
             // 
             this.RealHtextBox.Location = new System.Drawing.Point(306, 351);
             this.RealHtextBox.Name = "RealHtextBox";
-            this.RealHtextBox.Size = new System.Drawing.Size(64, 22);
+            this.RealHtextBox.Size = new System.Drawing.Size(64, 21);
             this.RealHtextBox.TabIndex = 87;
             this.RealHtextBox.Text = "0";
             // 
@@ -1215,7 +1234,7 @@
             // 
             this.pXtextBox.Location = new System.Drawing.Point(215, 405);
             this.pXtextBox.Name = "pXtextBox";
-            this.pXtextBox.Size = new System.Drawing.Size(64, 22);
+            this.pXtextBox.Size = new System.Drawing.Size(64, 21);
             this.pXtextBox.TabIndex = 89;
             this.pXtextBox.Text = "0";
             // 
@@ -1223,7 +1242,7 @@
             // 
             this.pYtextBox.Location = new System.Drawing.Point(385, 404);
             this.pYtextBox.Name = "pYtextBox";
-            this.pYtextBox.Size = new System.Drawing.Size(64, 22);
+            this.pYtextBox.Size = new System.Drawing.Size(64, 21);
             this.pYtextBox.TabIndex = 90;
             this.pYtextBox.Text = "200";
             // 
@@ -1231,7 +1250,7 @@
             // 
             this.pHtextBox.Location = new System.Drawing.Point(385, 444);
             this.pHtextBox.Name = "pHtextBox";
-            this.pHtextBox.Size = new System.Drawing.Size(64, 22);
+            this.pHtextBox.Size = new System.Drawing.Size(64, 21);
             this.pHtextBox.TabIndex = 91;
             this.pHtextBox.Text = "30";
             // 
@@ -1239,7 +1258,7 @@
             // 
             this.pWtextBox.Location = new System.Drawing.Point(215, 444);
             this.pWtextBox.Name = "pWtextBox";
-            this.pWtextBox.Size = new System.Drawing.Size(64, 22);
+            this.pWtextBox.Size = new System.Drawing.Size(64, 21);
             this.pWtextBox.TabIndex = 92;
             this.pWtextBox.Text = "640";
             // 
@@ -1277,7 +1296,7 @@
             // 
             this.Hp2rtextBox.Location = new System.Drawing.Point(306, 375);
             this.Hp2rtextBox.Name = "Hp2rtextBox";
-            this.Hp2rtextBox.Size = new System.Drawing.Size(64, 22);
+            this.Hp2rtextBox.Size = new System.Drawing.Size(64, 21);
             this.Hp2rtextBox.TabIndex = 98;
             this.Hp2rtextBox.Text = "0";
             // 
@@ -1285,9 +1304,169 @@
             // 
             this.Wp2rtextBox.Location = new System.Drawing.Point(215, 375);
             this.Wp2rtextBox.Name = "Wp2rtextBox";
-            this.Wp2rtextBox.Size = new System.Drawing.Size(64, 22);
+            this.Wp2rtextBox.Size = new System.Drawing.Size(64, 21);
             this.Wp2rtextBox.TabIndex = 97;
             this.Wp2rtextBox.Text = "0";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label32.Location = new System.Drawing.Point(1093, 32);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(330, 24);
+            this.label32.TabIndex = 99;
+            this.label32.Text = "----------------------------------------";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label33.Location = new System.Drawing.Point(1093, 372);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(330, 24);
+            this.label33.TabIndex = 100;
+            this.label33.Text = "----------------------------------------";
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Controls.Add(this.tabPage3);
+            this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Location = new System.Drawing.Point(1097, 395);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(263, 204);
+            this.tabControl2.TabIndex = 101;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.checkBox1);
+            this.tabPage3.Controls.Add(this.checkBox2);
+            this.tabPage3.Controls.Add(this.checkBox3);
+            this.tabPage3.Controls.Add(this.checkBox4);
+            this.tabPage3.Controls.Add(this.checkBox5);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(255, 178);
+            this.tabPage3.TabIndex = 0;
+            this.tabPage3.Text = "曲線圖選擇";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.label39);
+            this.tabPage4.Controls.Add(this.label38);
+            this.tabPage4.Controls.Add(this.label37);
+            this.tabPage4.Controls.Add(this.button9);
+            this.tabPage4.Controls.Add(this.PtextBox);
+            this.tabPage4.Controls.Add(this.RtextBox);
+            this.tabPage4.Controls.Add(this.LtextBox);
+            this.tabPage4.Controls.Add(this.label36);
+            this.tabPage4.Controls.Add(this.label35);
+            this.tabPage4.Controls.Add(this.label34);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(255, 178);
+            this.tabPage4.TabIndex = 1;
+            this.tabPage4.Text = "SG參數調整";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(1366, 447);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(89, 99);
+            this.button8.TabIndex = 102;
+            this.button8.Text = "數據存檔";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.Button8_Click);
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(6, 15);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(65, 12);
+            this.label34.TabIndex = 0;
+            this.label34.Text = "左側長度 :";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(6, 58);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(65, 12);
+            this.label35.TabIndex = 1;
+            this.label35.Text = "右側長度 :";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(6, 101);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(101, 12);
+            this.label36.TabIndex = 2;
+            this.label36.Text = "多項式擬合次數 :";
+            // 
+            // LtextBox
+            // 
+            this.LtextBox.Location = new System.Drawing.Point(77, 12);
+            this.LtextBox.Name = "LtextBox";
+            this.LtextBox.Size = new System.Drawing.Size(74, 21);
+            this.LtextBox.TabIndex = 3;
+            // 
+            // RtextBox
+            // 
+            this.RtextBox.Location = new System.Drawing.Point(77, 55);
+            this.RtextBox.Name = "RtextBox";
+            this.RtextBox.Size = new System.Drawing.Size(74, 21);
+            this.RtextBox.TabIndex = 4;
+            // 
+            // PtextBox
+            // 
+            this.PtextBox.Location = new System.Drawing.Point(113, 98);
+            this.PtextBox.Name = "PtextBox";
+            this.PtextBox.Size = new System.Drawing.Size(74, 21);
+            this.PtextBox.TabIndex = 5;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(174, 142);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.TabIndex = 6;
+            this.button9.Text = "確認";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.Button9_Click);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(157, 15);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(41, 12);
+            this.label37.TabIndex = 7;
+            this.label37.Text = "預設10";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(157, 58);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(41, 12);
+            this.label38.TabIndex = 8;
+            this.label38.Text = "預設10";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(193, 101);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(35, 12);
+            this.label39.TabIndex = 9;
+            this.label39.Text = "預設3";
             // 
             // Form1
             // 
@@ -1295,7 +1474,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(1505, 964);
+            this.ClientSize = new System.Drawing.Size(1467, 964);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.label33);
+            this.Controls.Add(this.label32);
             this.Controls.Add(this.Hp2rtextBox);
             this.Controls.Add(this.Wp2rtextBox);
             this.Controls.Add(this.label28);
@@ -1323,19 +1505,14 @@
             this.Controls.Add(this.XtextBox_chart);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.FPSlabel);
-            this.Controls.Add(this.checkBox5);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.goRight);
             this.Controls.Add(this.chart3);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.goDown);
             this.Controls.Add(this.showParatextBox);
-            this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.goLeft);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.goUp);
-            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.chart2);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.Fine_pic);
@@ -1378,6 +1555,7 @@
             this.Controls.Add(this.p2);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnStart);
+            this.Controls.Add(this.tabControl2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
@@ -1405,6 +1583,11 @@
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1521,6 +1704,22 @@
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.TextBox Hp2rtextBox;
         private System.Windows.Forms.TextBox Wp2rtextBox;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.TextBox PtextBox;
+        private System.Windows.Forms.TextBox RtextBox;
+        private System.Windows.Forms.TextBox LtextBox;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label34;
     }
 }
 
