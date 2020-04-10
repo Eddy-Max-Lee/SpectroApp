@@ -61,14 +61,14 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(236, 100);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(321, 21);
+            this.textBox1.Size = new System.Drawing.Size(321, 22);
             this.textBox1.TabIndex = 2;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(236, 188);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(137, 21);
+            this.textBox2.Size = new System.Drawing.Size(137, 22);
             this.textBox2.TabIndex = 3;
             // 
             // button1
@@ -103,7 +103,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form4";
-            this.Text = "Form4";
+            this.Text = "儲存光譜";
             this.ResumeLayout(false);
             this.PerformLayout();
 

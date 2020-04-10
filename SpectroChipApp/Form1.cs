@@ -50,6 +50,7 @@ namespace SpectroChipApp
         public double Ag = 0;
         public double Dg = 32;
         public double Fps = 0.0;
+        private double SD = 0;
 
         public string Max_From_f2;
 
@@ -124,7 +125,7 @@ namespace SpectroChipApp
 
                         Rect roi = new Rect(x, y, w, h);//首先要用个rect确定我们的兴趣区域在哪
 
-                          Mat ImageROI = new Mat(frame, roi);//新建一个mat，把roi内的图像加载到里面去。
+                        Mat ImageROI = new Mat(frame, roi);//新建一个mat，把roi内的图像加载到里面去。
 
                         image = BitmapConverter.ToBitmap(frame);
                         image_roi = BitmapConverter.ToBitmap(ImageROI);
@@ -275,7 +276,7 @@ namespace SpectroChipApp
             double[] IntensityGau;
             double Pixel_Max;
             double Intensity_Max;
-             Gaussian(IntensitySG, IntensitySG.Length, 3, out IntensityGau, out Pixel_Max, out Intensity_Max);
+             Gaussian(IntensitySG, IntensitySG.Length, 3, out IntensityGau, out Pixel_Max, out Intensity_Max, out SD);
 
             double WL_x;
             double WL_x_min;
@@ -315,7 +316,7 @@ namespace SpectroChipApp
 
                 this.chart2.Titles.Clear();
                 this.chart2.Titles.Add("S01");
-                this.chart2.Titles[0].Text = "Sensor View Point (Y軸灰度平均)";
+                this.chart2.Titles[0].Text = "Sensor View Point";
                 this.chart2.Titles[0].ForeColor = Color.Black;
                 this.chart2.Titles[0].Font = new System.Drawing.Font("標楷體", 16F);
 
@@ -435,11 +436,12 @@ namespace SpectroChipApp
           }*/
 
 
-        public  double[] Gaussian(double[] IntensitySG, int fitDatasCount, int order, out double[] Gausian_y, out double xMax, out double yMax)
+        public  double[] Gaussian(double[] IntensitySG, int fitDatasCount, int order, out double[] Gausian_y, out double xMax, out double yMax, out double c)
         {
             double[,] a = new double[fitDatasCount, order];
             double[] b = new double[fitDatasCount];
             double[] X = new double[order];
+            
             Gausian_y = new double[fitDatasCount];
             for (int i = 0; i < fitDatasCount; i++)
             {
@@ -461,6 +463,7 @@ namespace SpectroChipApp
             }
             //X = matrixC.SubMatrix
             double S = -1 / X[2];
+            c = Math.Sqrt(0.5 * X[2]);
              xMax = X[1] * S / 2.0; //最大值的index
             yMax = Math.Exp(X[0] + xMax * xMax / S);
             for (int i = 0; i < fitDatasCount; i++)
@@ -472,7 +475,7 @@ namespace SpectroChipApp
         private void Load_SensorView_Chart()
         {
             //標題
-            this.chart2.Titles.Add("Sensor View Point (Y軸灰度平均)");
+            this.chart2.Titles.Add("Sensor View Point");
             this.chart2.Titles[0].ForeColor = Color.Black;
             this.chart2.Titles[0].Font = new System.Drawing.Font("標楷體", 16F);
 
@@ -1113,7 +1116,7 @@ namespace SpectroChipApp
 
 
             ////Cali-4顯示一下參數
-            showParatextBox.Text = MakeParaString(para_buf, 2);
+            showParatextBox.Text = MakeParaString(para_buf, SD);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

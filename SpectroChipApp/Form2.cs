@@ -53,7 +53,9 @@ namespace SpectroChipApp
             double[] IntensityGau;
             double Pixel_Max;
             double Intensity_Max;
-            f1.Gaussian(SG_Clip, SG_Clip.Length, GauOrder, out IntensityGau, out Pixel_Max, out Intensity_Max);
+            double SD;
+
+            f1.Gaussian(SG_Clip, SG_Clip.Length, GauOrder, out IntensityGau, out Pixel_Max, out Intensity_Max, out SD);
 
             textBox1.Text = (Pixel_Max+start_pixel).ToString();
         
@@ -90,7 +92,7 @@ namespace SpectroChipApp
 
                 this.chart4.Titles.Clear();
                 this.chart4.Titles.Add("S01");
-                this.chart4.Titles[0].Text = "Sensor View Point (Y軸灰度平均)";
+                this.chart4.Titles[0].Text = "Fitting Plot";
                 this.chart4.Titles[0].ForeColor = Color.Black;
                 this.chart4.Titles[0].Font = new System.Drawing.Font("標楷體", 16F);
 
