@@ -123,7 +123,7 @@ namespace SpectroChipApp
 
                         Rect roi = new Rect(x, y, w, h);//首先要用个rect确定我们的兴趣区域在哪
 
-                        Mat ImageROI = new Mat(frame, roi);//新建一个mat，把roi内的图像加载到里面去。
+                          Mat ImageROI = new Mat(frame, roi);//新建一个mat，把roi内的图像加载到里面去。
 
                         image = BitmapConverter.ToBitmap(frame);
                         image_roi = BitmapConverter.ToBitmap(ImageROI);
