@@ -143,7 +143,6 @@
             this.label31 = new System.Windows.Forms.Label();
             this.Hp2rtextBox = new System.Windows.Forms.TextBox();
             this.Wp2rtextBox = new System.Windows.Forms.TextBox();
-            this.label33 = new System.Windows.Forms.Label();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -223,10 +222,10 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(0, 320);
+            this.btnStart.Location = new System.Drawing.Point(0, 471);
             this.btnStart.Margin = new System.Windows.Forms.Padding(2);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(30, 31);
+            this.btnStart.Size = new System.Drawing.Size(96, 102);
             this.btnStart.TabIndex = 1;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -383,7 +382,7 @@
             // p5
             // 
             this.p5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.p5.Location = new System.Drawing.Point(98, 149);
+            this.p5.Location = new System.Drawing.Point(98, 150);
             this.p5.Name = "p5";
             this.p5.Size = new System.Drawing.Size(58, 27);
             this.p5.TabIndex = 17;
@@ -394,7 +393,7 @@
             // p6
             // 
             this.p6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.p6.Location = new System.Drawing.Point(334, 38);
+            this.p6.Location = new System.Drawing.Point(334, 37);
             this.p6.Name = "p6";
             this.p6.Size = new System.Drawing.Size(58, 27);
             this.p6.TabIndex = 18;
@@ -405,7 +404,7 @@
             // p7
             // 
             this.p7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.p7.Location = new System.Drawing.Point(334, 66);
+            this.p7.Location = new System.Drawing.Point(334, 65);
             this.p7.Name = "p7";
             this.p7.Size = new System.Drawing.Size(58, 27);
             this.p7.TabIndex = 19;
@@ -416,7 +415,7 @@
             // p8
             // 
             this.p8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.p8.Location = new System.Drawing.Point(334, 94);
+            this.p8.Location = new System.Drawing.Point(334, 93);
             this.p8.Name = "p8";
             this.p8.Size = new System.Drawing.Size(58, 27);
             this.p8.TabIndex = 20;
@@ -427,7 +426,7 @@
             // p9
             // 
             this.p9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.p9.Location = new System.Drawing.Point(334, 122);
+            this.p9.Location = new System.Drawing.Point(334, 121);
             this.p9.Name = "p9";
             this.p9.Size = new System.Drawing.Size(58, 27);
             this.p9.TabIndex = 21;
@@ -437,7 +436,7 @@
             // p10
             // 
             this.p10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.p10.Location = new System.Drawing.Point(334, 150);
+            this.p10.Location = new System.Drawing.Point(334, 149);
             this.p10.Name = "p10";
             this.p10.Size = new System.Drawing.Size(58, 27);
             this.p10.TabIndex = 22;
@@ -701,13 +700,13 @@
             // 
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.Location = new System.Drawing.Point(497, 564);
+            this.chart1.Location = new System.Drawing.Point(986, 161);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(346, 317);
+            this.chart1.Size = new System.Drawing.Size(323, 176);
             this.chart1.TabIndex = 50;
             this.chart1.Text = "chart1";
             // 
@@ -715,13 +714,13 @@
             // 
             chartArea2.Name = "ChartArea1";
             this.chart2.ChartAreas.Add(chartArea2);
-            this.chart2.Location = new System.Drawing.Point(981, 12);
+            this.chart2.Location = new System.Drawing.Point(489, 344);
             this.chart2.Name = "chart2";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             series2.Name = "Series1";
             this.chart2.Series.Add(series2);
-            this.chart2.Size = new System.Drawing.Size(358, 315);
+            this.chart2.Size = new System.Drawing.Size(470, 315);
             this.chart2.TabIndex = 51;
             this.chart2.Text = "chart2";
             this.chart2.Click += new System.EventHandler(this.chart2_Click);
@@ -780,11 +779,11 @@
             // showParatextBox
             // 
             this.showParatextBox.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.showParatextBox.Location = new System.Drawing.Point(502, 385);
+            this.showParatextBox.Location = new System.Drawing.Point(988, 30);
             this.showParatextBox.Multiline = true;
             this.showParatextBox.Name = "showParatextBox";
             this.showParatextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.showParatextBox.Size = new System.Drawing.Size(279, 126);
+            this.showParatextBox.Size = new System.Drawing.Size(449, 126);
             this.showParatextBox.TabIndex = 57;
             this.showParatextBox.TextChanged += new System.EventHandler(this.P0textBox_TextChanged);
             // 
@@ -792,7 +791,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label21.Location = new System.Drawing.Point(498, 358);
+            this.label21.Location = new System.Drawing.Point(982, 4);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(86, 24);
             this.label21.TabIndex = 58;
@@ -804,13 +803,13 @@
             this.chart3.BorderSkin.PageColor = System.Drawing.Color.Black;
             chartArea3.Name = "ChartArea1";
             this.chart3.ChartAreas.Add(chartArea3);
-            this.chart3.Location = new System.Drawing.Point(940, 553);
+            this.chart3.Location = new System.Drawing.Point(986, 344);
             this.chart3.Name = "chart3";
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             series3.Name = "Series1";
             this.chart3.Series.Add(series3);
-            this.chart3.Size = new System.Drawing.Size(358, 314);
+            this.chart3.Size = new System.Drawing.Size(470, 315);
             this.chart3.TabIndex = 59;
             this.chart3.Text = "chart3";
             // 
@@ -970,11 +969,11 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tabControl1.Location = new System.Drawing.Point(31, 320);
+            this.tabControl1.Location = new System.Drawing.Point(0, 320);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(449, 146);
+            this.tabControl1.Size = new System.Drawing.Size(480, 146);
             this.tabControl1.TabIndex = 72;
             // 
             // tabPage1
@@ -993,7 +992,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(441, 114);
+            this.tabPage1.Size = new System.Drawing.Size(472, 114);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ROI選取";
             // 
@@ -1024,7 +1023,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(441, 114);
+            this.tabPage2.Size = new System.Drawing.Size(472, 114);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "感測器參數調整";
             // 
@@ -1162,7 +1161,7 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button4.Location = new System.Drawing.Point(501, 517);
+            this.button4.Location = new System.Drawing.Point(1315, 162);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(122, 32);
             this.button4.TabIndex = 80;
@@ -1172,7 +1171,7 @@
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button6.Location = new System.Drawing.Point(659, 516);
+            this.button6.Location = new System.Drawing.Point(1315, 200);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(122, 32);
             this.button6.TabIndex = 81;
@@ -1183,7 +1182,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label24.Location = new System.Drawing.Point(493, 341);
+            this.label24.Location = new System.Drawing.Point(1002, 687);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(330, 24);
             this.label24.TabIndex = 82;
@@ -1191,9 +1190,9 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(35, 472);
+            this.button7.Location = new System.Drawing.Point(251, 473);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(100, 82);
+            this.button7.Size = new System.Drawing.Size(96, 100);
             this.button7.TabIndex = 84;
             this.button7.Text = "機台控制介面";
             this.button7.UseVisualStyleBackColor = true;
@@ -1321,24 +1320,14 @@
             this.Wp2rtextBox.TabIndex = 97;
             this.Wp2rtextBox.Text = "0";
             // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label33.Location = new System.Drawing.Point(936, 327);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(330, 24);
-            this.label33.TabIndex = 100;
-            this.label33.Text = "----------------------------------------";
-            // 
             // tabControl2
             // 
             this.tabControl2.Controls.Add(this.tabPage3);
             this.tabControl2.Controls.Add(this.tabPage4);
-            this.tabControl2.Location = new System.Drawing.Point(940, 350);
+            this.tabControl2.Location = new System.Drawing.Point(490, 665);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(263, 204);
+            this.tabControl2.Size = new System.Drawing.Size(388, 233);
             this.tabControl2.TabIndex = 101;
             // 
             // tabPage3
@@ -1351,7 +1340,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(255, 178);
+            this.tabPage3.Size = new System.Drawing.Size(380, 207);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "曲線圖選擇";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1371,7 +1360,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(255, 178);
+            this.tabPage4.Size = new System.Drawing.Size(380, 178);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "SG參數調整";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1463,9 +1452,9 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(1205, 372);
+            this.button8.Location = new System.Drawing.Point(884, 687);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(70, 178);
+            this.button8.Size = new System.Drawing.Size(70, 207);
             this.button8.TabIndex = 102;
             this.button8.Text = "數據存檔";
             this.button8.UseVisualStyleBackColor = true;
@@ -1490,7 +1479,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 28);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(441, 114);
+            this.tabPage5.Size = new System.Drawing.Size(472, 114);
             this.tabPage5.TabIndex = 2;
             this.tabPage5.Text = "輸入影像參數";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1584,7 +1573,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 30);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(441, 308);
+            this.tabPage7.Size = new System.Drawing.Size(470, 308);
             this.tabPage7.TabIndex = 1;
             this.tabPage7.Text = "自動波長校正";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1652,7 +1641,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(159, 94);
+            this.textBox2.Location = new System.Drawing.Point(159, 93);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(58, 27);
@@ -1660,7 +1649,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(159, 122);
+            this.textBox3.Location = new System.Drawing.Point(159, 121);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(58, 27);
@@ -1676,7 +1665,7 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(395, 150);
+            this.textBox5.Location = new System.Drawing.Point(395, 149);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(58, 27);
@@ -1684,7 +1673,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(395, 123);
+            this.textBox6.Location = new System.Drawing.Point(395, 122);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(58, 27);
@@ -1692,7 +1681,7 @@
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(395, 95);
+            this.textBox7.Location = new System.Drawing.Point(395, 94);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(58, 27);
@@ -1700,7 +1689,7 @@
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(395, 66);
+            this.textBox8.Location = new System.Drawing.Point(395, 65);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(58, 27);
@@ -1708,7 +1697,7 @@
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(395, 38);
+            this.textBox9.Location = new System.Drawing.Point(395, 37);
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(58, 27);
@@ -1723,7 +1712,6 @@
             this.ClientSize = new System.Drawing.Size(1566, 964);
             this.Controls.Add(this.tabControl3);
             this.Controls.Add(this.button8);
-            this.Controls.Add(this.label33);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.label24);
@@ -1900,7 +1888,6 @@
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.TextBox Hp2rtextBox;
         private System.Windows.Forms.TextBox Wp2rtextBox;
-        private System.Windows.Forms.Label label33;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
