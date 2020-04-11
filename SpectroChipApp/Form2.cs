@@ -13,6 +13,10 @@ namespace SpectroChipApp
     
     public partial class Form2 : Form
     {
+        //private double SD = 0;
+       public  double pFWHM;
+
+
         private Form1 f1;
         public Form2(Form1 form)
         {
@@ -53,13 +57,18 @@ namespace SpectroChipApp
             double[] IntensityGau;
             double Pixel_Max;
             double Intensity_Max;
-            double SD;
+            double SD = 2;
+            
 
             f1.Gaussian(SG_Clip, SG_Clip.Length, GauOrder, out IntensityGau, out Pixel_Max, out Intensity_Max, out SD);
 
-            textBox1.Text = (Pixel_Max+start_pixel).ToString();
-        
+            pFWHM = 2 * Math.Sqrt(2 * Math.Log(2 )) * SD;
+           // pFWHM = Math.Log(2 * SD);
+
+            textBox1.Text = (Pixel_Max+start_pixel).ToString();        
             textBox2.Text = Intensity_Max.ToString();
+            textBox3.Text = SD.ToString();
+            textBox4.Text = pFWHM.ToString();
 
             //var IntensityGau = f1.Gaussian(SG_Clip, SG_Clip.Length, GauOrder);
             //-----------------------畫圖
@@ -146,33 +155,43 @@ namespace SpectroChipApp
             {
                 case 1:
                     f1.p1.Text = textBox1.Text;
+                    f1.pf1.Text = textBox4.Text;
                     break;
                 case 2:
                     f1.p2.Text = textBox1.Text;
+                    f1.pf2.Text = textBox4.Text;
                     break;
                 case 3:
                     f1.p3.Text = textBox1.Text;
+                    f1.pf3.Text = textBox4.Text;
                     break;
                 case 4:
                     f1.p4.Text = textBox1.Text;
+                    f1.pf4.Text = textBox4.Text;
                     break;
                 case 5:
                     f1.p5.Text = textBox1.Text;
+                    f1.pf5.Text = textBox4.Text;
                     break;
                 case 6:
                     f1.p6.Text = textBox1.Text;
+                    f1.pf6.Text = textBox4.Text;
                     break;
                 case 7:
                     f1.p7.Text = textBox1.Text;
+                    f1.pf7.Text = textBox4.Text;
                     break;
                 case 8:
                     f1.p8.Text = textBox1.Text;
+                    f1.pf8.Text = textBox4.Text;
                     break;
                 case 9:
                     f1.p9.Text = textBox1.Text;
+                    f1.pf9.Text = textBox4.Text;
                     break;
                 case 10:
                     f1.p10.Text = textBox1.Text;
+                    f1.pf10.Text = textBox4.Text;
                     break;
                 default:
                     Console.WriteLine("nothing change，都好像沒有變");

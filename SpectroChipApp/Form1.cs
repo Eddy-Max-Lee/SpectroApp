@@ -164,7 +164,7 @@ namespace SpectroChipApp
                      //   FPSlabel.Text =  (Fps*10000).ToString()+" fps";
                     }));
 
-                    Thread.Sleep(300);//加了比較順
+                    Thread.Sleep(250);//加了比較順
 
                     //下面這樣太吃記憶體
                     /*RectangleF cloneRect = new RectangleF(x, y, w, h);
@@ -193,7 +193,7 @@ namespace SpectroChipApp
         private string MakeParaString(double[] parameters, double SD)
         {
             string str = "p0 = " + parameters[0] + "\r\np1 = " + parameters[1] + "\r\np2 = " + parameters[2] + "\r\np3 = " + parameters[3] + "\r\np4 = " + parameters[4]
-                               + "\r\n標準差(SD) = " + SD;
+                                + "\r\nλ(nm)\tPixel\tΔP(FWHM)\tΔλ(FWHM)\r\n" + SD;
             return str;
         }
 
@@ -204,7 +204,7 @@ namespace SpectroChipApp
             W = input_image.Width;
             H = input_image.Height;
             //Bitmap image_roi_for_gray = new Bitmap(w, h);
-
+             
             // Bitmap im1 = new Bitmap(w, h);//讀出原圖X軸 pixel
             Bitmap im1 = new Bitmap(W, H);//讀出原圖X軸 pixel
             int Pixel_x = 0;//正在被掃描的點
@@ -463,8 +463,8 @@ namespace SpectroChipApp
             }
             //X = matrixC.SubMatrix
             double S = -1 / X[2];
-            c = Math.Sqrt(0.5 * X[2]);
-             xMax = X[1] * S / 2.0; //最大值的index
+            c = Math.Sqrt(-0.5 / X[2]);
+            xMax = X[1] * S / 2.0; //最大值的index
             yMax = Math.Exp(X[0] + xMax * xMax / S);
             for (int i = 0; i < fitDatasCount; i++)
             {
@@ -563,7 +563,7 @@ namespace SpectroChipApp
                 w_chart = 640;
                 h_chart = 30;
                 
-                MessageBox.Show("請選擇有效的區間");
+                //MessageBox.Show("請選擇有效的區間");
       
             }
         }
@@ -694,11 +694,11 @@ namespace SpectroChipApp
         {
             // Create pen.
             Pen RedPen = new Pen(Color.Red, 5);
-            Pen GrayPen = new Pen(Color.Red, 1);
+           // Pen GrayPen = new Pen(Color.Red, 1);
 
             // Create rectangle.
             Rectangle rect = new Rectangle(x_chart, y_chart, w_chart, h_chart);
-            Rectangle full_rect = new Rectangle(0, 0, 468, 434);
+            Rectangle full_rect = new Rectangle(0, 0, 470, 315);
 
             // Draw rectangle to screen.
             if (isPixelClick)
@@ -733,6 +733,7 @@ namespace SpectroChipApp
             Load_Cali_Chart();
             Load_SensorView_Chart();
             Load_CalibratedView_Chart();
+            pictureBox1.Enabled = false;
 
             updn_power.Maximum = 4;
             x = 0;
@@ -778,7 +779,7 @@ namespace SpectroChipApp
 
                 Hp2rtextBox.Text = Hpic2real.ToString();
                 Wp2rtextBox.Text = Wpic2real.ToString();
-
+                pictureBox1.Enabled = true;
             }
             else
             {
@@ -786,7 +787,7 @@ namespace SpectroChipApp
                 capture.Release();
 
                 btnStart.Text = "▶";
-               
+                pictureBox1.Enabled = false;
                 btnStart.Visible = false;
                 Thread.Sleep(4000);
                 btnStart.Visible = true;
