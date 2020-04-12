@@ -103,15 +103,15 @@ namespace SpectroChipApp
             capture = new VideoCapture(0);
 
             Wpic2real = capture.FrameWidth / 480;
-           Hpic2real = capture.FrameHeight / 320 ;    
+           Hpic2real = capture.FrameHeight / 320 ;
+
+            chart1.MouseWheel += chart1_MouseWheel;
 
 
+            //Console.WriteLine(capture.FrameHeight);
+            //Console.WriteLine(capture.FrameWidth);
 
-
-        //Console.WriteLine(capture.FrameHeight);
-        //Console.WriteLine(capture.FrameWidth);
-
-        capture.Open(0);
+            capture.Open(0);
 
             if (capture.IsOpened())
             {
@@ -176,6 +176,37 @@ namespace SpectroChipApp
         }
 
         //---------------------------------宜運函數(首)---------------------
+        private void chart1_MouseWheel(object sender, MouseEventArgs e)
+        {
+            var chart = (System.Windows.Forms.DataVisualization.Charting.Chart)sender;
+            var xAxis = chart.ChartAreas[0].AxisX;
+            var yAxis = chart.ChartAreas[0].AxisY;
+
+            try
+            {
+                if (e.Delta < 0) // Scrolled down.
+                {
+                    xAxis.ScaleView.ZoomReset();
+                    yAxis.ScaleView.ZoomReset();
+                }
+                else if (e.Delta > 0) // Scrolled up.
+                {
+                    var xMin = xAxis.ScaleView.ViewMinimum;
+                    var xMax = xAxis.ScaleView.ViewMaximum;
+                    var yMin = yAxis.ScaleView.ViewMinimum;
+                    var yMax = yAxis.ScaleView.ViewMaximum;
+
+                    var posXStart = xAxis.PixelPositionToValue(e.Location.X) - (xMax - xMin) / 4;
+                    var posXFinish = xAxis.PixelPositionToValue(e.Location.X) + (xMax - xMin) / 4;
+                    var posYStart = yAxis.PixelPositionToValue(e.Location.Y) - (yMax - yMin) / 4;
+                    var posYFinish = yAxis.PixelPositionToValue(e.Location.Y) + (yMax - yMin) / 4;
+
+                    xAxis.ScaleView.Zoom(posXStart, posXFinish);
+                    yAxis.ScaleView.Zoom(posYStart, posYFinish);
+                }
+            }
+            catch { }
+        }
         private static double CalculateStdDev(IEnumerable<double> values)
         {
             double ret = 0;
@@ -193,7 +224,9 @@ namespace SpectroChipApp
         private string MakeParaString(double[] parameters, double SD)
         {
             string str = "p0 = " + parameters[0] + "\r\np1 = " + parameters[1] + "\r\np2 = " + parameters[2] + "\r\np3 = " + parameters[3] + "\r\np4 = " + parameters[4]
-                                + "\r\nλ(nm)\tPixel\tΔP(FWHM)\tΔλ(FWHM)\r\n" + SD;
+                                + "\r\nλ(nm)\tPixel\tΔP(FWHM)\tΔλ(FWHM)\r\n"
+                                + Math.Round(double.Parse(w1.Text, CultureInfo.InvariantCulture.NumberFormat), 2) + "\t" + Math.Round( double.Parse(p1.Text, CultureInfo.InvariantCulture.NumberFormat), 2) + "\t" + Math.Round(double.Parse(pf1.Text, CultureInfo.InvariantCulture.NumberFormat), 2) + "\t                 " + Math.Round(parameters[1] * double.Parse(pf1.Text, CultureInfo.InvariantCulture.NumberFormat), 2)
+                                + Math.Round(double.Parse(w2.Text, CultureInfo.InvariantCulture.NumberFormat), 2) + "\t" + Math.Round(double.Parse(p2.Text, CultureInfo.InvariantCulture.NumberFormat), 2) + "\t" + Math.Round(double.Parse(pf2.Text, CultureInfo.InvariantCulture.NumberFormat), 2) + "\t                 " + Math.Round(parameters[1] * double.Parse(pf2.Text, CultureInfo.InvariantCulture.NumberFormat), 2);
             return str;
         }
 
@@ -478,6 +511,8 @@ namespace SpectroChipApp
             this.chart2.Titles.Add("Sensor View Point");
             this.chart2.Titles[0].ForeColor = Color.Black;
             this.chart2.Titles[0].Font = new System.Drawing.Font("標楷體", 16F);
+            chart1.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
+            chart1.ChartAreas[0].AxisY.ScaleView.Zoomable = true;
 
             System.Windows.Forms.DataVisualization.Charting.Series seriesRed = new System.Windows.Forms.DataVisualization.Charting.Series("Red", 1000);
             System.Windows.Forms.DataVisualization.Charting.Series seriesGreen = new System.Windows.Forms.DataVisualization.Charting.Series("Green", 1000);
@@ -491,7 +526,7 @@ namespace SpectroChipApp
             //this.chart2.Series.Add(seriesGreen);
             // this.chart2.Series.Add(seriesBlue);
             // this.chart2.Series.Add(seriesGray);
-            checkBox4.Checked = true;
+           // checkBox4.Checked = true;
         }
 
         private void Load_CalibratedView_Chart()
@@ -740,6 +775,7 @@ namespace SpectroChipApp
             y = 200;
             w = 640;
             h = 30;
+
             //goUp.FlatAppearance.BorderSize = 0;
             //  this.goUp.SendToBack();//将背景图片放到最下面
             //this.panel1.BackColor = Color.Transparent;//将Panel设为透明
@@ -1578,8 +1614,7 @@ namespace SpectroChipApp
                 chart2.ChartAreas[0].CursorY.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
              //  chart2.ChartAreas[0].CursorY.Interval = 0;
                 //double kkk = chart2.ChartAreas[0].CursorX.Position;
-                double kkk=chart2.ChartAreas[0].CursorX.SelectionStart;
-                double ppp = chart2.ChartAreas[0].CursorX.SelectionEnd;
+
 
 
 
@@ -1752,6 +1787,7 @@ namespace SpectroChipApp
         {
             Form4 f4 = new Form4(this);
             f4.Visible = true;
+            displayRoiSensorView(image_roi_for_gray, x, x + w);
         }
 
         private void Button9_Click(object sender, EventArgs e)
@@ -1759,6 +1795,44 @@ namespace SpectroChipApp
             left_length = Convert.ToInt32(LtextBox.Text);
             right_length = Convert.ToInt32(RtextBox.Text);
             Polynomial = Convert.ToInt32(PtextBox.Text);
+        }
+
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            displayRoiSensorView(image_roi_for_gray, x, x + w);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            displayRoiSensorView(image_roi_for_gray, x, x + w);
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            displayRoiSensorView(image_roi_for_gray, x, x + w);
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            displayRoiSensorView(image_roi_for_gray, x, x + w);
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            displayRoiSensorView(image_roi_for_gray, x, x + w);
+        }
+
+        private void pictureBox2_Paint(object sender, PaintEventArgs e)
+        {
+            Pen RedPen = new Pen(Color.Red, 1);
+
+            // Create rectangle.
+            //Convert.ToInt16(Math.Floor(double(320 / capture.FrameHeight)))
+            //   Rectangle rect = new Rectangle(x*(480/capture.FrameWidth), y * (320 / capture.FrameHeight), w * (480 / capture.FrameWidth), h * (320 / capture.FrameHeight));
+            //Rectangle rect = new Rectangle(x_picturebox, y_picturebox, w_picturebox, h_picturebox);
+            //  Rectangle rect = new Rectangle(x, y, w, h);
+            // Draw rectangle to screen.
+            e.Graphics.DrawLine(RedPen, 0,160,480,160);
         }
     }
 }

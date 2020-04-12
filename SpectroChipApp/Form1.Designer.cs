@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea22 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series22 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea23 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series23 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea24 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series24 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnStart = new System.Windows.Forms.Button();
@@ -241,6 +241,7 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox2_Paint);
             // 
             // XtextBox
             // 
@@ -430,6 +431,7 @@
             this.p9.Name = "p9";
             this.p9.Size = new System.Drawing.Size(58, 27);
             this.p9.TabIndex = 21;
+            this.p9.Text = "0";
             this.p9.DoubleClick += new System.EventHandler(this.p9_DoubleClick);
             this.p9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.p9_MouseDown);
             // 
@@ -440,6 +442,7 @@
             this.p10.Name = "p10";
             this.p10.Size = new System.Drawing.Size(58, 27);
             this.p10.TabIndex = 22;
+            this.p10.Text = "0";
             this.p10.DoubleClick += new System.EventHandler(this.p10_DoubleClick);
             this.p10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.p10_MouseDown);
             // 
@@ -513,6 +516,7 @@
             this.w9.Name = "w9";
             this.w9.Size = new System.Drawing.Size(58, 27);
             this.w9.TabIndex = 31;
+            this.w9.Text = "0";
             // 
             // w10
             // 
@@ -520,6 +524,7 @@
             this.w10.Name = "w10";
             this.w10.Size = new System.Drawing.Size(58, 27);
             this.w10.TabIndex = 32;
+            this.w10.Text = "0";
             // 
             // label6
             // 
@@ -698,28 +703,28 @@
             // 
             // chart1
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
+            chartArea22.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea22);
             this.chart1.Location = new System.Drawing.Point(986, 161);
             this.chart1.Name = "chart1";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series4.Name = "Series1";
-            this.chart1.Series.Add(series4);
+            series22.ChartArea = "ChartArea1";
+            series22.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series22.Name = "Series1";
+            this.chart1.Series.Add(series22);
             this.chart1.Size = new System.Drawing.Size(323, 176);
             this.chart1.TabIndex = 50;
             this.chart1.Text = "chart1";
             // 
             // chart2
             // 
-            chartArea5.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea5);
+            chartArea23.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea23);
             this.chart2.Location = new System.Drawing.Point(489, 344);
             this.chart2.Name = "chart2";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series5.Name = "Series1";
-            this.chart2.Series.Add(series5);
+            series23.ChartArea = "ChartArea1";
+            series23.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series23.Name = "Series1";
+            this.chart2.Series.Add(series23);
             this.chart2.Size = new System.Drawing.Size(470, 315);
             this.chart2.TabIndex = 51;
             this.chart2.Text = "chart2";
@@ -739,6 +744,7 @@
             this.checkBox1.TabIndex = 52;
             this.checkBox1.Text = "Red";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // checkBox2
             // 
@@ -751,6 +757,7 @@
             this.checkBox2.TabIndex = 53;
             this.checkBox2.Text = "Green";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // checkBox3
             // 
@@ -763,6 +770,7 @@
             this.checkBox3.TabIndex = 54;
             this.checkBox3.Text = "Blue";
             this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // checkBox4
             // 
@@ -775,6 +783,7 @@
             this.checkBox4.TabIndex = 55;
             this.checkBox4.Text = "Gray Scale";
             this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
             // showParatextBox
             // 
@@ -801,14 +810,14 @@
             // 
             this.chart3.BorderSkin.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chart3.BorderSkin.PageColor = System.Drawing.Color.Black;
-            chartArea6.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea6);
+            chartArea24.Name = "ChartArea1";
+            this.chart3.ChartAreas.Add(chartArea24);
             this.chart3.Location = new System.Drawing.Point(986, 344);
             this.chart3.Name = "chart3";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series6.Name = "Series1";
-            this.chart3.Series.Add(series6);
+            series24.ChartArea = "ChartArea1";
+            series24.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series24.Name = "Series1";
+            this.chart3.Series.Add(series24);
             this.chart3.Size = new System.Drawing.Size(470, 315);
             this.chart3.TabIndex = 59;
             this.chart3.Text = "chart3";
@@ -915,6 +924,7 @@
             this.checkBox5.TabIndex = 67;
             this.checkBox5.Text = "SG";
             this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
             // 
             // trackBar1
             // 
@@ -1491,6 +1501,7 @@
             this.pf1.ReadOnly = true;
             this.pf1.Size = new System.Drawing.Size(58, 27);
             this.pf1.TabIndex = 103;
+            this.pf1.Text = "0";
             // 
             // tabControl3
             // 
@@ -1574,6 +1585,7 @@
             this.pf10.ReadOnly = true;
             this.pf10.Size = new System.Drawing.Size(58, 27);
             this.pf10.TabIndex = 116;
+            this.pf10.Text = "0";
             // 
             // pf9
             // 
@@ -1582,6 +1594,7 @@
             this.pf9.ReadOnly = true;
             this.pf9.Size = new System.Drawing.Size(58, 27);
             this.pf9.TabIndex = 115;
+            this.pf9.Text = "0";
             // 
             // pf8
             // 
@@ -1590,6 +1603,7 @@
             this.pf8.ReadOnly = true;
             this.pf8.Size = new System.Drawing.Size(58, 27);
             this.pf8.TabIndex = 114;
+            this.pf8.Text = "0";
             // 
             // pf7
             // 
@@ -1598,6 +1612,7 @@
             this.pf7.ReadOnly = true;
             this.pf7.Size = new System.Drawing.Size(58, 27);
             this.pf7.TabIndex = 113;
+            this.pf7.Text = "0";
             // 
             // pf6
             // 
@@ -1606,6 +1621,7 @@
             this.pf6.ReadOnly = true;
             this.pf6.Size = new System.Drawing.Size(58, 27);
             this.pf6.TabIndex = 112;
+            this.pf6.Text = "0";
             // 
             // pf5
             // 
@@ -1614,6 +1630,7 @@
             this.pf5.ReadOnly = true;
             this.pf5.Size = new System.Drawing.Size(58, 27);
             this.pf5.TabIndex = 111;
+            this.pf5.Text = "0";
             // 
             // pf4
             // 
@@ -1622,6 +1639,7 @@
             this.pf4.ReadOnly = true;
             this.pf4.Size = new System.Drawing.Size(58, 27);
             this.pf4.TabIndex = 110;
+            this.pf4.Text = "0";
             // 
             // pf3
             // 
@@ -1630,6 +1648,7 @@
             this.pf3.ReadOnly = true;
             this.pf3.Size = new System.Drawing.Size(58, 27);
             this.pf3.TabIndex = 109;
+            this.pf3.Text = "0";
             // 
             // pf2
             // 
@@ -1638,6 +1657,7 @@
             this.pf2.ReadOnly = true;
             this.pf2.Size = new System.Drawing.Size(58, 27);
             this.pf2.TabIndex = 108;
+            this.pf2.Text = "0";
             // 
             // label32
             // 
