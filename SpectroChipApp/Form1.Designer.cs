@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea22 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series22 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea23 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series23 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea24 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series24 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea25 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series25 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea26 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series26 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea27 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series27 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnStart = new System.Windows.Forms.Button();
@@ -703,28 +703,28 @@
             // 
             // chart1
             // 
-            chartArea22.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea22);
+            chartArea25.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea25);
             this.chart1.Location = new System.Drawing.Point(986, 161);
             this.chart1.Name = "chart1";
-            series22.ChartArea = "ChartArea1";
-            series22.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series22.Name = "Series1";
-            this.chart1.Series.Add(series22);
+            series25.ChartArea = "ChartArea1";
+            series25.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series25.Name = "Series1";
+            this.chart1.Series.Add(series25);
             this.chart1.Size = new System.Drawing.Size(323, 176);
             this.chart1.TabIndex = 50;
             this.chart1.Text = "chart1";
             // 
             // chart2
             // 
-            chartArea23.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea23);
+            chartArea26.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea26);
             this.chart2.Location = new System.Drawing.Point(489, 344);
             this.chart2.Name = "chart2";
-            series23.ChartArea = "ChartArea1";
-            series23.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series23.Name = "Series1";
-            this.chart2.Series.Add(series23);
+            series26.ChartArea = "ChartArea1";
+            series26.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series26.Name = "Series1";
+            this.chart2.Series.Add(series26);
             this.chart2.Size = new System.Drawing.Size(470, 315);
             this.chart2.TabIndex = 51;
             this.chart2.Text = "chart2";
@@ -810,14 +810,14 @@
             // 
             this.chart3.BorderSkin.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chart3.BorderSkin.PageColor = System.Drawing.Color.Black;
-            chartArea24.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea24);
+            chartArea27.Name = "ChartArea1";
+            this.chart3.ChartAreas.Add(chartArea27);
             this.chart3.Location = new System.Drawing.Point(986, 344);
             this.chart3.Name = "chart3";
-            series24.ChartArea = "ChartArea1";
-            series24.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series24.Name = "Series1";
-            this.chart3.Series.Add(series24);
+            series27.ChartArea = "ChartArea1";
+            series27.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series27.Name = "Series1";
+            this.chart3.Series.Add(series27);
             this.chart3.Size = new System.Drawing.Size(470, 315);
             this.chart3.TabIndex = 59;
             this.chart3.Text = "chart3";
@@ -1442,6 +1442,7 @@
             this.PtextBox.Name = "PtextBox";
             this.PtextBox.Size = new System.Drawing.Size(74, 22);
             this.PtextBox.TabIndex = 5;
+            this.PtextBox.Text = "3";
             // 
             // RtextBox
             // 
@@ -1449,6 +1450,7 @@
             this.RtextBox.Name = "RtextBox";
             this.RtextBox.Size = new System.Drawing.Size(74, 22);
             this.RtextBox.TabIndex = 4;
+            this.RtextBox.Text = "10";
             // 
             // LtextBox
             // 
@@ -1456,6 +1458,7 @@
             this.LtextBox.Name = "LtextBox";
             this.LtextBox.Size = new System.Drawing.Size(74, 22);
             this.LtextBox.TabIndex = 3;
+            this.LtextBox.Text = "10";
             // 
             // label36
             // 

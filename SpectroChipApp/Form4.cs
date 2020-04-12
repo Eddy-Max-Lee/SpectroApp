@@ -88,7 +88,8 @@ namespace SpectroChipApp
 
         private void Form4_Load(object sender, EventArgs e)
         {
-
+            string path = Directory.GetCurrentDirectory();
+            textBox1.Text= path + "\\Saved_Data";
         }
     }
 }

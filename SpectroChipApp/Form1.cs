@@ -56,7 +56,7 @@ namespace SpectroChipApp
 
         public int Selected_P = 0; //讓Form2知道被按下的textbox是p幾
 
-        public double[] wave = new double[1000];
+        public double[] wave = new double[1000]; //這段是給foem4用的
         public double[] IntensityOriginal;
         public double[] IntensitySG;
 
@@ -828,6 +828,7 @@ namespace SpectroChipApp
                 Hp2rtextBox.Text = Hpic2real.ToString();
                 Wp2rtextBox.Text = Wpic2real.ToString();
                 pictureBox1.Enabled = true;
+                checkBox5.Checked = true;
             }
             else
             {
