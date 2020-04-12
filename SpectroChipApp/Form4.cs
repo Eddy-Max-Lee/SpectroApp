@@ -43,13 +43,23 @@ namespace SpectroChipApp
             // and add to DataTable.    
             column = new DataColumn();
             column.DataType = System.Type.GetType("System.Double");
-            column.ColumnName = "波長";
+            column.ColumnName = "Pixel";
+            table.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.Double");
+            column.ColumnName = "Wavelength";
+            table.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.Double");
+            column.ColumnName = "Intensity";
             table.Columns.Add(column);
 
             // Create second column.
             column = new DataColumn();
             column.DataType = Type.GetType("System.Double");
-            column.ColumnName = "強度";
+            column.ColumnName = "Intensity(SG)";
 
             table.Columns.Add(column);
 
@@ -57,13 +67,28 @@ namespace SpectroChipApp
             for (int x = 0; x < f1.W; x++)
             {
                 row = table.NewRow();
-                row["波長"] = x + f1.X_Start;
-                row["強度"] = f1.IntensitySG[x];
+                row["Pixel"] = x + f1.X_Start;//幹得漂亮育代
+                                             
+                row["Wavelength"] = f1.wave[x];
+                row["Intensity"] = f1.IntensityOriginal[x];
+                row["Intensity(SG)"] = f1.IntensitySG[x];
                 table.Rows.Add(row);
             }
+            for (int x = 0; x < f1.wave.Length; x++)
+            {
+                row = table.NewRow();
+               // row["Wavelength"] = f1.wave[x];
+                table.Rows.Add(row);
+            }
+              
             DataTableToExcel.DataTableToExcel.ExportToExcel(@"" + textBox1.Text + @"\" + textBox2.Text + ".xlsx", "sheet123", table);
             MessageBox.Show("存檔完成");
             this.Close();
+        }
+
+        private void Form4_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

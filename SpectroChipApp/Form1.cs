@@ -56,7 +56,10 @@ namespace SpectroChipApp
 
         public int Selected_P = 0; //讓Form2知道被按下的textbox是p幾
 
+        public double[] wave = new double[1000];
+        public double[] IntensityOriginal;
         public double[] IntensitySG;
+
         private bool isgoUpMouseDown = false;
         private bool isgoDownMouseDown = false;
         private bool isgoLeftMouseDown = false;
@@ -300,6 +303,7 @@ namespace SpectroChipApp
                 IntensityBlue[Pixel_x] = ABlue[Pixel_x] / H;//平均
                 IntensityGray[Pixel_x] = AGray[Pixel_x] / H;//平均
             }
+            IntensityOriginal = IntensityGray.ToArray();
             var sg = new DoubleVector(IntensityGray);
             var IntensitySG1 = sgf.Filter(sg);
             IntensitySG = IntensitySG1.ToArray();
@@ -932,9 +936,10 @@ namespace SpectroChipApp
             int point_used = 0;
             double[] xPixel_array;
             double[] yWave_array;
-            //double[] a = new double[10];
-            //double[] b = new double[10];
-            bool input_error = true;
+
+        //double[] a = new double[10];
+        //double[] b = new double[10];
+        bool input_error = true;
             double result = 0;
             double[] parameter = new double[4];
             decimal power;
@@ -1141,11 +1146,12 @@ namespace SpectroChipApp
                 parameter_buffer[i] = parameter[i];
             }
 
-            for (int x = -500; x < 1000; x++)  //hardcoding
+            for (int x = 0; x < IntensityOriginal.Length; x++)  //hardcoding
             {
                 equationVar = para_buf[4] * (Math.Pow(x, 4)) + para_buf[3] * (Math.Pow(x, 3)) + para_buf[2] * (Math.Pow(x, 2)) + para_buf[1] * x + para_buf[0];
                 series2.Points.AddXY(Convert.ToDouble(x), equationVar);
-            }
+                 wave[x]= equationVar;
+    }
 
             //將序列新增到圖上
             this.chart1.Series.Clear();
