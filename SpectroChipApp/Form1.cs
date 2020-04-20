@@ -124,7 +124,8 @@ namespace SpectroChipApp
                     {
                         capture.Read(frame);
 
-                       
+                         frame.Flip(FlipMode.XY);
+                     //   capture.RotateFlip(RotateFlipType.Rotate180FlipY);
 
                         Rect roi = new Rect(x, y, w, h);//首先要用个rect确定我们的兴趣区域在哪
 
